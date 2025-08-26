@@ -26,50 +26,50 @@ raw_env = [
 
 # --- Corrected Logging Configuration ---
 logconfig_dict = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'generic': {
-            'format': '%(asctime)s [%(process)d] [%(levelname)s] %(message)s',
-            'datefmt': '[%Y-%m-%d %H:%M:%S %z]',
-            'class': 'logging.Formatter',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "generic": {
+            "format": "%(asctime)s [%(process)d] [%(levelname)s] %(message)s",
+            "datefmt": "[%Y-%m-%d %H:%M:%S %z]",
+            "class": "logging.Formatter",
         },
-        'access': {
-            'format': '%(message)s',
-            'class': 'logging.Formatter',
-        },
-    },
-    'handlers': {
-        'error_file': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'generic',
-            'filename': '/opt/binance-python/logs/error.log',
-            'maxBytes': 1024 * 1024 * 5,
-            'backupCount': 5,
-        },
-        'access_file': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'access',
-            'filename': '/opt/binance-python/logs/access.log',
-            'maxBytes': 1024 * 1024 * 5,
-            'backupCount': 5,
+        "access": {
+            "format": "%(message)s",
+            "class": "logging.Formatter",
         },
     },
-    'loggers': {
-        'gunicorn.error': {
-            'handlers': ['error_file'],
-            'level': 'INFO',
-            'propagate': False,
+    "handlers": {
+        "error_file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "formatter": "generic",
+            "filename": "/opt/binance-python/logs/error.log",
+            "maxBytes": 1024 * 1024 * 5,
+            "backupCount": 5,
         },
-        'gunicorn.access': {
-            'handlers': ['access_file'],
-            'level': 'INFO',
-            'propagate': False,
+        "access_file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "formatter": "access",
+            "filename": "/opt/binance-python/logs/access.log",
+            "maxBytes": 1024 * 1024 * 5,
+            "backupCount": 5,
+        },
+    },
+    "loggers": {
+        "gunicorn.error": {
+            "handlers": ["error_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "gunicorn.access": {
+            "handlers": ["access_file"],
+            "level": "INFO",
+            "propagate": False,
         },
     },
     # --- THIS IS THE NEW, REQUIRED SECTION ---
-    'root': {
-        'handlers': ['error_file'],
-        'level': 'INFO',
+    "root": {
+        "handlers": ["error_file"],
+        "level": "INFO",
     },
 }
