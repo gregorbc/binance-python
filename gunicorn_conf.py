@@ -1,5 +1,4 @@
 # Gunicorn Configuration for Binance Futures Bot
-import multiprocessing
 import os
 
 # Server socket
