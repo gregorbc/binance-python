@@ -95,9 +95,9 @@ After=network.target
 Type=notify
 User=www-data
 Group=www-data
-WorkingDirectory=/opt/binance-python
-Environment=PATH=/opt/binance-python/venv/bin
-ExecStart=/opt/binance-python/venv/bin/gunicorn -c gunicorn.conf.py wsgi:application
+WorkingDirectory=/opt/binance-bot
+Environment=PATH=/opt/binance-bot/venv/bin
+ExecStart=/opt/binance-bot/venv/bin/gunicorn -c gunicorn.conf.py wsgi:application
 ExecReload=/bin/kill -s HUP $MAINPID
 Restart=always
 RestartSec=10

@@ -35,12 +35,13 @@ print_header() {
 # Check if script is run as root (not recommended)
 check_user() {
     if [ "$EUID" -eq 0 ]; then
-        print_warning "Running as root is not recommended for security reasons"
-        read -p "Continue anyway? (y/N): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            exit 1
-        fi
+        print_warning "Running as root is not recommended for security reasons" 
+        # The following lines have been commented out to prevent the script from stopping.
+        # read -p "Continue anyway? (y/N): " -n 1 -r
+        # echo
+        # if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        #     exit 1
+        # fi
     fi
 }
 
@@ -48,7 +49,7 @@ check_user() {
 check_requirements() {
     print_status "Checking requirements..."
     
-    local required_files=("app.py" "requirements.txt" ".env")
+    local required_files=("app.py" "requirements.txt" ".env") 
     local missing_files=()
     
     for file in "${required_files[@]}"; do
@@ -109,7 +110,7 @@ setup_venv() {
         print_status "Virtual environment already exists"
     fi
     
-    source venv/bin/activate
+    source venv/bin/activate 
     print_status "Virtual environment activated"
     
     # Upgrade pip
@@ -117,7 +118,7 @@ setup_venv() {
     
     # Install requirements
     print_status "Installing dependencies..."
-    pip install -r requirements.txt
+    pip install -r requirements.txt 
     print_status "Dependencies installed ✓"
 }
 
@@ -162,7 +163,7 @@ try:
     client = Client(api_key, api_secret, testnet=testnet)
     info = client.futures_exchange_info()
     print('✓ API connection successful')
-    print(f'✓ Connected to {'TESTNET' if testnet else 'MAINNET'}')
+    print(f\"✓ Connected to {'TESTNET' if testnet else 'MAINNET'}\")
 except Exception as e:
     print(f'✗ API connection failed: {e}')
     exit(1)
@@ -179,7 +180,7 @@ start_app() {
     
     if [ "$mode" = "production" ]; then
         print_status "Starting in production mode with Gunicorn..."
-        exec gunicorn -c gunicorn.conf.py wsgi:application
+        exec gunicorn -c gunicorn.conf.py wsgi:application 
     else
         print_status "Starting in development mode..."
         export FLASK_ENV=development

@@ -23,8 +23,8 @@ from flask_cors import CORS
 @dataclass
 class CONFIG:
     # Global Configuration (Editable from web)
-    LEVERAGE: int = 20
-    MAX_CONCURRENT_POS: int = 10
+    LEVERAGE: int = 50
+    MAX_CONCURRENT_POS: int = 20
     FIXED_MARGIN_PER_TRADE_USDT: float = 2.0
     NUM_SYMBOLS_TO_SCAN: int = 150
     # Strategy Configuration (Editable from web)
