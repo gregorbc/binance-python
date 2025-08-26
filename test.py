@@ -661,7 +661,6 @@ class TradingBot:
         }
 
     def run(self):
-        global app_state
         log.info("🚀 INICIANDO BOT DE TRADING BINANCE FUTURES v7.3")
 
         initial_balance = self.api.get_balance()
