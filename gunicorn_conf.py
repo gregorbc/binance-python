@@ -1,5 +1,4 @@
 # Gunicorn Configuration for Binance Futures Bot
-import multiprocessing
 import os
 
 # Server socket
@@ -42,14 +41,18 @@ raw_env = [
     f"FLASK_ENV={os.environ.get('FLASK_ENV', 'production')}",
 ]
 
+
 def when_ready(server):
     server.log.info("Server is ready. Spawning workers")
+
 
 def worker_int(worker):
     worker.log.info("worker received INT or QUIT signal")
 
+
 def pre_fork(server, worker):
     server.log.info("Worker spawned (pid: %s)", worker.pid)
+
 
 def post_fork(server, worker):
     server.log.info("Worker spawned (pid: %s)", worker.pid)
