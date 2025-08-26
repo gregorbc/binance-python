@@ -16,7 +16,7 @@ A professional web-based trading bot for Binance Futures with real-time monitori
 ### 1. Clone and Setup
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/gregorbc/binance-python.git
 cd binance-futures-bot
 ```
 
