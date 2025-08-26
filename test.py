@@ -15,7 +15,6 @@ y nuevas funcionalidades para una gestión avanzada.
 """
 import os, time, math, logging, threading
 import pandas as pd
-import numpy as np
 from dataclasses import dataclass, asdict
 from typing import Dict, List, Optional
 from dotenv import load_dotenv
