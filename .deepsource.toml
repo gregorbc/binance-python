@@ -7,13 +7,13 @@ name = "python"
   runtime_version = "3.x.x"
 
 [[transformers]]
-name = "autopep8"
+name = "isort"
 
 [[transformers]]
 name = "ruff"
 
 [[transformers]]
-name = "isort"
+name = "autopep8"
 
 [[transformers]]
 name = "yapf"
