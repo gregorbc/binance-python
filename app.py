@@ -5,7 +5,6 @@ Production-ready Flask web application for server deployment
 """
 import os, time, math, logging, threading
 import pandas as pd
-import numpy as np
 from dataclasses import dataclass, asdict
 from typing import Dict, List, Optional
 from dotenv import load_dotenv
@@ -15,7 +14,7 @@ from binance.client import Client
 from binance.enums import SIDE_BUY, SIDE_SELL, FUTURE_ORDER_TYPE_MARKET, FUTURE_ORDER_TYPE_LIMIT, TIME_IN_FORCE_GTC
 from binance.exceptions import BinanceAPIException
 
-from flask import Flask, render_template, jsonify, request, send_from_directory
+from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO
 from flask_cors import CORS
 
