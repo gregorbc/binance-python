@@ -27,21 +27,15 @@ print_error() {
 
 print_header() {
     echo -e "${BLUE}=================================${NC}"
-    echo -e "${BLUE} Binance Futures Bot v10.4${NC}"
+    echo -e "${BLUE} Binance Futures Bot v10.5${NC}"
     echo -e "${BLUE} Production Startup Script${NC}"
     echo -e "${BLUE}=================================${NC}"
 }
 
-# Check if script is run as root (not recommended)
+# Check if script is run as root
 check_user() {
     if [ "$EUID" -eq 0 ]; then
-        print_warning "Running as root is not recommended for security reasons" 
-        # The following lines have been commented out to prevent the script from stopping.
-        # read -p "Continue anyway? (y/N): " -n 1 -r
-        # echo
-        # if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        #     exit 1
-        # fi
+        print_warning "Running as root is not recommended for security reasons"
     fi
 }
 
@@ -172,6 +166,35 @@ except Exception as e:
     print_status "API connectivity ✓"
 }
 
+# Test MySQL connectivity
+test_mysql() {
+    print_status "Testing MySQL connectivity..."
+    
+    python3 -c "
+import os
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
+
+load_dotenv()
+mysql_host = os.getenv('MYSQL_HOST', 'localhost')
+mysql_user = os.getenv('MYSQL_USER', 'root')
+mysql_password = os.getenv('MYSQL_PASSWORD', 'g273f123')
+mysql_database = os.getenv('MYSQL_DATABASE', 'binance')
+mysql_port = int(os.getenv('MYSQL_PORT', 3306))
+
+try:
+    engine = create_engine(f'mysql+mysqlconnector://{mysql_user}:{mysql_password}@{mysql_host}:{mysql_port}/{mysql_database}')
+    with engine.connect() as conn:
+        conn.execute(text('SELECT 1'))
+    print('✓ MySQL connection successful')
+except Exception as e:
+    print(f'✗ MySQL connection failed: {e}')
+    exit(1)
+" || exit 1
+    
+    print_status "MySQL connectivity ✓"
+}
+
 # Start the application
 start_app() {
     print_status "Starting Binance Futures Bot..."
@@ -229,6 +252,7 @@ main() {
         setup_venv
         check_env
         test_api
+        test_mysql
     else
         print_warning "Skipping system checks as requested"
         source venv/bin/activate 2>/dev/null || true

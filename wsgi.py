@@ -1,27 +1,21 @@
-sudo bash -c 'cat > /opt/binance-python/wsgi.py <<EOF
-#!/usr/bin/env python3
 """
 WSGI Configuration for Binance Futures Bot
-Production-ready WSGI entry point
+Production-ready WSGI entry point for Gunicorn.
 """
 import os
-import sys
 from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
+# Load environment variables from .env file
+# This ensures that Gunicorn has access to the necessary secrets and config
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path)
 
-# Add the project directory to Python path
-project_dir = os.path.dirname(os.path.abspath(__file__))
-if project_dir not in sys.path:
-    sys.path.insert(0, project_dir)
+# Import the Flask application instance from your main app file.
+# The `socketio` instance is already attached to the `app` instance within app.py.
+# Gunicorn, when run with the eventlet worker, will correctly handle both
+# standard HTTP requests and WebSocket connections.
+from app import app
 
-# Import the Flask application and the SocketIO instance
-from app import app, socketio
-
-# For production servers, the socketio object is the WSGI application
-application = socketio
-
-if __name__ == "__main__":
-    socketio.run(app, debug=False, host="0.0.0.0", port=5000)
-EOF'
+# The variable 'application' is what Gunicorn looks for by default.
+application = app
