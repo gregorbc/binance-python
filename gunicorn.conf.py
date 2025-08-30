@@ -20,13 +20,13 @@ proc_name = "binance_futures_bot"
 
 # Logging
 # Ensure the 'logs' directory exists before starting
-logs_dir = os.path.join(os.getcwd(), 'logs')
+logs_dir = os.path.join(os.getcwd(), "logs")
 os.makedirs(logs_dir, exist_ok=True)
 
 # Define log file paths
-accesslog = os.path.join(logs_dir, 'gunicorn_access.log')
-errorlog = os.path.join(logs_dir, 'gunicorn_error.log')
-loglevel = 'info'
+accesslog = os.path.join(logs_dir, "gunicorn_access.log")
+errorlog = os.path.join(logs_dir, "gunicorn_error.log")
+loglevel = "info"
 
 # Preload the application to save memory and improve startup time
 preload_app = True
