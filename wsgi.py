@@ -1,24 +1,17 @@
-"""
-WSGI Configuration for Binance Futures Bot
-Production-ready WSGI entry point for Gunicorn.
-"""
+# Monkey patch debe ser lo PRIMERO que se ejecute
+import eventlet
+eventlet.monkey_patch()
 
 import os
-
 from dotenv import load_dotenv
 
-from app import app
-
-# Load environment variables from .env file
-# This ensures that Gunicorn has access to the necessary secrets and config
-dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
-# Import the Flask application instance from your main app file.
-# The `socketio` instance is already attached to the `app` instance within app.py.
-# Gunicorn, when run with the eventlet worker, will correctly handle both
-# standard HTTP requests and WebSocket connections.
+# Importar la aplicación Flask después del monkey patch
+from app import app as app
 
-# The variable 'application' is what Gunicorn looks for by default.
-application = app
+# Asegurarse de que la aplicación sea callable
+if __name__ == "__main__":
+    app.run()
