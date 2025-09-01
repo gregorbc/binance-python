@@ -1,9 +1,10 @@
 import os
-from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
+
+from dotenv import load_dotenv
+from sqlalchemy import Column, DateTime, Float, Integer, String, create_engine, func
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 # Carga variables de entorno
 load_dotenv()
@@ -19,6 +20,7 @@ DATABASE_URL = f"mysql+mysqlconnector://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOS
 engine = create_engine(DATABASE_URL, pool_recycle=3600)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
 
 class Trade(Base):
     __tablename__ = "trades"
@@ -41,6 +43,7 @@ class Trade(Base):
     strategy = Column(String(50), nullable=True)
     duration = Column(Float, nullable=True)
 
+
 class PerformanceMetrics(Base):
     __tablename__ = "performance_metrics"
     id = Column(Integer, primary_key=True, index=True)
@@ -54,7 +57,7 @@ class PerformanceMetrics(Base):
     strategy_effectiveness = Column(Float, default=0.0)
     market_volatility = Column(Float, default=0.0)
 
+
 def init_db():
     """Crea las tablas si no existen."""
     Base.metadata.create_all(bind=engine)
-

@@ -1,11 +1,20 @@
 # SQLAlchemy Models (antes: deepseek_python_20250830_f6b98c.py)
 import os
-from dotenv import load_dotenv
-from sqlalchemy import (create_engine, Column, Integer, String, Float, 
-                        DateTime, func, VARCHAR)
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
+
+from dotenv import load_dotenv
+from sqlalchemy import (
+    VARCHAR,
+    Column,
+    DateTime,
+    Float,
+    Integer,
+    String,
+    create_engine,
+    func,
+)
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
@@ -27,6 +36,7 @@ except Exception as e:
     SessionLocal = None
     Base = object
 
+
 class Trade(Base):
     __tablename__ = "trades"
     id = Column(Integer, primary_key=True, index=True)
@@ -47,6 +57,7 @@ class Trade(Base):
     strategy = Column(String(50), nullable=True)
     duration = Column(Float, nullable=True)
 
+
 class DailySummary(Base):
     __tablename__ = "daily_summary"
     id = Column(Integer, primary_key=True, index=True)
@@ -58,6 +69,7 @@ class DailySummary(Base):
     total_pnl = Column(Float, default=0.0)
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+
 
 def init_db():
     if engine:
