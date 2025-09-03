@@ -1,9 +1,10 @@
 import os
-from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
+
+from dotenv import load_dotenv
+from sqlalchemy import Column, DateTime, Float, Integer, String, create_engine, func
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 # Load environment variables
 load_dotenv()
@@ -22,10 +23,11 @@ engine = create_engine(
     max_overflow=10,
     pool_timeout=30,
     pool_recycle=1800,
-    echo=False
+    echo=False,
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
 
 class Trade(Base):
     __tablename__ = "trades"
@@ -47,6 +49,7 @@ class Trade(Base):
     strategy = Column(String(50), nullable=True)
     duration = Column(Float, nullable=True)
 
+
 class PerformanceMetrics(Base):
     __tablename__ = "performance_metrics"
     id = Column(Integer, primary_key=True, index=True)
@@ -61,6 +64,7 @@ class PerformanceMetrics(Base):
     market_volatility = Column(Float, default=0.0)
     avg_trade_duration = Column(Float, default=0.0)
 
+
 class DailySummary(Base):
     __tablename__ = "daily_summary"
     id = Column(Integer, primary_key=True)
@@ -73,17 +77,20 @@ class DailySummary(Base):
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
+
 class AccountBalance(Base):
-    __tablename__ = 'account_balance'
+    __tablename__ = "account_balance"
     id = Column(Integer, primary_key=True, index=True)
     timestamp = Column(DateTime, default=datetime.utcnow, index=True)
     balance = Column(Float, nullable=False)
     total_profit = Column(Float, nullable=False)
     reinvested_profit = Column(Float, nullable=False)
 
+
 def init_db():
     """Create tables if they don't exist."""
     Base.metadata.create_all(bind=engine)
+
 
 def get_db():
     """Get database session with context manager."""
