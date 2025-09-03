@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
-# Carga variables de entorno
+# Load environment variables
 load_dotenv()
 
 MYSQL_USER = os.getenv("MYSQL_USER", "root")
@@ -16,7 +16,14 @@ MYSQL_DATABASE = os.getenv("MYSQL_DATABASE", "binance")
 
 DATABASE_URL = f"mysql+mysqlconnector://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
 
-engine = create_engine(DATABASE_URL, pool_recycle=3600)
+engine = create_engine(
+    DATABASE_URL,
+    pool_size=5,
+    max_overflow=10,
+    pool_timeout=30,
+    pool_recycle=1800,
+    echo=False
+)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
@@ -33,7 +40,6 @@ class Trade(Base):
     leverage = Column(Integer, nullable=False)
     close_type = Column(String(20), nullable=False, default="unknown")
     timestamp = Column(DateTime, nullable=False, default=datetime.utcnow, index=True)
-    # FIX: Increased string length from 10 to 30 to accommodate full timestamps
     date = Column(String(30), nullable=False, index=True)
     created_at = Column(DateTime, default=func.now())
     stop_loss = Column(Float, nullable=True)
@@ -45,7 +51,7 @@ class PerformanceMetrics(Base):
     __tablename__ = "performance_metrics"
     id = Column(Integer, primary_key=True, index=True)
     timestamp = Column(DateTime, default=datetime.utcnow, index=True)
-    symbol = Column(String(20), nullable=False)
+    symbol = Column(String(20), nullable=False, index=True)
     win_rate = Column(Float, default=0.0)
     profit_factor = Column(Float, default=0.0)
     avg_win = Column(Float, default=0.0)
@@ -53,8 +59,36 @@ class PerformanceMetrics(Base):
     recommended_leverage = Column(Integer, default=20)
     strategy_effectiveness = Column(Float, default=0.0)
     market_volatility = Column(Float, default=0.0)
+    avg_trade_duration = Column(Float, default=0.0)
+
+class DailySummary(Base):
+    __tablename__ = "daily_summary"
+    id = Column(Integer, primary_key=True)
+    date = Column(String(10), nullable=False, unique=True, index=True)
+    total_trades = Column(Integer, default=0)
+    open_trades = Column(Integer, default=0)
+    closed_trades = Column(Integer, default=0)
+    daily_pnl = Column(Float, default=0.0)
+    total_pnl = Column(Float, default=0.0)
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+
+class AccountBalance(Base):
+    __tablename__ = 'account_balance'
+    id = Column(Integer, primary_key=True, index=True)
+    timestamp = Column(DateTime, default=datetime.utcnow, index=True)
+    balance = Column(Float, nullable=False)
+    total_profit = Column(Float, nullable=False)
+    reinvested_profit = Column(Float, nullable=False)
 
 def init_db():
-    """Crea las tablas si no existen."""
+    """Create tables if they don't exist."""
     Base.metadata.create_all(bind=engine)
 
+def get_db():
+    """Get database session with context manager."""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
