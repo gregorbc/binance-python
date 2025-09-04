@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func, Text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
@@ -80,6 +80,17 @@ class AccountBalance(Base):
     balance = Column(Float, nullable=False)
     total_profit = Column(Float, nullable=False)
     reinvested_profit = Column(Float, nullable=False)
+
+# NEW: Log table for storing application logs
+class AppLog(Base):
+    __tablename__ = "app_logs"
+    id = Column(Integer, primary_key=True, index=True)
+    timestamp = Column(DateTime, nullable=False, default=datetime.utcnow, index=True)
+    level = Column(String(20), nullable=False, index=True)
+    message = Column(Text, nullable=False)
+    module = Column(String(100), nullable=True)
+    func_name = Column(String(100), nullable=True)  # Changed from 'function' to 'func_name'
+    line_number = Column(Integer, nullable=True)
 
 def init_db():
     """Create tables if they don't exist."""

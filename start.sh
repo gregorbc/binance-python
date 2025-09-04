@@ -43,4 +43,4 @@ except Exception as e:
 
 # --- Start Gunicorn Server ---
 echo "Starting Gunicorn server with eventlet workers..."
-exec gunicorn --worker-class eventlet -w 1 --bind 0.0.0.0:5000 wsgi:app
+exec gunicorn -c gunicorn.conf.py wsgi:app
