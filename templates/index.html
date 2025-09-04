@@ -1280,8 +1280,10 @@
         // Función para filtrar trades
         function filterTrades() {
             const searchTerm = document.getElementById('trade-search').value.toLowerCase();
-            // Esta función se implementará cuando se carguen los trades
-            console.log('Filtrando trades por:', searchTerm);
+            const filteredTrades = tradesData.filter(trade =>
+                trade.symbol.toLowerCase().includes(searchTerm)
+            );
+            updateTradesTable(filteredTrades);
         }
 
         // Función para actualizar el gráfico de rendimiento
