@@ -26,7 +26,7 @@ services:
       retries: 3
       start_period: 40s
 
-  # New MySQL service definition
+  # MySQL service definition
   mysql:
     image: mysql:8.0
     restart: unless-stopped
@@ -43,6 +43,19 @@ services:
     # from your local machine for debugging purposes.
     # ports:
     #   - "3306:3306"
+
+  # New phpMyAdmin service to manage the database
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      # You can access phpMyAdmin on http://localhost:8081
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    depends_on:
+      - mysql
 
   # Optional: Nginx reverse proxy
   nginx:
@@ -64,3 +77,4 @@ volumes:
 networks:
   default:
     driver: bridge
+
