@@ -6,6 +6,8 @@ services:
     ports:
       - "5000:5000"
     environment:
+      # This is the key change: tells the bot to connect to the 'mysql' service
+      - MYSQL_HOST=mysql
       - HOST=0.0.0.0
       - PORT=5000
       - DEBUG=false
@@ -14,12 +16,46 @@ services:
     volumes:
       - ./logs:/app/logs
     restart: unless-stopped
+    # Ensures the bot starts only after the database is ready
+    depends_on:
+      - mysql
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+
+  # MySQL service definition
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      # These variables are read directly from your .env file
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      # This volume ensures your data persists even if the container is removed
+      - mysql_data:/var/lib/mysql
+    # Optional: You can uncomment the ports section to connect to the DB
+    # from your local machine for debugging purposes.
+    # ports:
+    #   - "3306:3306"
+
+  # New phpMyAdmin service to manage the database
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      # You can access phpMyAdmin on http://localhost:8081
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    depends_on:
+      - mysql
 
   # Optional: Nginx reverse proxy
   nginx:
@@ -34,6 +70,11 @@ services:
       - binance-bot
     restart: unless-stopped
 
+# Defines the named volume for MySQL data persistence
+volumes:
+  mysql_data:
+
 networks:
   default:
     driver: bridge
+
