@@ -2605,11 +2605,13 @@ def get_status():
 
 @app.route('/api/start', methods=['POST'])
 def start_bot():
-    global bot_thread, _trailing_monitor_thread
+    global bot_thread
     with state_lock:
-        if app_state["running"]: return jsonify({"status": "error", "message": "Bot is already running"}), 400
+        if app_state["running"]: 
+            return jsonify({"status": "error", "message": "Bot is already running"}), 400
         app_state["running"] = True
-        app_state["status_message"]: "Starting..."
+        app_state["status_message"] = "Starting..."  # CORREGIDO: usar = en lugar de :
+    
     bot_instance = TradingBot()
     bot_thread = threading.Thread(target=bot_instance.run, daemon=True)
     bot_thread.start()
@@ -2619,9 +2621,11 @@ def start_bot():
 @app.route('/api/stop', methods=['POST'])
 def stop_bot():
     with state_lock:
-        if not app_state["running"]: return jsonify({"status": "error", "message": "Bot is not running"}), 400
+        if not app_state["running"]: 
+            return jsonify({"status": "error", "message": "Bot is not running"}), 400
         app_state["running"] = False
         app_state["status_message"] = "Stopping..."
+    
     log.info("⏹️ Bot stopped from web interface (20x). Por gregorbc@gmail.com")
     return jsonify({"status": "success", "message": "Bot stopped."})
 
@@ -2631,11 +2635,15 @@ def update_config():
     data = request.json
 
     def cast_value(current, value):
-        if isinstance(current, bool): return str(value).lower() in ['true', '1', 'yes', 'on']
-        if isinstance(current, int): return int(value)
-        if isinstance(current, float): return float(value)
+        if isinstance(current, bool): 
+            return str(value).lower() in ['true', '1', 'yes', 'on']
+        if isinstance(current, int): 
+            return int(value)
+        if isinstance(current, float): 
+            return float(value)
         if isinstance(current, tuple):
-            if isinstance(value, str): return tuple(p.strip().upper() for p in value.split(',') if p.strip())
+            if isinstance(value, str): 
+                return tuple(p.strip().upper() for p in value.split(',') if p.strip())
             return tuple(str(x).upper() for x in value)
         return str(value)
 
@@ -2660,13 +2668,15 @@ def update_config():
 @app.route('/api/close_position', methods=['POST'])
 def close_position_api():
     symbol = request.json.get('symbol')
-    if not symbol: return jsonify({"status": "error", "message": "Missing symbol"}), 400
+    if not symbol: 
+        return jsonify({"status": "error", "message": "Missing symbol"}), 400
 
     try:
         api = BinanceFutures()
         acct = api._safe_api_call(api.client.futures_account)
         position = next((p for p in acct.get('positions', []) if p['symbol'] == symbol and float(p['positionAmt']) != 0), None)
-        if not position: return jsonify({"status": "error", "message": f"No active position found for {symbol}"}), 404
+        if not position: 
+            return jsonify({"status": "error", "message": f"No active position found for {symbol}"}), 404
 
         position_amt = float(position['positionAmt'])
         close_order = api.close_position(symbol, position_amt)
@@ -2692,25 +2702,36 @@ def close_position_api():
 def manual_trade():
     data = request.json
     symbol, side, margin = data.get('symbol', '').upper(), data.get('side'), float(data.get('margin', 10))
-    if not all([symbol, side]): return jsonify({"status": "error", "message": "Missing parameters."}), 400
+    if not all([symbol, side]): 
+        return jsonify({"status": "error", "message": "Missing parameters."}), 400
+    
     try:
         api = BinanceFutures()
         api.ensure_symbol_settings(symbol)
         mark = api._safe_api_call(api.client.futures_mark_price, symbol=symbol)
-        if not mark: return jsonify({"status": "error", "message": "Unable to fetch mark price."}), 500
+        if not mark: 
+            return jsonify({"status": "error", "message": "Unable to fetch mark price."}), 500
+        
         price = float(mark['markPrice'])
         filters = api.get_symbol_filters(symbol)
-        if not filters: return jsonify({"status": "error", "message": f"Could not get filters for {symbol}"}), 500
+        if not filters: 
+            return jsonify({"status": "error", "message": f"Could not get filters for {symbol}"}), 500
+        
         leverage_param = float(data.get('leverage', config.LEVERAGE) or config.LEVERAGE)
         quantity = api.round_value((margin * leverage_param) / price, filters['stepSize'])
-        if quantity < filters['minQty'] or (quantity * price) < filters['minNotional']: return jsonify({"status": "error", "message": f"Quantity ({quantity}) below minimum allowed."}), 400
+        
+        if quantity < filters['minQty'] or (quantity * price) < filters['minNotional']: 
+            return jsonify({"status": "error", "message": f"Quantity ({quantity}) below minimum allowed."}), 400
+        
         order_side = SIDE_BUY if side == 'LONG' else SIDE_SELL
         order = api.place_order(symbol, order_side, FUTURE_ORDER_TYPE_MARKET, quantity)
+        
         if order and (order.get('orderId') or order.get('mock')):
             log.info(f"MANUAL TRADE CREATED: {side} {quantity} {symbol} (20x) Por gregorbc@gmail.com")
             return jsonify({"status": "success", "message": f"Manual market order for {symbol} created."})
         else:
             return jsonify({"status": "error", "message": f"Manual order failed: {order}"}), 500
+            
     except Exception as e:
         log.error(f"Error in manual trade: {e} Por gregorbc@gmail.com")
         return jsonify({"status": "error", "message": str(e)}), 500
@@ -2719,15 +2740,25 @@ def manual_trade():
 def get_trade_history():
     with state_lock:
         trades = app_state["trades_history"]
+    
     sorted_trades = sorted(trades, key=lambda x: x.get('timestamp', 0), reverse=True)
     page, per_page = int(request.args.get('page', 1)), int(request.args.get('per_page', 20))
     start_idx, end_idx = (page - 1) * per_page, page * per_page
     paginated_trades = sorted_trades[start_idx:end_idx]
-    return jsonify({"trades": paginated_trades, "total": len(sorted_trades), "page": page, "per_page": per_page, "total_pages": math.ceil(len(sorted_trades) / per_page)})
+    
+    return jsonify({
+        "trades": paginated_trades, 
+        "total": len(sorted_trades), 
+        "page": page, 
+        "per_page": per_page, 
+        "total_pages": math.ceil(len(sorted_trades) / per_page)
+    })
 
 @app.route('/api/performance_metrics')
 def get_performance_metrics():
-    if not DB_ENABLED: return jsonify({"error": "Database is not enabled."}), 503
+    if not DB_ENABLED: 
+        return jsonify({"error": "Database is not enabled."}), 503
+    
     try:
         db = get_db_session_with_retry(max_retries=2)
         if not db:
@@ -2736,16 +2767,20 @@ def get_performance_metrics():
         query = db.query(PerformanceMetrics).order_by(desc(PerformanceMetrics.timestamp)).limit(100)
         metrics = query.all()
         return jsonify([asdict(m) for m in metrics])
+        
     except Exception as e:
         log.error(f"Error fetching performance metrics: {e} Por gregorbc@gmail.com")
         return jsonify({"error": str(e)}), 500
     finally:
-        if 'db' in locals(): db.close()
+        if 'db' in locals(): 
+            db.close()
 
 @app.route('/api/performance_stats')
 def get_performance_stats():
     """Obtener estadísticas de rendimiento detalladas Por gregorbc@gmail.com"""
-    if not DB_ENABLED: return jsonify({"error": "Database is not enabled."}), 503
+    if not DB_ENABLED: 
+        return jsonify({"error": "Database is not enabled."}), 503
+    
     try:
         db = get_db_session_with_retry(max_retries=2)
         if not db:
@@ -2771,11 +2806,13 @@ def get_performance_stats():
             'symbol_stats': [dict(s) for s in symbol_stats],
             'overall_stats': dict(overall_stats._mapping) if overall_stats else {}
         })
+        
     except Exception as e:
         log.error(f"Error fetching performance stats: {e} Por gregorbc@gmail.com")
         return jsonify({"error": str(e)}), 500
     finally:
-        if 'db' in locals(): db.close()
+        if 'db' in locals(): 
+            db.close()
 
 @app.route('/api/ai_metrics')
 def get_ai_metrics():
