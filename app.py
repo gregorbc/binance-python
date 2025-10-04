@@ -994,3 +994,5 @@ class TradingBot:
                 reward = min(2.0, trade_result / (abs(trade_result) + 1.0))
             else:
                 reward = max(-1.5, trade_result / (abs(trade_result) + 1.0))
+        except Exception as e:
+            log.error(f"Error updating AI model for {symbol}: {e}")
