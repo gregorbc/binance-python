@@ -1,12 +1,23 @@
-import os
-from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func, Text, text
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.exc import OperationalError, SQLAlchemyError
-from datetime import datetime
 import logging
+import os
 import time
+from datetime import datetime
+
+from dotenv import load_dotenv
+from sqlalchemy import (
+    Column,
+    DateTime,
+    Float,
+    Integer,
+    String,
+    Text,
+    create_engine,
+    func,
+    text,
+)
+from sqlalchemy.exc import OperationalError, SQLAlchemyError
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 # Load environment variables
 load_dotenv()
@@ -25,7 +36,7 @@ engine = create_engine(
     max_overflow=10,
     pool_timeout=30,
     pool_recycle=1800,
-    echo=False
+    echo=False,
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -51,7 +62,12 @@ def get_db_session_with_retry(max_retries: int = 3, retry_delay: float = 1.0):
             return session
         except OperationalError as exc:
             last_exc = exc
-            logger.warning("Database session creation failed on attempt %s/%s: %s", attempt, max_retries, exc)
+            logger.warning(
+                "Database session creation failed on attempt %s/%s: %s",
+                attempt,
+                max_retries,
+                exc,
+            )
             time.sleep(retry_delay)
 
     if last_exc:
@@ -59,7 +75,9 @@ def get_db_session_with_retry(max_retries: int = 3, retry_delay: float = 1.0):
     raise RuntimeError("Failed to create database session")
 
 
-def execute_with_retry(func, *args, max_retries: int = 3, retry_delay: float = 1.0, **kwargs):
+def execute_with_retry(
+    func, *args, max_retries: int = 3, retry_delay: float = 1.0, **kwargs
+):
     """Execute a callable with retry support for transient database errors."""
     last_exc: Exception | None = None
 
@@ -68,7 +86,12 @@ def execute_with_retry(func, *args, max_retries: int = 3, retry_delay: float = 1
             return func(*args, **kwargs)
         except OperationalError as exc:
             last_exc = exc
-            logger.warning("Database operation failed on attempt %s/%s: %s", attempt, max_retries, exc)
+            logger.warning(
+                "Database operation failed on attempt %s/%s: %s",
+                attempt,
+                max_retries,
+                exc,
+            )
             time.sleep(retry_delay)
         except SQLAlchemyError as exc:
             logger.error("Non-retryable SQLAlchemy error encountered: %s", exc)
@@ -93,6 +116,7 @@ def check_db_connection() -> bool:
         logger.error("Database connectivity check failed: %s", exc)
         return False
 
+
 class Trade(Base):
     __tablename__ = "trades"
     id = Column(Integer, primary_key=True, index=True)
@@ -113,6 +137,7 @@ class Trade(Base):
     strategy = Column(String(50), nullable=True)
     duration = Column(Float, nullable=True)
 
+
 class PerformanceMetrics(Base):
     __tablename__ = "performance_metrics"
     id = Column(Integer, primary_key=True, index=True)
@@ -127,6 +152,7 @@ class PerformanceMetrics(Base):
     market_volatility = Column(Float, default=0.0)
     avg_trade_duration = Column(Float, default=0.0)
 
+
 class DailySummary(Base):
     __tablename__ = "daily_summary"
     id = Column(Integer, primary_key=True)
@@ -139,13 +165,15 @@ class DailySummary(Base):
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
+
 class AccountBalance(Base):
-    __tablename__ = 'account_balance'
+    __tablename__ = "account_balance"
     id = Column(Integer, primary_key=True, index=True)
     timestamp = Column(DateTime, default=datetime.utcnow, index=True)
     balance = Column(Float, nullable=False)
     total_profit = Column(Float, nullable=False)
     reinvested_profit = Column(Float, nullable=False)
+
 
 # NEW: Log table for storing application logs
 class AppLog(Base):
@@ -155,12 +183,16 @@ class AppLog(Base):
     level = Column(String(20), nullable=False, index=True)
     message = Column(Text, nullable=False)
     module = Column(String(100), nullable=True)
-    func_name = Column(String(100), nullable=True)  # Changed from 'function' to 'func_name'
+    func_name = Column(
+        String(100), nullable=True
+    )  # Changed from 'function' to 'func_name'
     line_number = Column(Integer, nullable=True)
+
 
 def init_db():
     """Create tables if they don't exist."""
     Base.metadata.create_all(bind=engine)
+
 
 def get_db():
     """Get database session with context manager."""
