@@ -1,9 +1,12 @@
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func, Text
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func, Text, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.exc import OperationalError, SQLAlchemyError
 from datetime import datetime
+import logging
+import time
 
 # Load environment variables
 load_dotenv()
@@ -26,6 +29,69 @@ engine = create_engine(
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+logger = logging.getLogger(__name__)
+
+
+def _ensure_session_local() -> sessionmaker:
+    """Ensure the session factory is available before trying to use it."""
+    if SessionLocal is None:
+        raise RuntimeError("Database session factory is not initialised")
+    return SessionLocal
+
+
+def get_db_session_with_retry(max_retries: int = 3, retry_delay: float = 1.0):
+    """Return a database session with retry logic to cope with transient errors."""
+    session_factory = _ensure_session_local()
+    last_exc: Exception | None = None
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            session = session_factory()
+            return session
+        except OperationalError as exc:
+            last_exc = exc
+            logger.warning("Database session creation failed on attempt %s/%s: %s", attempt, max_retries, exc)
+            time.sleep(retry_delay)
+
+    if last_exc:
+        raise last_exc
+    raise RuntimeError("Failed to create database session")
+
+
+def execute_with_retry(func, *args, max_retries: int = 3, retry_delay: float = 1.0, **kwargs):
+    """Execute a callable with retry support for transient database errors."""
+    last_exc: Exception | None = None
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            return func(*args, **kwargs)
+        except OperationalError as exc:
+            last_exc = exc
+            logger.warning("Database operation failed on attempt %s/%s: %s", attempt, max_retries, exc)
+            time.sleep(retry_delay)
+        except SQLAlchemyError as exc:
+            logger.error("Non-retryable SQLAlchemy error encountered: %s", exc)
+            raise
+
+    if last_exc:
+        raise last_exc
+    raise RuntimeError("Database operation failed after retries")
+
+
+def check_db_connection() -> bool:
+    """Check if the database connection is available."""
+    if engine is None:
+        logger.error("Database engine is not initialised")
+        return False
+
+    try:
+        with engine.connect() as connection:
+            connection.execute(text("SELECT 1"))
+        return True
+    except OperationalError as exc:
+        logger.error("Database connectivity check failed: %s", exc)
+        return False
 
 class Trade(Base):
     __tablename__ = "trades"
