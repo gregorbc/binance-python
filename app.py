@@ -2631,7 +2631,6 @@ def stop_bot():
 
 @app.route('/api/update_config', methods=['POST'])
 def update_config():
-    global config
     data = request.json
 
     def cast_value(current, value):
