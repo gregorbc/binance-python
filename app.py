@@ -739,6 +739,30 @@ def get_trade_history():
     with state_lock: trades = sorted(app_state["trades_history"], key=lambda x: x.get('timestamp', 0), reverse=True)
     return jsonify({"trades": trades})
 
+
+@app.route('/api/positions')
+def get_positions():
+    """Return a list of open positions."""
+    with state_lock:
+        positions = list(app_state.get("open_positions", {}).values())
+    return jsonify({"positions": positions})
+
+
+@app.route('/api/open_positions')
+def get_open_positions():
+    """Return open positions as a dictionary keyed by symbol."""
+    with state_lock:
+        positions = app_state.get("open_positions", {})
+    return jsonify(positions)
+
+
+@app.route('/api/trailing_stop_data')
+def get_trailing_stop_data():
+    """Expose current trailing stop configuration for all symbols."""
+    with state_lock:
+        trailing_data = app_state.get("trailing_stop_data", {})
+    return jsonify(trailing_data)
+
 # -------------------- SOCKETIO EVENTS -------------------- #
 @socketio.on('connect')
 def handle_connect():

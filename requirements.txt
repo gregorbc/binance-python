@@ -1,11 +1,29 @@
-Flask
-Flask-SocketIO
-Flask-Cors
-python-binance
-SQLAlchemy
-mysql-connector-python
-pandas
-numpy
-python-dotenv
-eventlet
-gunicorn
+# Core dependencies
+Flask==2.3.3
+Flask-SocketIO==5.3.6
+Flask-Cors==4.0.0
+python-dotenv==1.0.0
+
+# Binance API
+python-binance==1.0.19
+
+# Data processing
+pandas==2.1.1
+numpy==1.25.2
+TA-Lib==0.6.6
+
+# Async support
+gevent==23.7.0
+gevent-websocket==0.10.1
+
+# Database
+SQLAlchemy==2.0.43
+mysql-connector-python==9.4.0
+
+# Production server
+gunicorn==21.2.0
+eventlet==0.33.3
+
+# Additional utilities
+requests==2.31.0
+urllib3==1.26.16
