@@ -17,7 +17,7 @@ A professional web-based trading bot for Binance Futures with real-time monitori
 
 ```bash
 git clone https://github.com/gregorbc/binance-python.git
-cd bbinance-python
+cd binance-python
 ```
 
 ### 2. Environment Configuration
