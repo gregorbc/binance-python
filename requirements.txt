@@ -1,12 +1,10 @@
-python-binance==1.0.19
+python-dotenv==1.0.0
+requests==2.31.0
 pandas==2.0.3
 numpy==1.24.3
-python-dotenv==1.0.0
+python-binance==1.0.19
 flask==2.3.3
 flask-socketio==5.3.6
 flask-cors==4.0.0
 eventlet==0.33.3
-sqlalchemy==2.0.23
-requests==2.31.0
-TA-Lib==0.4.28
-tensorflow==2.13.0
+thread6==0.2.0
