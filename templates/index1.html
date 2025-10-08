@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Futures Bot - 20x Leverage</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #2962ff;
+            --success-color: #00c853;
+            --danger-color: #ff1744;
+            --warning-color: #ff9100;
+            --bg-dark: #1e1e1e;
+            --bg-darker: #121212;
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --border-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #0039cb);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(41, 98, 255, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #fff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-running {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .status-stopped {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .metric-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .positive {
+            color: var(--success-color);
+        }
+        
+        .negative {
+            color: var(--danger-color);
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .log-container {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .log-entry {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .log-timestamp {
+            color: var(--text-muted);
+            margin-right: 1rem;
+        }
+        
+        .log-info {
+            color: #4fc3f7;
+        }
+        
+        .log-warning {
+            color: var(--warning-color);
+        }
+        
+        .log-error {
+            color: var(--danger-color);
+        }
+        
+        .log-success {
+            color: var(--success-color);
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-top: 1rem;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Binance Futures Bot</h1>
+            <p>Sistema de Trading Avanzado con 20x Leverage</p>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-success" onclick="startBot()" id="startBtn">▶️ Iniciar Bot</button>
+            <button class="btn btn-danger" onclick="stopBot()" id="stopBtn">⏹️ Detener Bot</button>
+            <button class="btn btn-primary" onclick="updateConfig()">⚙️ Actualizar Config</button>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📊 Estado del Sistema</div>
+                    <div class="status-badge" id="systemStatus">DETENIDO</div>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Balance Actual</span>
+                    <span class="metric-value" id="currentBalance">$0.00</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Profit Total</span>
+                    <span class="metric-value" id="totalProfit">$0.00</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Posiciones Abiertas</span>
+                    <span class="metric-value" id="openPositions">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Régimen de Mercado</span>
+                    <span class="metric-value" id="marketRegime">NEUTRAL</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📈 Rendimiento</div>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Total Trades</span>
+                    <span class="metric-value" id="totalTrades">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Win Rate</span>
+                    <span class="metric-value" id="winRate">0%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Profit Factor</span>
+                    <span class="metric-value" id="profitFactor">0.00</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">P&L Realizado</span>
+                    <span class="metric-value" id="realizedPnl">$0.00</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">⚡ Gestión de Riesgo</div>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Apalancamiento</span>
+                    <span class="metric-value">20x</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Riesgo por Trade</span>
+                    <span class="metric-value">1.5%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Drawdown Máximo</span>
+                    <span class="metric-value" id="maxDrawdown">0%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Ratio de Exposición</span>
+                    <span class="metric-value" id="exposureRatio">0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📝 Logs en Tiempo Real</div>
+                </div>
+                <div class="log-container" id="logContainer">
+                    <div class="log-entry">
+                        <span class="log-timestamp" id="initialTimestamp"></span>
+                        <span class="log-info">Sistema inicializado y listo</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📊 Balance History</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="balanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        let balanceChart = null;
+        
+        // Actualizar estado del sistema
+        socket.on('state_update', function(data) {
+            updateDashboard(data);
+        });
+        
+        // Actualizar logs
+        socket.on('log_update', function(data) {
+            addLogEntry(data.message, data.level);
+        });
+        
+        function updateDashboard(data) {
+            // Estado del sistema
+            document.getElementById('systemStatus').textContent = data.running ? 'EJECUTÁNDOSE' : 'DETENIDO';
+            document.getElementById('systemStatus').className = `status-badge ${data.running ? 'status-running' : 'status-stopped'}`;
+            
+            // Balance y capital
+            document.getElementById('currentBalance').textContent = `$${data.balance.toFixed(2)}`;
+            document.getElementById('totalProfit').textContent = `$${data.capital_stats.total_profit.toFixed(2)}`;
+            document.getElementById('totalProfit').className = `metric-value ${data.capital_stats.total_profit >= 0 ? 'positive' : 'negative'}`;
+            
+            // Posiciones
+            document.getElementById('openPositions').textContent = Object.keys(data.open_positions).length;
+            
+            // Mercado
+            document.getElementById('marketRegime').textContent = data.market_regime;
+            
+            // Rendimiento
+            const perf = data.performance_stats;
+            document.getElementById('totalTrades').textContent = perf.trades_count;
+            document.getElementById('winRate').textContent = `${perf.win_rate.toFixed(1)}%`;
+            document.getElementById('profitFactor').textContent = perf.profit_factor.toFixed(2);
+            document.getElementById('realizedPnl').textContent = `$${perf.realized_pnl.toFixed(2)}`;
+            document.getElementById('realizedPnl').className = `metric-value ${perf.realized_pnl >= 0 ? 'positive' : 'negative'}`;
+            
+            // Riesgo
+            const risk = data.risk_metrics;
+            document.getElementById('maxDrawdown').textContent = `${risk.max_drawdown.toFixed(1)}%`;
+            document.getElementById('exposureRatio').textContent = `${(risk.exposure_ratio * 100).toFixed(1)}%`;
+            
+            // Actualizar gráfico de balance
+            updateBalanceChart(data.balance_history);
+        }
+        
+        function addLogEntry(message, level) {
+            const logContainer = document.getElementById('logContainer');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            
+            const timestamp = new Date().toLocaleTimeString();
+            const levelClass = `log-${level.toLowerCase()}`;
+            
+            logEntry.innerHTML = `
+                <span class="log-timestamp">${timestamp}</span>
+                <span class="${levelClass}">${message}</span>
+            `;
+            
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            
+            // Mantener máximo 100 entradas
+            if (logContainer.children.length > 100) {
+                logContainer.removeChild(logContainer.firstChild);
+            }
+        }
+        
+        function updateBalanceChart(balanceHistory) {
+            const ctx = document.getElementById('balanceChart').getContext('2d');
+            
+            if (balanceChart) {
+                balanceChart.destroy();
+            }
+            
+            balanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: balanceHistory.map((_, i) => i + 1),
+                    datasets: [{
+                        label: 'Balance (USDT)',
+                        data: balanceHistory,
+                        borderColor: '#2962ff',
+                        backgroundColor: 'rgba(41, 98, 255, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#b0b0b0'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#b0b0b0'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        async function startBot() {
+            try {
+                const response = await fetch('/api/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                if (result.status === 'started') {
+                    addLogEntry('✅ Bot iniciado correctamente', 'success');
+                }
+            } catch (error) {
+                addLogEntry('❌ Error al iniciar el bot: ' + error, 'error');
+            }
+        }
+        
+        async function stopBot() {
+            try {
+                const response = await fetch('/api/stop', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                if (result.status === 'stopped') {
+                    addLogEntry('🛑 Bot detenido correctamente', 'warning');
+                }
+            } catch (error) {
+                addLogEntry('❌ Error al detener el bot: ' + error, 'error');
+            }
+        }
+        
+        async function updateConfig() {
+            // Aquí iría la lógica para actualizar la configuración
+            addLogEntry('⚙️ Función de actualización de configuración', 'info');
+        }
+        
+        // Inicializar timestamp
+        document.getElementById('initialTimestamp').textContent = new Date().toLocaleTimeString();
+        
+        // Cargar estado inicial
+        fetch('/api/status')
+            .then(response => response.json())
+            .then(data => updateDashboard(data))
+            .catch(error => addLogEntry('❌ Error cargando estado inicial: ' + error, 'error'));
+    </script>
+</body>
+</html>
