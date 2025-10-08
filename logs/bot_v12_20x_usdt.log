@@ -1,198 +1,25 @@
-2025-10-08 17:22:55,636 - ERROR - Error en el bot: APIError(code=0): Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error.
-2025-10-08 17:22:58,796 - ERROR - Error en el bot: APIError(code=0): Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error.
-2025-10-08 17:23:06,908 - ERROR - Error en el bot: APIError(code=0): Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error.
-2025-10-08 17:25:10,688 - ERROR - Error en el bot: APIError(code=0): Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error.
-2025-10-08 17:29:29,282 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 17:29:30,528 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 17:29:30,529 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 17:29:30,529 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 17:29:30,530 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
-2025-10-08 17:29:30,530 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 3
-2025-10-08 17:29:30,531 - INFO - 🔑 API Key presente: True
-2025-10-08 17:29:30,531 - INFO - 🔑 API Secret presente: True
-2025-10-08 17:29:30,531 - INFO - 🌐 Modo Testnet: True
-2025-10-08 17:29:30,532 - INFO - 🔧 Dry Run: False
-2025-10-08 17:29:31,895 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:34,249 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:38,609 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:38,609 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:38,610 - WARNING - ⚠️ Balance insuficiente: 0.00 USDT < 10.0 USDT
-2025-10-08 17:29:38,610 - INFO - --- 🔄 Cycle 1 - Capital: 0.00 USDT (20x) ---
-2025-10-08 17:29:39,969 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:42,330 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:46,685 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:46,685 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:54,687 - INFO - --- 🔄 Cycle 2 - Capital: 0.00 USDT (20x) ---
-2025-10-08 17:29:56,046 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:29:58,414 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:02,784 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:02,785 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:10,794 - INFO - --- 🔄 Cycle 3 - Capital: 0.00 USDT (20x) ---
-2025-10-08 17:30:12,152 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:14,511 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:18,866 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:18,866 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:26,868 - INFO - --- 🔄 Cycle 4 - Capital: 0.00 USDT (20x) ---
-2025-10-08 17:30:28,230 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:30,587 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:34,942 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:34,943 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:42,944 - INFO - --- 🔄 Cycle 5 - Capital: 0.00 USDT (20x) ---
-2025-10-08 17:30:44,307 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:46,660 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:51,015 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:51,016 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:30:59,017 - INFO - --- 🔄 Cycle 6 - Capital: 0.00 USDT (20x) ---
-2025-10-08 17:31:00,372 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:31:02,734 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:31:08,841 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:31:08,842 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:31:16,843 - INFO - --- 🔄 Cycle 7 - Capital: 0.00 USDT (20x) ---
-2025-10-08 17:31:18,199 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:31:20,556 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:31:24,906 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:31:24,906 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 17:31:50,001 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 17:31:51,322 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 17:31:51,322 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 17:31:51,323 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 17:31:51,323 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
-2025-10-08 17:31:51,323 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 3
-2025-10-08 17:31:51,324 - INFO - 🔑 API Key presente: True
-2025-10-08 17:31:51,324 - INFO - 🔑 API Secret presente: True
-2025-10-08 17:31:51,324 - INFO - 🌐 Modo Testnet: True
-2025-10-08 17:31:51,325 - INFO - 🔧 Dry Run: False
-2025-10-08 17:31:52,703 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 17:31:52,703 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:32:02,068 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:32:11,436 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:32:20,799 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:32:30,176 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:32:39,553 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:32:48,920 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:32:58,297 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:33:07,662 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:33:17,038 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:33:26,405 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:33:35,783 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:33:35,784 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 17:33:35,785 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 17:33:45,163 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:33:54,529 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:34:03,902 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:34:13,270 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:34:22,640 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:34:32,009 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:34:41,379 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:34:50,747 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:35:00,120 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 17:35:09,491 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:01:54,286 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 18:01:55,525 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 18:01:55,525 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 18:01:55,526 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 18:01:55,526 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
-2025-10-08 18:01:55,527 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 3
-2025-10-08 18:01:55,527 - INFO - 🔑 API Key presente: True
-2025-10-08 18:01:55,528 - INFO - 🔑 API Secret presente: True
-2025-10-08 18:01:55,528 - INFO - 🌐 Modo Testnet: True
-2025-10-08 18:01:55,529 - INFO - 🔧 Dry Run: False
-2025-10-08 18:01:56,907 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 18:01:56,908 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:02:06,284 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:02:15,663 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:02:25,040 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:02:34,416 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:02:43,788 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:02:53,157 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:03:02,544 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:03:11,912 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:03:21,289 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:03:30,680 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:03:40,053 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:03:40,053 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:03:40,054 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:03:49,430 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:03:58,798 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:04:08,178 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:04:17,559 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:04:26,942 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:04:36,311 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:04:45,681 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:04:55,050 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:05:04,428 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:05:13,808 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:05:23,188 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:05:32,575 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:05:32,575 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:05:32,576 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:05:41,955 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:05:51,334 - INFO - --- 🔄 Cycle 26 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:06:00,711 - INFO - --- 🔄 Cycle 27 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:06:10,086 - INFO - --- 🔄 Cycle 28 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:06:19,463 - INFO - --- 🔄 Cycle 29 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:06:28,834 - INFO - --- 🔄 Cycle 30 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:06:38,205 - INFO - --- 🔄 Cycle 31 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:06:47,573 - INFO - --- 🔄 Cycle 32 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:06:56,943 - INFO - --- 🔄 Cycle 33 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:07:06,319 - INFO - --- 🔄 Cycle 34 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:07:15,691 - INFO - --- 🔄 Cycle 35 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:07:25,074 - INFO - --- 🔄 Cycle 36 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:07:25,074 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:07:25,075 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:08:43,973 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 18:08:45,362 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 18:08:45,363 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 18:08:45,363 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 18:08:45,364 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
-2025-10-08 18:08:45,364 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 3
-2025-10-08 18:08:45,364 - INFO - 🔑 API Key presente: True
-2025-10-08 18:08:45,365 - INFO - 🔑 API Secret presente: True
-2025-10-08 18:08:45,365 - INFO - 🌐 Modo Testnet: True
-2025-10-08 18:08:45,365 - INFO - 🔧 Dry Run: False
-2025-10-08 18:08:46,737 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 18:08:46,738 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:08:56,114 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:09:05,492 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:09:14,870 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:09:24,250 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:09:33,629 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:09:42,999 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:09:52,382 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:10:01,767 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:10:11,147 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:10:20,538 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:10:29,916 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:10:29,917 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:10:29,917 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:10:39,296 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:10:48,674 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:10:58,112 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:11:09,180 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:11:20,130 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:11:29,584 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:11:39,023 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:11:48,606 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:11:57,986 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:12:07,377 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:12:17,486 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:12:26,871 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:12:26,877 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:12:26,882 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:12:36,258 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:12:45,637 - INFO - --- 🔄 Cycle 26 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:12:55,055 - INFO - --- 🔄 Cycle 27 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:14:00,529 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 18:14:02,218 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 18:14:02,219 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 18:14:02,219 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 18:14:02,220 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
-2025-10-08 18:14:02,221 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 3
-2025-10-08 18:14:02,221 - INFO - 🔑 API Key presente: True
-2025-10-08 18:14:02,221 - INFO - 🔑 API Secret presente: True
-2025-10-08 18:14:02,222 - INFO - 🌐 Modo Testnet: True
-2025-10-08 18:14:02,222 - INFO - 🔧 Dry Run: False
-2025-10-08 18:14:03,602 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 18:14:03,605 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:14:12,982 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:14:22,390 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:19:53,755 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
+2025-10-08 18:19:55,439 - INFO - ✅ Información de exchange cargada exitosamente
+2025-10-08 18:19:55,440 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
+2025-10-08 18:19:55,444 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
+2025-10-08 18:19:55,445 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
+2025-10-08 18:19:55,447 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 20
+2025-10-08 18:19:55,455 - INFO - 🔑 API Key presente: True
+2025-10-08 18:19:55,461 - INFO - 🔑 API Secret presente: True
+2025-10-08 18:19:55,476 - INFO - 🌐 Modo Testnet: True
+2025-10-08 18:19:55,482 - INFO - 🔧 Dry Run: False
+2025-10-08 18:19:56,856 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
+2025-10-08 18:19:56,857 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:20:06,226 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:20:15,611 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:20:24,986 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:20:34,356 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:20:43,728 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:20:53,094 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:21:02,467 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:21:11,839 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:21:21,227 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:21:30,616 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:21:39,985 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:21:39,996 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
+2025-10-08 18:21:39,998 - INFO - 🏛️ Market Regime: NEUTRAL (20x)

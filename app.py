@@ -66,7 +66,7 @@ except Exception as e:
 class CONFIG:
     # Configuración Global
     LEVERAGE: int = 20
-    MAX_CONCURRENT_POS: int = 3
+    MAX_CONCURRENT_POS: int = 20
     NUM_SYMBOLS_TO_SCAN: int = 100  # Reducido de 400 a 100 para mejor calidad
     # Configuración de Estrategia
     ATR_MULT_SL: float = 2.2
