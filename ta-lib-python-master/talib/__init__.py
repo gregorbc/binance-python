@@ -1,7 +1,6 @@
-
 import atexit
-from itertools import chain
 from functools import wraps
+from itertools import chain
 
 # If polars is available, wrap talib functions so that they support
 # polars.Series input
@@ -9,7 +8,10 @@ try:
     from polars import Series as _pl_Series
 except ImportError as import_error:
     try:
-        if not isinstance(import_error, ModuleNotFoundError) or import_error.name != 'polars':
+        if (
+            not isinstance(import_error, ModuleNotFoundError)
+            or import_error.name != "polars"
+        ):
             # Propagate the error when the module exists but failed to be imported.
             raise import_error
     # `ModuleNotFoundError` was introduced in Python 3.6.
@@ -25,7 +27,10 @@ try:
     from pandas import Series as _pd_Series
 except ImportError as import_error:
     try:
-        if not isinstance(import_error, ModuleNotFoundError) or import_error.name != 'pandas':
+        if (
+            not isinstance(import_error, ModuleNotFoundError)
+            or import_error.name != "pandas"
+        ):
             # Propagate the error when the module exists but failed to be imported.
             raise import_error
     # `ModuleNotFoundError` was introduced in Python 3.6.
@@ -40,16 +45,17 @@ if _pl_Series is not None or _pd_Series is not None:
     def _wrapper(func):
         @wraps(func)
         def wrapper(*args, **kwds):
-
             if _pl_Series is not None:
-                use_pl = any(isinstance(arg, _pl_Series) for arg in args) or \
-                         any(isinstance(v, _pl_Series) for v in kwds.values())
+                use_pl = any(isinstance(arg, _pl_Series) for arg in args) or any(
+                    isinstance(v, _pl_Series) for v in kwds.values()
+                )
             else:
                 use_pl = False
 
             if _pd_Series is not None:
-                use_pd = any(isinstance(arg, _pd_Series) for arg in args) or \
-                         any(isinstance(v, _pd_Series) for v in kwds.values())
+                use_pd = any(isinstance(arg, _pd_Series) for arg in args) or any(
+                    isinstance(v, _pd_Series) for v in kwds.values()
+                )
             else:
                 use_pd = False
 
@@ -58,20 +64,30 @@ if _pl_Series is not None or _pd_Series is not None:
 
             # Use float64 values if polars or pandas, else use values as passed
             if use_pl:
-                _args = [arg.to_numpy().astype(float) if isinstance(arg, _pl_Series) else
-                         arg for arg in args]
-                _kwds = {k: v.to_numpy().astype(float) if isinstance(v, _pl_Series) else
-                            v for k, v in kwds.items()}
+                _args = [
+                    arg.to_numpy().astype(float) if isinstance(arg, _pl_Series) else arg
+                    for arg in args
+                ]
+                _kwds = {
+                    k: v.to_numpy().astype(float) if isinstance(v, _pl_Series) else v
+                    for k, v in kwds.items()
+                }
 
             elif use_pd:
-                index = next(arg.index
-                             for arg in chain(args, kwds.values())
-                             if isinstance(arg, _pd_Series))
+                index = next(
+                    arg.index
+                    for arg in chain(args, kwds.values())
+                    if isinstance(arg, _pd_Series)
+                )
 
-                _args = [arg.to_numpy().astype(float) if isinstance(arg, _pd_Series) else
-                         arg for arg in args]
-                _kwds = {k: v.to_numpy().astype(float) if isinstance(v, _pd_Series) else
-                            v for k, v in kwds.items()}
+                _args = [
+                    arg.to_numpy().astype(float) if isinstance(arg, _pd_Series) else arg
+                    for arg in args
+                ]
+                _kwds = {
+                    k: v.to_numpy().astype(float) if isinstance(v, _pd_Series) else v
+                    for k, v in kwds.items()
+                }
 
             else:
                 _args = args
@@ -81,7 +97,7 @@ if _pl_Series is not None or _pd_Series is not None:
 
             # check to see if we got a streaming result
             first_result = result[0] if isinstance(result, tuple) else result
-            is_streaming_fn_result = not hasattr(first_result, '__len__')
+            is_streaming_fn_result = not hasattr(first_result, "__len__")
             if is_streaming_fn_result:
                 return result
 
@@ -102,21 +118,30 @@ if _pl_Series is not None or _pd_Series is not None:
                 return result
 
         return wrapper
+
 else:
-    _wrapper = lambda x: x
 
+    def _wrapper(x):
+        return x
 
-from ._ta_lib import (
-    _ta_initialize, _ta_shutdown, MA_Type, __ta_version__,
-    _ta_set_unstable_period as set_unstable_period,
-    _ta_get_unstable_period as get_unstable_period,
-    _ta_set_compatibility as set_compatibility,
-    _ta_get_compatibility as get_compatibility,
-    __TA_FUNCTION_NAMES__
-)
 
 # import all the func and stream functions
 from ._ta_lib import *
+from ._ta_lib import (
+    __TA_FUNCTION_NAMES__,
+    MA_Type,
+    __ta_version__,
+)
+from ._ta_lib import _ta_get_compatibility as get_compatibility
+from ._ta_lib import _ta_get_unstable_period as get_unstable_period
+from ._ta_lib import (
+    _ta_initialize,
+)
+from ._ta_lib import _ta_set_compatibility as set_compatibility
+from ._ta_lib import _ta_set_unstable_period as set_unstable_period
+from ._ta_lib import (
+    _ta_shutdown,
+)
 
 # wrap them for polars or pandas support
 func = __import__("_ta_lib", globals(), locals(), __TA_FUNCTION_NAMES__, level=1)
@@ -125,14 +150,14 @@ for func_name in __TA_FUNCTION_NAMES__:
     setattr(func, func_name, wrapped_func)
     globals()[func_name] = wrapped_func
 
-stream_func_names = ['stream_%s' % fname for fname in __TA_FUNCTION_NAMES__]
+stream_func_names = ["stream_%s" % fname for fname in __TA_FUNCTION_NAMES__]
 stream = __import__("stream", globals(), locals(), stream_func_names, level=1)
 for func_name, stream_func_name in zip(__TA_FUNCTION_NAMES__, stream_func_names):
     wrapped_func = _wrapper(getattr(stream, func_name))
     setattr(stream, func_name, wrapped_func)
     globals()[stream_func_name] = wrapped_func
 
-__version__ = '0.6.7'
+__version__ = "0.6.7"
 
 # In order to use this python library, talib (i.e. this __file__) will be
 # imported at some point, either explicitly or indirectly via talib.func
@@ -145,185 +170,182 @@ _ta_initialize()
 atexit.register(_ta_shutdown)
 
 __function_groups__ = {
-    'Cycle Indicators': [
-        'HT_DCPERIOD',
-        'HT_DCPHASE',
-        'HT_PHASOR',
-        'HT_SINE',
-        'HT_TRENDMODE',
-        ],
-    'Math Operators': [
-        'ADD',
-        'DIV',
-        'MAX',
-        'MAXINDEX',
-        'MIN',
-        'MININDEX',
-        'MINMAX',
-        'MINMAXINDEX',
-        'MULT',
-        'SUB',
-        'SUM',
-        ],
-    'Math Transform': [
-        'ACOS',
-        'ASIN',
-        'ATAN',
-        'CEIL',
-        'COS',
-        'COSH',
-        'EXP',
-        'FLOOR',
-        'LN',
-        'LOG10',
-        'SIN',
-        'SINH',
-        'SQRT',
-        'TAN',
-        'TANH',
-        ],
-    'Momentum Indicators': [
-        'ADX',
-        'ADXR',
-        'APO',
-        'AROON',
-        'AROONOSC',
-        'BOP',
-        'CCI',
-        'CMO',
-        'DX',
-        'MACD',
-        'MACDEXT',
-        'MACDFIX',
-        'MFI',
-        'MINUS_DI',
-        'MINUS_DM',
-        'MOM',
-        'PLUS_DI',
-        'PLUS_DM',
-        'PPO',
-        'ROC',
-        'ROCP',
-        'ROCR',
-        'ROCR100',
-        'RSI',
-        'STOCH',
-        'STOCHF',
-        'STOCHRSI',
-        'TRIX',
-        'ULTOSC',
-        'WILLR',
-        ],
-    'Overlap Studies': [
-        'BBANDS',
-        'DEMA',
-        'EMA',
-        'HT_TRENDLINE',
-        'KAMA',
-        'MA',
-        'MAMA',
-        'MAVP',
-        'MIDPOINT',
-        'MIDPRICE',
-        'SAR',
-        'SAREXT',
-        'SMA',
-        'T3',
-        'TEMA',
-        'TRIMA',
-        'WMA',
-        ],
-    'Pattern Recognition': [
-        'CDL2CROWS',
-        'CDL3BLACKCROWS',
-        'CDL3INSIDE',
-        'CDL3LINESTRIKE',
-        'CDL3OUTSIDE',
-        'CDL3STARSINSOUTH',
-        'CDL3WHITESOLDIERS',
-        'CDLABANDONEDBABY',
-        'CDLADVANCEBLOCK',
-        'CDLBELTHOLD',
-        'CDLBREAKAWAY',
-        'CDLCLOSINGMARUBOZU',
-        'CDLCONCEALBABYSWALL',
-        'CDLCOUNTERATTACK',
-        'CDLDARKCLOUDCOVER',
-        'CDLDOJI',
-        'CDLDOJISTAR',
-        'CDLDRAGONFLYDOJI',
-        'CDLENGULFING',
-        'CDLEVENINGDOJISTAR',
-        'CDLEVENINGSTAR',
-        'CDLGAPSIDESIDEWHITE',
-        'CDLGRAVESTONEDOJI',
-        'CDLHAMMER',
-        'CDLHANGINGMAN',
-        'CDLHARAMI',
-        'CDLHARAMICROSS',
-        'CDLHIGHWAVE',
-        'CDLHIKKAKE',
-        'CDLHIKKAKEMOD',
-        'CDLHOMINGPIGEON',
-        'CDLIDENTICAL3CROWS',
-        'CDLINNECK',
-        'CDLINVERTEDHAMMER',
-        'CDLKICKING',
-        'CDLKICKINGBYLENGTH',
-        'CDLLADDERBOTTOM',
-        'CDLLONGLEGGEDDOJI',
-        'CDLLONGLINE',
-        'CDLMARUBOZU',
-        'CDLMATCHINGLOW',
-        'CDLMATHOLD',
-        'CDLMORNINGDOJISTAR',
-        'CDLMORNINGSTAR',
-        'CDLONNECK',
-        'CDLPIERCING',
-        'CDLRICKSHAWMAN',
-        'CDLRISEFALL3METHODS',
-        'CDLSEPARATINGLINES',
-        'CDLSHOOTINGSTAR',
-        'CDLSHORTLINE',
-        'CDLSPINNINGTOP',
-        'CDLSTALLEDPATTERN',
-        'CDLSTICKSANDWICH',
-        'CDLTAKURI',
-        'CDLTASUKIGAP',
-        'CDLTHRUSTING',
-        'CDLTRISTAR',
-        'CDLUNIQUE3RIVER',
-        'CDLUPSIDEGAP2CROWS',
-        'CDLXSIDEGAP3METHODS',
-        ],
-    'Price Transform': [
-        'AVGPRICE',
-        'MEDPRICE',
-        'TYPPRICE',
-        'WCLPRICE',
-        ],
-    'Statistic Functions': [
-        'BETA',
-        'CORREL',
-        'LINEARREG',
-        'LINEARREG_ANGLE',
-        'LINEARREG_INTERCEPT',
-        'LINEARREG_SLOPE',
-        'STDDEV',
-        'TSF',
-        'VAR',
-        ],
-    'Volatility Indicators': [
-        'ATR',
-        'NATR',
-        'TRANGE',
-        ],
-    'Volume Indicators': [
-        'AD',
-        'ADOSC',
-        'OBV'
-        ],
-    }
+    "Cycle Indicators": [
+        "HT_DCPERIOD",
+        "HT_DCPHASE",
+        "HT_PHASOR",
+        "HT_SINE",
+        "HT_TRENDMODE",
+    ],
+    "Math Operators": [
+        "ADD",
+        "DIV",
+        "MAX",
+        "MAXINDEX",
+        "MIN",
+        "MININDEX",
+        "MINMAX",
+        "MINMAXINDEX",
+        "MULT",
+        "SUB",
+        "SUM",
+    ],
+    "Math Transform": [
+        "ACOS",
+        "ASIN",
+        "ATAN",
+        "CEIL",
+        "COS",
+        "COSH",
+        "EXP",
+        "FLOOR",
+        "LN",
+        "LOG10",
+        "SIN",
+        "SINH",
+        "SQRT",
+        "TAN",
+        "TANH",
+    ],
+    "Momentum Indicators": [
+        "ADX",
+        "ADXR",
+        "APO",
+        "AROON",
+        "AROONOSC",
+        "BOP",
+        "CCI",
+        "CMO",
+        "DX",
+        "MACD",
+        "MACDEXT",
+        "MACDFIX",
+        "MFI",
+        "MINUS_DI",
+        "MINUS_DM",
+        "MOM",
+        "PLUS_DI",
+        "PLUS_DM",
+        "PPO",
+        "ROC",
+        "ROCP",
+        "ROCR",
+        "ROCR100",
+        "RSI",
+        "STOCH",
+        "STOCHF",
+        "STOCHRSI",
+        "TRIX",
+        "ULTOSC",
+        "WILLR",
+    ],
+    "Overlap Studies": [
+        "BBANDS",
+        "DEMA",
+        "EMA",
+        "HT_TRENDLINE",
+        "KAMA",
+        "MA",
+        "MAMA",
+        "MAVP",
+        "MIDPOINT",
+        "MIDPRICE",
+        "SAR",
+        "SAREXT",
+        "SMA",
+        "T3",
+        "TEMA",
+        "TRIMA",
+        "WMA",
+    ],
+    "Pattern Recognition": [
+        "CDL2CROWS",
+        "CDL3BLACKCROWS",
+        "CDL3INSIDE",
+        "CDL3LINESTRIKE",
+        "CDL3OUTSIDE",
+        "CDL3STARSINSOUTH",
+        "CDL3WHITESOLDIERS",
+        "CDLABANDONEDBABY",
+        "CDLADVANCEBLOCK",
+        "CDLBELTHOLD",
+        "CDLBREAKAWAY",
+        "CDLCLOSINGMARUBOZU",
+        "CDLCONCEALBABYSWALL",
+        "CDLCOUNTERATTACK",
+        "CDLDARKCLOUDCOVER",
+        "CDLDOJI",
+        "CDLDOJISTAR",
+        "CDLDRAGONFLYDOJI",
+        "CDLENGULFING",
+        "CDLEVENINGDOJISTAR",
+        "CDLEVENINGSTAR",
+        "CDLGAPSIDESIDEWHITE",
+        "CDLGRAVESTONEDOJI",
+        "CDLHAMMER",
+        "CDLHANGINGMAN",
+        "CDLHARAMI",
+        "CDLHARAMICROSS",
+        "CDLHIGHWAVE",
+        "CDLHIKKAKE",
+        "CDLHIKKAKEMOD",
+        "CDLHOMINGPIGEON",
+        "CDLIDENTICAL3CROWS",
+        "CDLINNECK",
+        "CDLINVERTEDHAMMER",
+        "CDLKICKING",
+        "CDLKICKINGBYLENGTH",
+        "CDLLADDERBOTTOM",
+        "CDLLONGLEGGEDDOJI",
+        "CDLLONGLINE",
+        "CDLMARUBOZU",
+        "CDLMATCHINGLOW",
+        "CDLMATHOLD",
+        "CDLMORNINGDOJISTAR",
+        "CDLMORNINGSTAR",
+        "CDLONNECK",
+        "CDLPIERCING",
+        "CDLRICKSHAWMAN",
+        "CDLRISEFALL3METHODS",
+        "CDLSEPARATINGLINES",
+        "CDLSHOOTINGSTAR",
+        "CDLSHORTLINE",
+        "CDLSPINNINGTOP",
+        "CDLSTALLEDPATTERN",
+        "CDLSTICKSANDWICH",
+        "CDLTAKURI",
+        "CDLTASUKIGAP",
+        "CDLTHRUSTING",
+        "CDLTRISTAR",
+        "CDLUNIQUE3RIVER",
+        "CDLUPSIDEGAP2CROWS",
+        "CDLXSIDEGAP3METHODS",
+    ],
+    "Price Transform": [
+        "AVGPRICE",
+        "MEDPRICE",
+        "TYPPRICE",
+        "WCLPRICE",
+    ],
+    "Statistic Functions": [
+        "BETA",
+        "CORREL",
+        "LINEARREG",
+        "LINEARREG_ANGLE",
+        "LINEARREG_INTERCEPT",
+        "LINEARREG_SLOPE",
+        "STDDEV",
+        "TSF",
+        "VAR",
+    ],
+    "Volatility Indicators": [
+        "ATR",
+        "NATR",
+        "TRANGE",
+    ],
+    "Volume Indicators": ["AD", "ADOSC", "OBV"],
+}
+
 
 def get_functions():
     """
@@ -334,6 +356,7 @@ def get_functions():
         ret.extend(__function_groups__[group])
     return ret
 
+
 def get_function_groups():
     """
     Returns a dict with keys of function-group names and values of lists
@@ -341,4 +364,9 @@ def get_function_groups():
     """
     return __function_groups__.copy()
 
-__all__ = ['get_functions', 'get_function_groups'] + __TA_FUNCTION_NAMES__ + ["stream_%s" % name for name in __TA_FUNCTION_NAMES__]
+
+__all__ = (
+    ["get_functions", "get_function_groups"]
+    + __TA_FUNCTION_NAMES__
+    + ["stream_%s" % name for name in __TA_FUNCTION_NAMES__]
+)

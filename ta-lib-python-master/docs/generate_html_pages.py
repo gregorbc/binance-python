@@ -15,25 +15,20 @@ To list available style names (at python prompt)
 
 import os
 import sys
-import talib
 
 import mistune
-
-from pygments import highlight
-from pygments.lexers import get_lexer_by_name
-from pygments.formatters.html import HtmlFormatter
-
+import talib
 from bs4 import BeautifulSoup
-
+from pygments import highlight
+from pygments.formatters.html import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
 from talib.abstract import Function
 
-
 INPUT_DIR = os.path.dirname(os.path.realpath(__file__))
-FUNCTION_GROUPS_DIR = os.path.join(INPUT_DIR, 'func_groups')
-OUTPUT_DIR = os.path.join(INPUT_DIR, 'html')
+FUNCTION_GROUPS_DIR = os.path.join(INPUT_DIR, "func_groups")
+OUTPUT_DIR = os.path.join(INPUT_DIR, "html")
 
-
-HEADER = '''\
+HEADER = """\
 <!DOCTYPE html>
 <html>
 
@@ -68,9 +63,9 @@ HEADER = '''\
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
         <section id="main_content" class="inner">
-'''
+"""
 
-FOOTER = '''\
+FOOTER = """\
         </section>
     </div>
 
@@ -86,34 +81,34 @@ FOOTER = '''\
 
   </body>
 </html>
-'''
+"""
 
 
 def slugify(string):
-    return string.lower().replace(' ', '_')
+    return string.lower().replace(" ", "_")
 
 
 def get_doc_links():
     """Returns a dictionary of function names -> upstream documentation link"""
-    tadoc_homepage = 'https://www.tadoc.org/'
-    html_file_path = os.path.join(INPUT_DIR, '.tadoc.org.html')
+    tadoc_homepage = "https://www.tadoc.org/"
+    html_file_path = os.path.join(INPUT_DIR, ".tadoc.org.html")
     if os.path.exists(html_file_path):
-        with open(html_file_path, 'r') as f:
+        with open(html_file_path, "r") as f:
             html = f.read()
     else:
         from urllib.request import urlopen
 
         html = urlopen(tadoc_homepage).read()
-        with open(html_file_path, 'wb') as f:
+        with open(html_file_path, "wb") as f:
             f.write(html)
 
     # find every link that's for an indicator and convert to absolute urls
-    soup = BeautifulSoup(html, 'html.parser')
-    links = [a for a in soup.findAll('a') if 'indicator' in a['href']]
+    soup = BeautifulSoup(html, "html.parser")
+    links = [a for a in soup.findAll("a") if "indicator" in a["href"]]
     ret = {}
     for a in links:
-        url = ''.join([tadoc_homepage, a['href']])
-        func = url[url.rfind('/')+1:url.rfind('.')]
+        url = "".join([tadoc_homepage, a["href"]])
+        func = url[url.rfind("/") + 1 : url.rfind(".")]
         ret[func] = url
     return ret
 
@@ -121,8 +116,8 @@ def get_doc_links():
 def generate_groups_markdown():
     """Generate and save markdown files for function group documentation"""
     for group, group_docs in get_groups_markdown().items():
-        file_path = os.path.join(FUNCTION_GROUPS_DIR, '%s.md' % group)
-        with open(file_path, 'w') as f:
+        file_path = os.path.join(FUNCTION_GROUPS_DIR, "%s.md" % group)
+        with open(file_path, "w") as f:
             f.write(group_docs)
 
 
@@ -131,89 +126,105 @@ def get_groups_markdown():
 
     Returns a dictionary of group_name -> documentation for group functions
     """
+
     def unpluralize(noun):
-        if noun.endswith('s'):
-            if len(noun) > 2 and noun[-2] not in ["'", 'e']:
+        if noun.endswith("s"):
+            if len(noun) > 2 and noun[-2] not in ["'", "e"]:
                 return noun[:-1]
         return noun
 
     doc_links = get_doc_links()
     ret = {}
     for group, funcs in talib.get_function_groups().items():
-        h1 = '# %s' % unpluralize(group)
-        h1 = h1 + ' Functions' if 'Function' not in h1 else h1 + 's'
+        h1 = "# %s" % unpluralize(group)
+        h1 = h1 + " Functions" if "Function" not in h1 else h1 + "s"
         group_docs = [h1]
         for func in funcs:
             # figure out this function's options
             f = Function(func)
-            inputs = f.info['input_names']
-            if 'price' in inputs and 'prices' in inputs:
-                names = [inputs['price']]
-                names.extend(inputs['prices'])
-                input_names = ', '.join(names)
-            elif 'prices' in inputs:
-                input_names = ', '.join(inputs['prices'])
+            inputs = f.info["input_names"]
+            if "price" in inputs and "prices" in inputs:
+                names = [inputs["price"]]
+                names.extend(inputs["prices"])
+                input_names = ", ".join(names)
+            elif "prices" in inputs:
+                input_names = ", ".join(inputs["prices"])
             else:
-                input_names = ', '.join([x for x in inputs.values() if x])
+                input_names = ", ".join([x for x in inputs.values() if x])
 
-            params = ', '.join(
-                ['%s=%i' % (param, default)
-                 for param, default in f.info['parameters'].items()])
-            outputs = ', '.join(f.info['output_names'])
+            params = ", ".join(
+                [
+                    "%s=%i" % (param, default)
+                    for param, default in f.info["parameters"].items()
+                ]
+            )
+            outputs = ", ".join(f.info["output_names"])
 
             # print the header
-            group_docs.append('### %s - %s' % (func, f.info['display_name']))
+            group_docs.append("### %s - %s" % (func, f.info["display_name"]))
 
-            if f.function_flags and 'Function has an unstable period' in f.function_flags:
-                group_docs.append('NOTE: The ``%s`` function has an unstable period.  ' % func)
+            if (
+                f.function_flags
+                and "Function has an unstable period" in f.function_flags
+            ):
+                group_docs.append(
+                    "NOTE: The ``%s`` function has an unstable period.  " % func
+                )
 
             # print the code definition block
             group_docs.append("```python")
             if params:
-                group_docs.append('%s = %s(%s, %s)' % (
-                    outputs, func.upper(), input_names, params))
+                group_docs.append(
+                    "%s = %s(%s, %s)" % (outputs, func.upper(), input_names, params)
+                )
             else:
-                group_docs.append('%s = %s(%s)' % (
-                    outputs, func.upper(), input_names))
+                group_docs.append("%s = %s(%s)" % (outputs, func.upper(), input_names))
             group_docs.append("```\n")
-
 
             # print extra info if we can
             if func in doc_links:
-                group_docs.append('Learn more about the %s at [tadoc.org](%s).  ' % (
-                    f.info['display_name'], doc_links[func]))
+                group_docs.append(
+                    "Learn more about the %s at [tadoc.org](%s).  "
+                    % (f.info["display_name"], doc_links[func])
+                )
 
-        group_docs.append('\n[Documentation Index](../doc_index.md)')
-        group_docs.append('[FLOAT_RIGHTAll Function Groups](../funcs.md)')
+        group_docs.append("\n[Documentation Index](../doc_index.md)")
+        group_docs.append("[FLOAT_RIGHTAll Function Groups](../funcs.md)")
 
-        ret[slugify(group)] = '\n'.join(group_docs) + '\n'
+        ret[slugify(group)] = "\n".join(group_docs) + "\n"
     return ret
 
 
 def get_markdown_file_paths():
     file_names = [
-        'index.md',
-        'doc_index.md',
-        'install.md',
-        'func.md',
-        'funcs.md',
-        'abstract.md',
+        "index.md",
+        "doc_index.md",
+        "install.md",
+        "func.md",
+        "funcs.md",
+        "abstract.md",
     ]
     file_names.extend(
-        ['func_groups/%s' % x for x in os.listdir(FUNCTION_GROUPS_DIR) if x.endswith('.md')]
+        [
+            "func_groups/%s" % x
+            for x in os.listdir(FUNCTION_GROUPS_DIR)
+            if x.endswith(".md")
+        ]
     )
     return [os.path.join(INPUT_DIR, fn) for fn in file_names]
 
 
 def _get_markdown_renderer():
     """Returns a function to convert a Markdown string into pygments-highlighted HTML"""
+
     class PygmentsHighlighter(mistune.HTMLRenderer):
         def block_code(self, code, info=None):
             if not info:
-                return '\n<pre><code>%s</code></pre>\n' % mistune.escape(code)
+                return "\n<pre><code>%s</code></pre>\n" % mistune.escape(code)
             lexer = get_lexer_by_name(info, stripall=True)
-            formatter = HtmlFormatter(classprefix='highlight ')
+            formatter = HtmlFormatter(classprefix="highlight ")
             return highlight(code, lexer, formatter)
+
     return mistune.Markdown(renderer=PygmentsHighlighter())
 
 
@@ -221,35 +232,33 @@ def run_convert_to_html(output_dir):
     """Converts markdown files into their respective html files"""
     markdown_to_html = _get_markdown_renderer()
     for md_file_path in get_markdown_file_paths():
-        with open(md_file_path, 'r') as f:
+        with open(md_file_path, "r") as f:
             html = markdown_to_html(f.read())
             html = html.replace('.md">', '.html">')
 
         head = HEADER
-        if 'func_groups' in md_file_path:
+        if "func_groups" in md_file_path:
             head = head.replace('"index.html"', '"../index.html"')
             head = head.replace('"doc_index.html"', '"../doc_index.html"')
             head = head.replace('"stylesheets/', '"../stylesheets/')
 
-        lines = html.split('\n')
+        lines = html.split("\n")
         for i, line in enumerate(lines):
-            if 'FLOAT_RIGHT' in line:
-                line = line.replace('FLOAT_RIGHT', '')
-                lines[i] = line.replace('<a ', '<a class="float-right" ')
-        html = ''.join([head, '\n'.join(lines), FOOTER])
+            if "FLOAT_RIGHT" in line:
+                line = line.replace("FLOAT_RIGHT", "")
+                lines[i] = line.replace("<a ", '<a class="float-right" ')
+        html = "".join([head, "\n".join(lines), FOOTER])
 
         save_file_path = os.path.abspath(
-            md_file_path.replace(INPUT_DIR, output_dir).replace('.md', '.html')
+            md_file_path.replace(INPUT_DIR, output_dir).replace(".md", ".html")
         )
         if not os.path.exists(os.path.dirname(save_file_path)):
             os.mkdir(os.path.dirname(save_file_path))
-        with open(save_file_path, 'w') as f:
+        with open(save_file_path, "w") as f:
             f.write(html)
-            print('Wrote %s' % save_file_path)
+            print("Wrote %s" % save_file_path)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     generate_groups_markdown()
-    run_convert_to_html(
-        OUTPUT_DIR if len(sys.argv) == 1 else sys.argv[1]
-    )
+    run_convert_to_html(OUTPUT_DIR if len(sys.argv) == 1 else sys.argv[1])
