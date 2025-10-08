@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Logs Tiempo Real</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #1a1a1a; color: white; }
+        .log-container { background: #2d2d2d; padding: 20px; border-radius: 10px; height: 400px; overflow-y: auto; margin: 20px 0; }
+        .log-entry { padding: 5px 0; border-bottom: 1px solid #444; font-family: monospace; }
+        .log-error { color: #ff4444; }
+        .log-warning { color: #ffaa00; }
+        .log-info { color: #44aaff; }
+        .log-success { color: #44ff44; }
+        .controls { margin: 20px 0; }
+        button { padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
+        .btn-test { background: #007bff; color: white; }
+        .btn-clear { background: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Test Logs en Tiempo Real</h1>
+    <div class="controls">
+        <button class="btn-test" onclick="testLogs()">Generar Logs de Prueba</button>
+        <button class="btn-clear" onclick="clearLogs()">Limpiar Logs</button>
+        <span id="status">Desconectado</span>
+    </div>
+    <div class="log-container" id="log-container">
+        <div class="log-entry log-info">Esperando conexión...</div>
+    </div>
+
+    <script>
+        const socket = io();
+        const logContainer = document.getElementById('log-container');
+        const statusElement = document.getElementById('status');
+
+        socket.on('connect', () => {
+            statusElement.textContent = 'Conectado ✅';
+            statusElement.style.color = '#44ff44';
+            addLog('Conectado al servidor', 'success');
+        });
+
+        socket.on('disconnect', () => {
+            statusElement.textContent = 'Desconectado ❌';
+            statusElement.style.color = '#ff4444';
+            addLog('Desconectado del servidor', 'error');
+        });
+
+        socket.on('log_update', (data) => {
+            addLog(data.message, data.level);
+        });
+
+        socket.on('status_update', (data) => {
+            addLog(`Estado actualizado: ${data.status_message}`, 'info');
+        });
+
+        function addLog(message, level) {
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${level}`;
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function testLogs() {
+            fetch('/api/manual_trade', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    symbol: 'BTCUSDT',
+                    side: 'BUY',
+                    margin: 100,
+                    leverage: 20
+                })
+            });
+        }
+
+        function clearLogs() {
+            fetch('/api/logs/clear', { method: 'POST' });
+            logContainer.innerHTML = '';
+            addLog('Logs limpiados', 'info');
+        }
+    </script>
+</body>
+</html>

@@ -792,59 +792,6 @@ if not log.handlers:
 
     log.addHandler(file_handler)
     log.addHandler(socket_handler)
-
-
-# -------------------- SISTEMA DE LOGS EN TIEMPO REAL -------------------- #
-
-class RealTimeLogHandler(logging.Handler):
-    """Manejador de logs que emite en tiempo real via Socket.IO"""
-    
-    def __init__(self, socketio):
-        super().__init__()
-        self.socketio = socketio
-        self.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-    
-    def emit(self, record):
-        try:
-            log_entry = self.format(record)
-            level = record.levelname.lower()
-            
-            # Emitir via Socket.IO
-            self.socketio.emit('log_update', {
-                'message': log_entry,
-                'level': level,
-                'timestamp': datetime.now().isoformat()
-            })
-        except Exception as e:
-            print(f"Error en RealTimeLogHandler: {e}")
-
-# Configurar el logger principal para logs en tiempo real
-def setup_realtime_logging():
-    """Configurar el sistema de logs en tiempo real"""
-    # Remover handlers existentes para evitar duplicados
-    log.handlers = []
-    
-    # Handler para archivo
-    file_handler = logging.FileHandler(f'logs/{config.LOG_FILE}', encoding='utf-8')
-    file_handler.setFormatter(logging.Formatter(config.LOG_FORMAT))
-    
-    # Handler para consola
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(logging.Formatter(config.LOG_FORMAT))
-    
-    # Handler para tiempo real
-    realtime_handler = RealTimeLogHandler(socketio)
-    realtime_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-    
-    # Agregar todos los handlers
-    log.addHandler(file_handler)
-    log.addHandler(console_handler)
-    log.addHandler(realtime_handler)
-    
-    log.setLevel(getattr(logging, config.LOG_LEVEL))
-
-# Llamar esta función después de inicializar socketio
-
     log.addHandler(console_handler)
 
 for logger_name in ['binance', 'engineio', 'socketio', 'werkzeug', 'urllib3']:
@@ -2431,10 +2378,8 @@ def api_history():
             "balance_history": app_state["balance_history"]
         })
 
-'''
-'''
-# COMENTADO POR DUPLICADO: @app.route('/api/update_config', methods=['POST'])
-def api_update_config_post():  # Cambiado el nombre para evitar conflicto
+@app.route('/api/update_config', methods=['POST'])
+def api_update_config():
     """Actualizar configuración del bot"""
     try:
         new_config = request.json
@@ -2459,10 +2404,8 @@ def api_update_config_post():  # Cambiado el nombre para evitar conflicto
     
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 400
-'''
-'''
 
-# COMENTADO POR DUPLICADO: @app.route('/api/close_position', methods=['POST'])
+@app.route('/api/close_position', methods=['POST'])
 def api_close_position():
     """Cerrar posición manualmente"""
     try:
@@ -2485,7 +2428,7 @@ def api_close_position():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 400
 
-# COMENTADO POR DUPLICADO: @app.route('/api/manual_trade', methods=['POST'])
+@app.route('/api/manual_trade', methods=['POST'])
 def api_manual_trade():
     """Ejecutar trade manual"""
     try:
@@ -2543,190 +2486,5 @@ update_thread = threading.Thread(target=emit_updates, daemon=True)
 update_thread.start()
 
 
-
-# -------------------- RUTAS PARA LOGS -------------------- #
-
-@app.route('/api/logs')
-def api_logs():
-    """Obtener logs históricos"""
-    try:
-        log_file_path = f'logs/{config.LOG_FILE}'
-        if os.path.exists(log_file_path):
-            with open(log_file_path, 'r', encoding='utf-8') as f:
-                logs = f.readlines()[-100:]  # Últimas 100 líneas
-            return jsonify({'logs': logs})
-        return jsonify({'logs': []})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/api/logs/clear', methods=['POST'])
-def api_clear_logs():
-    """Limpiar archivo de logs"""
-    try:
-        log_file_path = f'logs/{config.LOG_FILE}'
-        if os.path.exists(log_file_path):
-            open(log_file_path, 'w').close()
-        
-        socketio.emit('log_update', {
-            'message': 'Logs limpiados manualmente',
-            'level': 'info',
-            'timestamp': datetime.now().isoformat()
-        })
-        
-        return jsonify({'status': 'success', 'message': 'Logs limpiados'})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/api/logs/export')
-def api_export_logs():
-    """Exportar logs como archivo"""
-    try:
-        log_file_path = f'logs/{config.LOG_FILE}'
-        if os.path.exists(log_file_path):
-            return send_file(log_file_path, as_attachment=True, download_name='trading_bot_logs.txt')
-        return jsonify({'error': 'Archivo de logs no encontrado'}), 404
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/api/positions')
-def api_positions():
-    """Obtener posiciones actuales"""
-    with state_lock:
-        return jsonify(app_state["open_positions"])
-
-@app.route('/api/performance')
-def api_performance():
-    """Obtener métricas de performance"""
-    with state_lock:
-        return jsonify(app_state["performance_stats"])
-
-@app.route('/api/balance/history')
-def api_balance_history():
-    """Obtener historial de balance"""
-    with state_lock:
-        return jsonify(app_state["balance_history"])
-
-'''
-'''
-# COMENTADO POR DUPLICADO: @app.route('/api/update_config', methods=['POST'])
-def api_update_config():
-    """Actualizar configuración del bot"""
-    try:
-        new_config = request.json
-        with state_lock:
-            for key, value in new_config.items():
-                if hasattr(config, key):
-                    # Convertir a tipo correcto
-                    current_value = getattr(config, key)
-                    if isinstance(current_value, bool):
-                        setattr(config, key, bool(value))
-                    elif isinstance(current_value, int):
-                        setattr(config, key, int(value))
-                    elif isinstance(current_value, float):
-                        setattr(config, key, float(value))
-                    else:
-                        setattr(config, key, value)
-            
-            app_state["config"] = asdict(config)
-        
-        socketio.emit('config_updated')
-        return jsonify({"status": "config_updated", "message": "Configuración actualizada"})
-    
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 400
-'''
-'''
-
-# COMENTADO POR DUPLICADO: @app.route('/api/close_position', methods=['POST'])
-def api_close_position():
-    """Cerrar posición manualmente"""
-    try:
-        data = request.json
-        symbol = data.get('symbol')
-        
-        if not symbol:
-            return jsonify({"status": "error", "message": "Símbolo requerido"}), 400
-        
-        # Mock de cierre de posición
-        log.info(f"🔄 Cerrando posición manualmente: {symbol}")
-        
-        socketio.emit('log_update', {
-            'message': f'Posición cerrada manualmente: {symbol}',
-            'level': 'INFO'
-        })
-        
-        return jsonify({"status": "success", "message": f"Posición {symbol} cerrada"})
-    
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 400
-
-# COMENTADO POR DUPLICADO: @app.route('/api/manual_trade', methods=['POST'])
-def api_manual_trade():
-    """Ejecutar trade manual"""
-    try:
-        data = request.json
-        symbol = data.get('symbol')
-        side = data.get('side')
-        margin = data.get('margin')
-        leverage = data.get('leverage')
-        
-        if not all([symbol, side, margin]):
-            return jsonify({"status": "error", "message": "Datos incompletos"}), 400
-        
-        # Mock de trade manual
-        log.info(f"🔄 Trade manual: {side} {symbol} con {margin} USDT ({leverage}x)")
-        
-        socketio.emit('log_update', {
-            'message': f'Trade manual ejecutado: {side} {symbol}',
-            'level': 'INFO'
-        })
-        
-        return jsonify({
-            "status": "success", 
-            "message": f"Trade manual {side} {symbol} ejecutado"
-        })
-    
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 400
-
-
-
-# -------------------- EMISIÓN PERIÓDICA DE ESTADO -------------------- #
-
-def emit_periodic_updates():
-    """Emitir actualizaciones periódicas del estado"""
-    while True:
-        try:
-            with state_lock:
-                # Emitir estado completo
-                socketio.emit('status_update', app_state)
-                
-                # Emitir P&L actualizado
-                pnl_data = {}
-                for symbol, position in app_state["open_positions"].items():
-                    unrealized_pnl = float(position.get('unrealizedProfit', 0))
-                    pnl_data[symbol] = unrealized_pnl
-                
-                if pnl_data:
-                    socketio.emit('pnl_update', pnl_data)
-            
-            time.sleep(3)  # Emitir cada 3 segundos
-            
-        except Exception as e:
-            log.error(f"Error emitiendo actualizaciones: {e}")
-            time.sleep(5)
-
-# Iniciar hilo de actualizaciones
-update_thread = threading.Thread(target=emit_periodic_updates, daemon=True)
-
-
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=5000, debug=True)
-
-# Iniciar hilo de actualizaciones en tiempo real
-update_thread.start()
-
-# Configurar logging en tiempo real después de inicializar socketio
-setup_realtime_logging()
-
-log.info("🚀 Sistema de logs en tiempo real inicializado")

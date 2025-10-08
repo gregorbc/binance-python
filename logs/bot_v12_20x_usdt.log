@@ -23,3 +23,43 @@
 2025-10-08 18:21:39,985 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
 2025-10-08 18:21:39,996 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
 2025-10-08 18:21:39,998 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
+2025-10-08 18:21:49,370 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:21:58,741 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:22:08,112 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:22:17,484 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:22:26,855 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:22:36,239 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:22:45,607 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:22:54,982 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:23:04,355 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:23:13,725 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:23:23,103 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:23:32,481 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:23:32,485 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
+2025-10-08 18:23:32,490 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
+2025-10-08 18:23:41,873 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:39:07,555 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
+2025-10-08 18:39:08,859 - INFO - ✅ Información de exchange cargada exitosamente
+2025-10-08 18:39:08,859 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
+2025-10-08 18:39:08,860 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
+2025-10-08 18:39:08,860 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
+2025-10-08 18:39:08,860 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 20
+2025-10-08 18:39:08,860 - INFO - 🔑 API Key presente: True
+2025-10-08 18:39:08,860 - INFO - 🔑 API Secret presente: True
+2025-10-08 18:39:08,860 - INFO - 🌐 Modo Testnet: True
+2025-10-08 18:39:08,860 - INFO - 🔧 Dry Run: False
+2025-10-08 18:39:10,224 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
+2025-10-08 18:39:10,224 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:39:19,590 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:39:28,960 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:39:38,329 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:39:47,703 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:39:57,071 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:40:06,437 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:40:15,806 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:40:25,173 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:40:34,542 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:40:43,910 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:40:53,277 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
+2025-10-08 18:40:53,277 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
+2025-10-08 18:40:53,278 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
