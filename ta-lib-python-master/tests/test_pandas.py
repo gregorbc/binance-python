@@ -1,12 +1,11 @@
 import numpy as np
-from numpy.testing import assert_array_equal
 import pandas as pd
-
 import talib
+from numpy.testing import assert_array_equal
 
 
 def test_MOM():
-    values = pd.Series([90.0,88.0,89.0], index=[10, 20, 30])
+    values = pd.Series([90.0, 88.0, 89.0], index=[10, 20, 30])
     result = talib.MOM(values, timeperiod=1)
     assert isinstance(result, pd.Series)
     assert_array_equal(result.values, [np.nan, -2, 1])
@@ -26,11 +25,13 @@ def test_MOM():
 
 
 def test_MAVP():
-    a = pd.Series([1,5,3,4,7,3,8,1,4,6], index=range(10, 20), dtype=float)
-    b = pd.Series([2,4,2,4,2,4,2,4,2,4], index=range(20, 30), dtype=float)
+    a = pd.Series([1, 5, 3, 4, 7, 3, 8, 1, 4, 6], index=range(10, 20), dtype=float)
+    b = pd.Series([2, 4, 2, 4, 2, 4, 2, 4, 2, 4], index=range(20, 30), dtype=float)
     result = talib.MAVP(a, b, minperiod=2, maxperiod=4)
     assert isinstance(result, pd.Series)
-    assert_array_equal(result.values, [np.nan,np.nan,np.nan,3.25,5.5,4.25,5.5,4.75,2.5,4.75])
+    assert_array_equal(
+        result.values, [np.nan, np.nan, np.nan, 3.25, 5.5, 4.25, 5.5, 4.75, 2.5, 4.75]
+    )
     assert_array_equal(result.index, range(10, 20))
     sma2 = talib.SMA(a, 2)
     assert isinstance(sma2, pd.Series)
@@ -42,7 +43,10 @@ def test_MAVP():
     assert_array_equal(result.values[3::2], sma4.values[3::2])
     result = talib.MAVP(a, b, minperiod=2, maxperiod=3)
     assert isinstance(result, pd.Series)
-    assert_array_equal(result.values, [np.nan,np.nan,4,4,5.5,4.666666666666667,5.5,4,2.5,3.6666666666666665])
+    assert_array_equal(
+        result.values,
+        [np.nan, np.nan, 4, 4, 5.5, 4.666666666666667, 5.5, 4, 2.5, 3.6666666666666665],
+    )
     assert_array_equal(result.index, range(10, 20))
     sma3 = talib.SMA(a, 3)
     assert isinstance(sma3, pd.Series)

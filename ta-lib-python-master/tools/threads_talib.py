@@ -1,11 +1,11 @@
-import time
+import copy
+import sys
 import threading
+import time
 
 import numpy
-import copy
-from talib.abstract import RSI
-import sys
 import pandas as pd
+from talib.abstract import RSI
 
 TEST_LEN_SHORT = int(sys.argv[1]) if len(sys.argv) > 1 else 999
 TEST_LEN_LONG = int(sys.argv[1]) if len(sys.argv) > 1 else 4005
@@ -14,10 +14,8 @@ LOOPS = int(sys.argv[2]) if len(sys.argv) > 2 else 1000
 data_short = numpy.random.rand(TEST_LEN_SHORT, 5)
 data_long = numpy.random.rand(TEST_LEN_LONG, 5)
 
-df_short = pd.DataFrame(data_short, columns={
-                        'open', 'high', 'low', 'close', 'volume'})
-df_long = pd.DataFrame(data_long, columns={
-                       'open', 'high', 'low', 'close', 'volume'})
+df_short = pd.DataFrame(data_short, columns={"open", "high", "low", "close", "volume"})
+df_long = pd.DataFrame(data_long, columns={"open", "high", "low", "close", "volume"})
 
 total = 0
 
@@ -32,7 +30,7 @@ def loop():
     while total < LOOPS:
         total += 1
         try:
-            df['RSI'] = RSI(df)
+            df["RSI"] = RSI(df)
         except ValueError as msg:
             raise ValueError(msg)
 
@@ -48,6 +46,6 @@ for i in range(4):
 for t in threads:
     t.join()
 t1 = time.time()
-print('test_len: %d, loops: %d' % (TEST_LEN_LONG, LOOPS))
-print('%.6f' % (t1 - t0))
-print('%.6f' % ((t1 - t0) / LOOPS))
+print("test_len: %d, loops: %d" % (TEST_LEN_LONG, LOOPS))
+print("%.6f" % (t1 - t0))
+print("%.6f" % ((t1 - t0) / LOOPS))

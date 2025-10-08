@@ -1,9 +1,10 @@
 import os
 import re
 
+
 def apply_patch():
     """Aplicar parche a app.py para agregar rutas faltantes"""
-    
+
     patch_code = '''
 # -------------------- RUTAS API ADICIONALES -------------------- #
 @app.route('/api/history')
@@ -124,30 +125,33 @@ update_thread.start()
 '''
 
     # Leer el archivo actual
-    with open('app.py', 'r', encoding='utf-8') as f:
+    with open("app.py", "r", encoding="utf-8") as f:
         content = f.read()
 
     # Buscar donde insertar el parche (antes del if __name__)
-    insertion_point = content.find('if __name__ == \'__main__\':')
-    
+    insertion_point = content.find("if __name__ == '__main__':")
+
     if insertion_point == -1:
         print("❌ No se encontró el punto de inserción")
         return False
 
     # Insertar el parche
-    new_content = content[:insertion_point] + patch_code + '\n\n' + content[insertion_point:]
+    new_content = (
+        content[:insertion_point] + patch_code + "\n\n" + content[insertion_point:]
+    )
 
     # Crear backup
-    with open('app.py.backup', 'w', encoding='utf-8') as f:
+    with open("app.py.backup", "w", encoding="utf-8") as f:
         f.write(content)
 
     # Escribir nuevo contenido
-    with open('app.py', 'w', encoding='utf-8') as f:
+    with open("app.py", "w", encoding="utf-8") as f:
         f.write(new_content)
 
     print("✅ Parche aplicado exitosamente")
     print("✅ Se creó backup: app.py.backup")
     return True
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     apply_patch()

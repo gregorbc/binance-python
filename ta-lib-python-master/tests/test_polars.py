@@ -1,12 +1,12 @@
 import numpy as np
-from numpy.testing import assert_array_equal
 import polars as pl
-
 import talib
+from numpy.testing import assert_array_equal
 from talib import abstract
 
+
 def test_MOM():
-    values = pl.Series([90.0,88.0,89.0])
+    values = pl.Series([90.0, 88.0, 89.0])
     result = talib.MOM(values, timeperiod=1)
     assert isinstance(result, pl.Series)
     assert_array_equal(result.to_numpy(), [np.nan, -2, 1])
@@ -22,11 +22,14 @@ def test_MOM():
 
 
 def test_MAVP():
-    a = pl.Series([1,5,3,4,7,3,8,1,4,6], dtype=pl.Float64)
-    b = pl.Series([2,4,2,4,2,4,2,4,2,4], dtype=pl.Float64)
+    a = pl.Series([1, 5, 3, 4, 7, 3, 8, 1, 4, 6], dtype=pl.Float64)
+    b = pl.Series([2, 4, 2, 4, 2, 4, 2, 4, 2, 4], dtype=pl.Float64)
     result = talib.MAVP(a, b, minperiod=2, maxperiod=4)
     assert isinstance(result, pl.Series)
-    assert_array_equal(result.to_numpy(), [np.nan,np.nan,np.nan,3.25,5.5,4.25,5.5,4.75,2.5,4.75])
+    assert_array_equal(
+        result.to_numpy(),
+        [np.nan, np.nan, np.nan, 3.25, 5.5, 4.25, 5.5, 4.75, 2.5, 4.75],
+    )
     sma2 = talib.SMA(a, 2)
     assert isinstance(sma2, pl.Series)
     assert_array_equal(result.to_numpy()[4::2], sma2.to_numpy()[4::2])
@@ -35,7 +38,10 @@ def test_MAVP():
     assert_array_equal(result.to_numpy()[3::2], sma4.to_numpy()[3::2])
     result = talib.MAVP(a, b, minperiod=2, maxperiod=3)
     assert isinstance(result, pl.Series)
-    assert_array_equal(result.to_numpy(), [np.nan,np.nan,4,4,5.5,4.666666666666667,5.5,4,2.5,3.6666666666666665])
+    assert_array_equal(
+        result.to_numpy(),
+        [np.nan, np.nan, 4, 4, 5.5, 4.666666666666667, 5.5, 4, 2.5, 3.6666666666666665],
+    )
     sma3 = talib.SMA(a, 3)
     assert isinstance(sma3, pl.Series)
     assert_array_equal(result.to_numpy()[2::2], sma2.to_numpy()[2::2])
@@ -49,8 +55,12 @@ def test_TEVA():
             "open": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32"),
             "high": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32"),
             "low": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32"),
-            "close": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32"),
-            "volume": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32")
+            "close": np.random.uniform(low=0.0, high=100.0, size=size).astype(
+                "float32"
+            ),
+            "volume": np.random.uniform(low=0.0, high=100.0, size=size).astype(
+                "float32"
+            ),
         }
     )
     tema1 = abstract.TEMA(df, timeperiod=9)
@@ -71,6 +81,7 @@ def test_TEVA():
 
     assert_array_equal(tema1.to_numpy(), tema2.to_numpy())
 
+
 def test_AVR():
     size = 50
     df = pl.DataFrame(
@@ -78,11 +89,15 @@ def test_AVR():
             "open": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32"),
             "high": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32"),
             "low": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32"),
-            "close": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32"),
-            "volume": np.random.uniform(low=0.0, high=100.0, size=size).astype("float32")
+            "close": np.random.uniform(low=0.0, high=100.0, size=size).astype(
+                "float32"
+            ),
+            "volume": np.random.uniform(low=0.0, high=100.0, size=size).astype(
+                "float32"
+            ),
         }
     )
-    high = df['high']
-    low = df['low']
-    close = df['close']
+    high = df["high"]
+    low = df["low"]
+    close = df["close"]
     atr = talib.ATR(high, low, close, timeperiod=14)
