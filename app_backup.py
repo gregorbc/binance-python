@@ -34,7 +34,7 @@ from binance.client import Client
 from binance.enums import SIDE_BUY, SIDE_SELL, FUTURE_ORDER_TYPE_MARKET, FUTURE_ORDER_TYPE_LIMIT, TIME_IN_FORCE_GTC
 from binance.exceptions import BinanceAPIException
 
-from flask import Flask, render_template, jsonify, request, send_from_directory, send_file
+from flask import Flask, render_template, jsonify, request, send_from_directory
 from flask_socketio import SocketIO
 from flask_cors import CORS
 
@@ -52,7 +52,6 @@ except ImportError:
 DB_ENABLED = False
 try:
     from database import SessionLocal, Trade, PerformanceMetrics, AccountBalance, get_db_session_with_retry, execute_with_retry, check_db_connection
-    from sqlalchemy import func, case
     DB_ENABLED = True
     print("✅ Base de datos habilitada")
 except ImportError as e:
@@ -793,10 +792,7 @@ if not log.handlers:
 
     log.addHandler(file_handler)
     log.addHandler(socket_handler)
-    log.addHandler(console_handler)
 
-for logger_name in ['binance', 'engineio', 'socketio', 'werkzeug', 'urllib3']:
-    logging.getLogger(logger_name).setLevel(logging.WARNING)
 
 # -------------------- SISTEMA DE LOGS EN TIEMPO REAL -------------------- #
 
@@ -846,6 +842,13 @@ def setup_realtime_logging():
     log.addHandler(realtime_handler)
     
     log.setLevel(getattr(logging, config.LOG_LEVEL))
+
+# Llamar esta función después de inicializar socketio
+
+    log.addHandler(console_handler)
+
+for logger_name in ['binance', 'engineio', 'socketio', 'werkzeug', 'urllib3']:
+    logging.getLogger(logger_name).setLevel(logging.WARNING)
 
 # -------------------- ESTADO GLOBAL -------------------- #
 bot_thread = None
@@ -1065,20 +1068,12 @@ class BinanceFutures:
                 log.warning(f"Símbolo {symbol} no tiene todos los filtros requeridos")
                 return None
                 
-            result = {
+            return {
                 "stepSize": float(filters['LOT_SIZE']['stepSize']),
                 "minQty": float(filters['LOT_SIZE']['minQty']),
-                "tickSize": float(filters['PRICE_FILTER']['tickSize'])
+                "tickSize": float(filters['PRICE_FILTER']['tickSize']),
+                "minNotional": float(filters.get('MIN_NOTIONAL', {}).get('notional', 5.0))
             }
-            
-            # MIN_NOTIONAL puede no estar presente en todos los símbolos
-            if 'MIN_NOTIONAL' in filters:
-                result["minNotional"] = float(filters['MIN_NOTIONAL'].get('notional', 5.0))
-            else:
-                result["minNotional"] = 5.0  # Valor por defecto
-                
-            return result
-            
         except Exception as e:
             log.error(f"Error obteniendo filters para {symbol}: {e}")
             return None
@@ -1309,46 +1304,38 @@ class TradingBot:
     def calculate_indicators(self, df: pd.DataFrame):
         """Calcular indicadores técnicos con manejo robusto de errores"""
         if df is None or len(df) < 5:
-            return          
+            return
+            
         try:
-            # Calcular EMAs
-            df['fast_ema'] = df['close'].ewm(span=config.FAST_EMA, adjust=False).mean()
-            df['slow_ema'] = df['close'].ewm(span=config.SLOW_EMA, adjust=False).mean()
-            
-            # Calcular RSI
-            delta = df['close'].diff()
-            up, down = delta.copy(), delta.copy()
-            up[up < 0] = 0
-            down[down > 0] = 0
-            
-            roll_up = up.ewm(span=config.RSI_PERIOD, adjust=False).mean()
-            roll_down = down.abs().ewm(span=config.RSI_PERIOD, adjust=False).mean()
-            rs = roll_up / roll_down.replace(0, np.nan)
-            df['rsi'] = 100.0 - (100.0 / (1.0 + rs)).fillna(50)
+        df['fast_ema'] = df['close'].ewm(span=config.FAST_EMA, adjust=False).mean()
+        df['slow_ema'] = df['close'].ewm(span=config.SLOW_EMA, adjust=False).mean()
 
-            # Calcular MACD
-            exp1 = df['close'].ewm(span=config.MACD_FAST, adjust=False).mean()
-            exp2 = df['close'].ewm(span=config.MACD_SLOW, adjust=False).mean()
-            df['macd'] = exp1 - exp2
-            df['macd_signal'] = df['macd'].ewm(span=config.MACD_SIGNAL, adjust=False).mean()
-            df['macd_hist'] = df['macd'] - df['macd_signal']
+        delta = df['close'].diff()
+        up, down = delta.copy(), delta.copy()
+        up[up < 0] = 0
+        down[down > 0] = 0
+        roll_up = up.ewm(span=config.RSI_PERIOD, adjust=False).mean()
+        roll_down = down.abs().ewm(span=config.RSI_PERIOD, adjust=False).mean()
+        rs = roll_up / roll_down.replace(0, np.nan)
+        df['rsi'] = 100.0 - (100.0 / (1.0 + rs)).fillna(50)
 
-            # Calcular Stoch RSI
-            stoch_rsi = (df['rsi'] - df['rsi'].rolling(config.STOCH_PERIOD).min()) / \
-                       (df['rsi'].rolling(config.STOCH_PERIOD).max() - df['rsi'].rolling(config.STOCH_PERIOD).min())
-            df['stoch_rsi'] = stoch_rsi * 100
+        exp1 = df['close'].ewm(span=config.MACD_FAST, adjust=False).mean()
+        exp2 = df['close'].ewm(span=config.MACD_SLOW, adjust=False).mean()
+        df['macd'] = exp1 - exp2
+        df['macd_signal'] = df['macd'].ewm(span=config.MACD_SIGNAL, adjust=False).mean()
+        df['macd_hist'] = df['macd'] - df['macd_signal']
 
-            # Calcular Bollinger Bands
-            df['bb_middle'] = df['close'].rolling(20).mean()
-            bb_std = df['close'].rolling(20).std()
-            df['bb_upper'] = df['bb_middle'] + (bb_std * 2)
-            df['bb_lower'] = df['bb_middle'] - (bb_std * 2)
-            df['bb_width'] = (df['bb_upper'] - df['bb_lower']) / df['bb_middle']
+        stoch_rsi = (df['rsi'] - df['rsi'].rolling(config.STOCH_PERIOD).min()) / (df['rsi'].rolling(config.STOCH_PERIOD).max() - df['rsi'].rolling(config.STOCH_PERIOD).min())
+        df['stoch_rsi'] = stoch_rsi * 100
 
-            # Calcular volatilidad
-            df['returns'] = df['close'].pct_change()
-            df['volatility'] = df['returns'].rolling(20).std() * np.sqrt(365) * 100
-            
+        df['bb_middle'] = df['close'].rolling(20).mean()
+        bb_std = df['close'].rolling(20).std()
+        df['bb_upper'] = df['bb_middle'] + (bb_std * 2)
+        df['bb_lower'] = df['bb_middle'] - (bb_std * 2)
+        df['bb_width'] = (df['bb_upper'] - df['bb_lower']) / df['bb_middle']
+
+        df['returns'] = df['close'].pct_change()
+        df['volatility'] = df['returns'].rolling(20).std() * np.sqrt(365) * 100
         except Exception as e:
             log.error(f"Error calculando indicadores: {e}")
             # Establecer valores por defecto para evitar que falle el análisis
@@ -2315,8 +2302,7 @@ class TradingBot:
 
         while True:
             with state_lock:
-                if not app_state["running"]: 
-                    break
+                if not app_state["running"]: break
 
             try:
                 self.cycle_count += 1
@@ -2405,6 +2391,8 @@ class TradingBot:
                 time.sleep(config.POLL_SEC)
 
             except Exception as e:
+                
+            except Exception as e:
                 log.error(f"❌ Error crítico en ciclo principal: {e}")
                 import traceback
                 log.error(f"Traceback: {traceback.format_exc()}")
@@ -2459,7 +2447,35 @@ def api_config():
         with state_lock:
             for key, value in new_config.items():
                 if hasattr(config, key):
-                    # Convertir al tipo correcto
+                    setattr(config, key, value)
+            app_state["config"] = asdict(config)
+        return jsonify({"status": "updated"})
+    else:
+        with state_lock:
+            return jsonify(app_state["config"])
+
+
+# -------------------- RUTAS API ADICIONALES -------------------- #
+@app.route('/api/history')
+def api_history():
+    """Obtener historial de trades"""
+    with state_lock:
+        return jsonify({
+            "trades": app_state["trades_history"],
+            "balance_history": app_state["balance_history"]
+        })
+
+'''
+'''
+# COMENTADO POR DUPLICADO: @app.route('/api/update_config', methods=['POST'])
+def api_update_config_post():  # Cambiado el nombre para evitar conflicto
+    """Actualizar configuración del bot"""
+    try:
+        new_config = request.json
+        with state_lock:
+            for key, value in new_config.items():
+                if hasattr(config, key):
+                    # Convertir a tipo correcto
                     current_value = getattr(config, key)
                     if isinstance(current_value, bool):
                         setattr(config, key, bool(value))
@@ -2469,20 +2485,100 @@ def api_config():
                         setattr(config, key, float(value))
                     else:
                         setattr(config, key, value)
+            
             app_state["config"] = asdict(config)
-        return jsonify({"status": "updated"})
-    else:
-        with state_lock:
-            return jsonify(app_state["config"])
+        
+        socketio.emit('config_updated')
+        return jsonify({"status": "config_updated", "message": "Configuración actualizada"})
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 400
+'''
+'''
 
-@app.route('/api/history')
-def api_history():
-    """Obtener historial de trades"""
-    with state_lock:
-        return jsonify({
-            "trades": app_state["trades_history"],
-            "balance_history": app_state["balance_history"]
+# COMENTADO POR DUPLICADO: @app.route('/api/close_position', methods=['POST'])
+def api_close_position():
+    """Cerrar posición manualmente"""
+    try:
+        data = request.json
+        symbol = data.get('symbol')
+        
+        if not symbol:
+            return jsonify({"status": "error", "message": "Símbolo requerido"}), 400
+        
+        # Mock de cierre de posición
+        log.info(f"🔄 Cerrando posición manualmente: {symbol}")
+        
+        socketio.emit('log_update', {
+            'message': f'Posición cerrada manualmente: {symbol}',
+            'level': 'INFO'
         })
+        
+        return jsonify({"status": "success", "message": f"Posición {symbol} cerrada"})
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 400
+
+# COMENTADO POR DUPLICADO: @app.route('/api/manual_trade', methods=['POST'])
+def api_manual_trade():
+    """Ejecutar trade manual"""
+    try:
+        data = request.json
+        symbol = data.get('symbol')
+        side = data.get('side')
+        margin = data.get('margin')
+        leverage = data.get('leverage')
+        
+        if not all([symbol, side, margin]):
+            return jsonify({"status": "error", "message": "Datos incompletos"}), 400
+        
+        # Mock de trade manual
+        log.info(f"🔄 Trade manual: {side} {symbol} con {margin} USDT ({leverage}x)")
+        
+        socketio.emit('log_update', {
+            'message': f'Trade manual ejecutado: {side} {symbol}',
+            'level': 'INFO'
+        })
+        
+        return jsonify({
+            "status": "success", 
+            "message": f"Trade manual {side} {symbol} ejecutado"
+        })
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 400
+
+# Emitir actualizaciones periódicas
+def emit_updates():
+    """Emitir actualizaciones de estado periódicamente"""
+    while True:
+        try:
+            with state_lock:
+                # Emitir estado completo
+                socketio.emit('status_update', app_state)
+                
+                # Emitir P&L actualizado de posiciones abiertas
+                pnl_data = {}
+                for symbol, position in app_state["open_positions"].items():
+                    unrealized_pnl = float(position.get('unrealizedProfit', 0))
+                    pnl_data[symbol] = unrealized_pnl
+                
+                if pnl_data:
+                    socketio.emit('pnl_update', pnl_data)
+            
+            time.sleep(2)  # Emitir cada 2 segundos
+            
+        except Exception as e:
+            log.error(f"Error emitiendo actualizaciones: {e}")
+            time.sleep(5)
+
+# Iniciar hilo de emisión de actualizaciones
+update_thread = threading.Thread(target=emit_updates, daemon=True)
+update_thread.start()
+
+
+
+# -------------------- RUTAS PARA LOGS -------------------- #
 
 @app.route('/api/logs')
 def api_logs():
@@ -2544,6 +2640,91 @@ def api_balance_history():
     with state_lock:
         return jsonify(app_state["balance_history"])
 
+'''
+'''
+# COMENTADO POR DUPLICADO: @app.route('/api/update_config', methods=['POST'])
+def api_update_config():
+    """Actualizar configuración del bot"""
+    try:
+        new_config = request.json
+        with state_lock:
+            for key, value in new_config.items():
+                if hasattr(config, key):
+                    # Convertir a tipo correcto
+                    current_value = getattr(config, key)
+                    if isinstance(current_value, bool):
+                        setattr(config, key, bool(value))
+                    elif isinstance(current_value, int):
+                        setattr(config, key, int(value))
+                    elif isinstance(current_value, float):
+                        setattr(config, key, float(value))
+                    else:
+                        setattr(config, key, value)
+            
+            app_state["config"] = asdict(config)
+        
+        socketio.emit('config_updated')
+        return jsonify({"status": "config_updated", "message": "Configuración actualizada"})
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 400
+'''
+'''
+
+# COMENTADO POR DUPLICADO: @app.route('/api/close_position', methods=['POST'])
+def api_close_position():
+    """Cerrar posición manualmente"""
+    try:
+        data = request.json
+        symbol = data.get('symbol')
+        
+        if not symbol:
+            return jsonify({"status": "error", "message": "Símbolo requerido"}), 400
+        
+        # Mock de cierre de posición
+        log.info(f"🔄 Cerrando posición manualmente: {symbol}")
+        
+        socketio.emit('log_update', {
+            'message': f'Posición cerrada manualmente: {symbol}',
+            'level': 'INFO'
+        })
+        
+        return jsonify({"status": "success", "message": f"Posición {symbol} cerrada"})
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 400
+
+# COMENTADO POR DUPLICADO: @app.route('/api/manual_trade', methods=['POST'])
+def api_manual_trade():
+    """Ejecutar trade manual"""
+    try:
+        data = request.json
+        symbol = data.get('symbol')
+        side = data.get('side')
+        margin = data.get('margin')
+        leverage = data.get('leverage')
+        
+        if not all([symbol, side, margin]):
+            return jsonify({"status": "error", "message": "Datos incompletos"}), 400
+        
+        # Mock de trade manual
+        log.info(f"🔄 Trade manual: {side} {symbol} con {margin} USDT ({leverage}x)")
+        
+        socketio.emit('log_update', {
+            'message': f'Trade manual ejecutado: {side} {symbol}',
+            'level': 'INFO'
+        })
+        
+        return jsonify({
+            "status": "success", 
+            "message": f"Trade manual {side} {symbol} ejecutado"
+        })
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 400
+
+
+
 # -------------------- EMISIÓN PERIÓDICA DE ESTADO -------------------- #
 
 def emit_periodic_updates():
@@ -2571,11 +2752,15 @@ def emit_periodic_updates():
 
 # Iniciar hilo de actualizaciones
 update_thread = threading.Thread(target=emit_periodic_updates, daemon=True)
-update_thread.start()
+
 
 if __name__ == '__main__':
-    # Configurar logging en tiempo real después de inicializar socketio
-    setup_realtime_logging()
-    
-    log.info("🚀 Sistema de logs en tiempo real inicializado")
     socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+
+# Iniciar hilo de actualizaciones en tiempo real
+update_thread.start()
+
+# Configurar logging en tiempo real después de inicializar socketio
+setup_realtime_logging()
+
+log.info("🚀 Sistema de logs en tiempo real inicializado")
