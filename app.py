@@ -405,6 +405,7 @@ class CapitalManager:
         self.reinvested_profit = 0.0
         self.daily_pnl = 0.0
         self.daily_starting_balance = 0.0
+        self.last_daily_reset_date = None
 
     def validate_balance(self, balance: float) -> bool:
         """Validar que el balance sea realista"""
@@ -433,21 +434,28 @@ class CapitalManager:
         return 0.0
 
     def update_balance(self, force: bool = False) -> bool:
-        """Actualizar balance con mejores validaciones"""
+        """Actualizar balance con mejores validaciones y reinicio diario de P&L."""
         current_time = time.time()
-        
+        current_date = datetime.fromtimestamp(current_time).date()
+
         if force or (current_time - self.last_balance_update > 300):
             try:
                 new_balance = self.get_real_balance()
                 
                 if not self.validate_balance(new_balance):
                     return False
-                
-                # Actualizar métricas
-                if self.current_balance == 0:
-                    self.initial_balance = new_balance
+
+                # Lógica de reinicio diario
+                if self.last_daily_reset_date != current_date:
                     self.daily_starting_balance = new_balance
-                    log.info(f"💰 Capital inicial: {new_balance:.2f} USDT")
+                    self.last_daily_reset_date = current_date
+                    self.daily_pnl = 0.0
+                    log.info(f"🌅 Nuevo día: Balance inicial diario reseteado a {new_balance:.2f} USDT")
+
+                # Actualizar métricas
+                if self.initial_balance == 0:
+                    self.initial_balance = new_balance
+                    log.info(f"💰 Capital inicial total: {new_balance:.2f} USDT")
 
                 previous_balance = self.current_balance
                 self.current_balance = new_balance
@@ -455,12 +463,12 @@ class CapitalManager:
                 
                 # Calcular P&L
                 self.total_profit = self.current_balance - self.initial_balance
-                daily_pnl_change = self.current_balance - self.daily_starting_balance
+                self.daily_pnl = self.current_balance - self.daily_starting_balance
                 
                 # Solo registrar cambios significativos
                 if abs(self.current_balance - previous_balance) > 0.1:
                     log.info(f"📊 Balance actualizado: {self.current_balance:.2f} USDT | "
-                           f"P&L Diario: {daily_pnl_change:+.2f} USDT")
+                           f"P&L Diario: {self.daily_pnl:+.2f} USDT")
                 
                 return True
                 
