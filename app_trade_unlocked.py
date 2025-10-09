@@ -1,45 +1,11 @@
 from __future__ import annotations
-
-
-# === Windows UTF-8 logging shim ===
-import logging
-import sys, io
-def _reconfigure_windows_console_utf8():
-    try:
-        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
-    except Exception:
-        try:
-            sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8', errors='replace')
-            sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding='utf-8', errors='replace')
-        except Exception:
-            pass
-class _SafeConsoleHandler(logging.StreamHandler):
-    def emit(self, record):
-        try:
-            msg = self.format(record)
-            try:
-                self.stream.write(msg + self.terminator)
-            except UnicodeEncodeError:
-                enc = getattr(self.stream, "encoding", "utf-8") or "utf-8"
-                self.stream.write(msg.encode(enc, errors='replace').decode(enc, errors='replace') + self.terminator)
-            self.flush()
-        except Exception:
-            self.handleError(record)
-_reconfigure_windows_console_utf8()
-# Try to ensure at least one safe console handler exists
-root = logging.getLogger()
-has_console = any(isinstance(h, logging.StreamHandler) for h in root.handlers)
-if not has_console:
-    _h = _SafeConsoleHandler()
-    _h.setFormatter(logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
-    root.addHandler(_h)
-# === END Windows UTF-8 logging shim ===
 """
 Binance Futures Bot - Aplicación Web v12.0 con Gestión de Capital Real
 Sistema de trading avanzado con seguimiento de capital real y reinversión de ganancias
 Por gregorbc@gmail.com
 """
+import eventlet
+eventlet.monkey_patch()
 
 import os
 import time
@@ -58,17 +24,24 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
 import json
 import psutil
+import sys
 
 # Cargar variables de entorno primero
 load_dotenv()
 
-# Configurar logging básico temporalmente
+# Configurar encoding para Windows
+if sys.platform == "win32":
+    # Forzar UTF-8 en Windows
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+
+# Configurar logging básico temporalmente SIN EMOJIS
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler('logs/bot_startup.log')
+        logging.FileHandler('logs/bot_startup.log', encoding='utf-8')
     ]
 )
 log = logging.getLogger("BinanceFuturesBot")
@@ -80,10 +53,10 @@ os.makedirs('logs', exist_ok=True)
 try:
     import talib
     TALIB_ENABLED = True
-    log.info("✅ TA-Lib encontrado y habilitado")
+    log.info("TA-Lib encontrado y habilitado")
 except ImportError:
     TALIB_ENABLED = False
-    log.warning("ADVERTENCIA: TA-Lib no encontrado. Algunos indicadores estarán deshabilitados.")
+    log.warning("ADVERTENCIA: TA-Lib no encontrado. Algunos indicadores estaran deshabilitados.")
 
 # Importaciones de Binance
 try:
@@ -91,7 +64,7 @@ try:
     from binance.enums import SIDE_BUY, SIDE_SELL, FUTURE_ORDER_TYPE_MARKET, FUTURE_ORDER_TYPE_LIMIT, TIME_IN_FORCE_GTC
     from binance.exceptions import BinanceAPIException
 except ImportError as e:
-    log.error(f"❌ Error importando Binance: {e}")
+    log.error(f"Error importando Binance: {e}")
     exit(1)
 
 # Importaciones de Flask
@@ -101,7 +74,7 @@ try:
     from flask_cors import CORS
     from functools import wraps
 except ImportError as e:
-    log.error(f"❌ Error importando Flask: {e}")
+    log.error(f"Error importando Flask: {e}")
     exit(1)
 
 # === CONFIGURACIÓN PRINCIPAL ===
@@ -156,9 +129,9 @@ class CONFIG:
     def __post_init__(self):
         """Validaciones adicionales de configuración"""
         if self.LEVERAGE > 20:
-            raise ValueError("❌ El apalancamiento no puede exceder 20x")
+            raise ValueError("El apalancamiento no puede exceder 20x")
         if self.RISK_PER_TRADE_PERCENT > 2.0:
-            raise ValueError("❌ El riesgo por trade no puede exceder el 2%")
+            raise ValueError("El riesgo por trade no puede exceder el 2%")
 
 config = CONFIG()
 
@@ -166,9 +139,9 @@ config = CONFIG()
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-here')
 CORS(app)
-socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*")
+socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
 
-# === SISTEMA DE LOGGING MEJORADO ===
+# === SISTEMA DE LOGGING MEJORADO PARA WINDOWS ===
 class RealTimeLogHandler(logging.Handler):
     """Manejador de logs que emite en tiempo real via Socket.IO"""
     
@@ -191,27 +164,47 @@ class RealTimeLogHandler(logging.Handler):
         except Exception as e:
             print(f"Error en RealTimeLogHandler: {e}")
 
+class WindowsSafeStreamHandler(logging.StreamHandler):
+    """Handler seguro para Windows que maneja caracteres Unicode"""
+    
+    def __init__(self):
+        super().__init__()
+        # Forzar encoding UTF-8 en el stream
+        if hasattr(self.stream, 'reconfigure'):
+            self.stream.reconfigure(encoding='utf-8')
+    
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            # Reemplazar caracteres problemáticos en Windows
+            safe_msg = msg.encode('utf-8', errors='replace').decode('utf-8')
+            stream = self.stream
+            stream.write(safe_msg + self.terminator)
+            self.flush()
+        except Exception:
+            self.handleError(record)
+
 def setup_logging():
-    """Configuración robusta del sistema de logging"""
+    """Configuración robusta del sistema de logging para Windows"""
     # Limpiar handlers existentes
     for handler in log.handlers[:]:
         log.removeHandler(handler)
     
-    # Configurar formatter
+    # Configurar formatter SIN EMOJIS para Windows
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
     
-    # Handler para archivo
+    # Handler para archivo con UTF-8
     file_handler = logging.FileHandler(
         f'logs/{config.LOG_FILE}', 
         encoding='utf-8'
     )
     file_handler.setFormatter(formatter)
     
-    # Handler para consola
-    console_handler = logging.StreamHandler()
+    # Handler seguro para consola en Windows
+    console_handler = WindowsSafeStreamHandler()
     console_handler.setFormatter(formatter)
     
     # Handler para tiempo real
@@ -265,20 +258,20 @@ class BinanceFutures:
 
         self.client = Client(api_key, api_secret, testnet=testnet)
         
-        # Mostrar información de conexión
+        # Mostrar información de conexión SIN EMOJIS
         mode = "TESTNET" if testnet else "MAINNET REAL"
-        log.info(f"🔧 CONECTADO A BINANCE FUTURES {mode} - 20x LEVERAGE")
+        log.info(f"CONECTADO A BINANCE FUTURES {mode} - 20x LEVERAGE")
         
         if testnet:
-            log.info("⚠️ MODO TESTNET - No se realizarán operaciones reales")
+            log.info("MODO TESTNET - No se realizaran operaciones reales")
         else:
-            log.info("🚀 MODO REAL - Se realizarán operaciones con dinero real")
+            log.info("MODO REAL - Se realizaran operaciones con dinero real")
 
         try:
             self.exchange_info = self.client.futures_exchange_info()
-            log.info("✅ Información de exchange cargada exitosamente")
+            log.info("Informacion de exchange cargada exitosamente")
         except Exception as e:
-            log.error(f"❌ Error conectando a Binance: {e}")
+            log.error(f"Error conectando a Binance: {e}")
             raise
 
     def is_symbol_tradable(self, symbol: str) -> bool:
@@ -291,18 +284,18 @@ class BinanceFutures:
                 
             s_info = next((s for s in self.exchange_info['symbols'] if s['symbol'] == symbol), None)
             if not s_info:
-                log.warning(f"Símbolo {symbol} no encontrado en exchange info")
+                log.warning(f"Simbolo {symbol} no encontrado en exchange info")
                 return False
                 
             status = s_info.get('status')
             if status != 'TRADING':
-                log.info(f"Símbolo {symbol} no disponible. Estado: {status}")
+                log.info(f"Simbolo {symbol} no disponible. Estado: {status}")
                 return False
                 
             return True
             
         except Exception as e:
-            log.error(f"Error verificando símbolo {symbol}: {e}")
+            log.error(f"Error verificando simbolo {symbol}: {e}")
             return symbol in ['BTCUSDT', 'ETHUSDT', 'BNBUSDT']
 
     def _safe_api_call(self, func, *args, **kwargs):
@@ -313,19 +306,19 @@ class BinanceFutures:
                 return result
             except BinanceAPIException as e:
                 if e.code == -4131:
-                    log.warning("Error PERCENT_PRICE (-4131) en orden. Mercado volátil o ilíquido. Omitiendo.")
+                    log.warning("Error PERCENT_PRICE (-4131) en orden. Mercado volatil o iliquido. Omitiendo.")
                     return None
                 elif e.code == -1122:
-                    log.warning(f"❌ Símbolo no disponible (error -1122): {e.message}")
+                    log.warning(f"Simbolo no disponible (error -1122): {e.message}")
                     return None
                 else:
                     log.warning(f"Error de API ({e.code}): {e.message}")
                     if attempt == 2:
-                        log.error(f"Error final de API después de reintentos: {e.code} - {e.message}")
+                        log.error(f"Error final de API despues de reintentos: {e.code} - {e.message}")
             except Exception as e:
                 log.warning(f"Error general en llamada a API: {e}")
                 if attempt == 2:
-                    log.error(f"Error general final después de reintentos: {e}")
+                    log.error(f"Error general final despues de reintentos: {e}")
             
             time.sleep(1 * (attempt + 1))
         
@@ -359,7 +352,7 @@ class BinanceFutures:
     def place_order(self, symbol: str, side: str, order_type: str, quantity: float,
                    price: Optional[float] = None, reduce_only: bool = False) -> Optional[Dict]:
         if not self.is_symbol_tradable(symbol):
-            log.error(f"❌ No se puede colocar orden para símbolo no tradable: {symbol}")
+            log.error(f"No se puede colocar orden para simbolo no tradable: {symbol}")
             return None
 
         params = {
@@ -371,7 +364,7 @@ class BinanceFutures:
 
         if order_type == FUTURE_ORDER_TYPE_LIMIT:
             if price is None:
-                log.error("Precio requerido para órdenes LIMIT.")
+                log.error("Precio requerido para ordenes LIMIT.")
                 return None
             params.update({
                 'price': str(price),
@@ -409,10 +402,10 @@ class CapitalManager:
     def validate_balance(self, balance: float) -> bool:
         """Validar que el balance sea realista"""
         if balance <= 0:
-            log.error(f"❌ Balance inválido: {balance}")
+            log.error(f"Balance invalido: {balance}")
             return False
         if balance > 1000000:
-            log.error(f"❌ Balance sospechosamente alto: {balance}")
+            log.error(f"Balance sospechosamente alto: {balance}")
             return False
         return True
 
@@ -447,7 +440,7 @@ class CapitalManager:
                 if self.current_balance == 0:
                     self.initial_balance = new_balance
                     self.daily_starting_balance = new_balance
-                    log.info(f"💰 Capital inicial: {new_balance:.2f} USDT")
+                    log.info(f"Capital inicial: {new_balance:.2f} USDT")
 
                 previous_balance = self.current_balance
                 self.current_balance = new_balance
@@ -459,13 +452,12 @@ class CapitalManager:
                 
                 # Solo registrar cambios significativos
                 if abs(self.current_balance - previous_balance) > 0.1:
-                    log.info(f"📊 Balance actualizado: {self.current_balance:.2f} USDT | "
-                           f"P&L Diario: {daily_pnl_change:+.2f} USDT")
+                    log.info(f"Balance actualizado: {self.current_balance:.2f} USDT | P&L Diario: {daily_pnl_change:+.2f} USDT")
                 
                 return True
                 
             except Exception as e:
-                log.error(f"❌ Error crítico actualizando balance: {e}")
+                log.error(f"Error critico actualizando balance: {e}")
                 return False
         return False
 
@@ -488,7 +480,7 @@ class TelegramNotifier:
         self.chat_id = os.getenv("TELEGRAM_CHAT_ID")
         if self.token and self.chat_id:
             self.enabled = True
-            log.info("✅ Telegram notifier habilitado")
+            log.info("Telegram notifier habilitado")
         else:
             log.info("Telegram disabled (missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID).")
 
@@ -579,7 +571,7 @@ class RiskManager:
         risk_score = self.calculate_symbol_risk(symbol, df)
         max_risk_threshold = float(os.getenv('MAX_RISK_THRESHOLD', '0.85'))
         if risk_score > max_risk_threshold:
-            log.info(f"⏭️ {symbol} excluido por alto riesgo: {risk_score:.2f}")
+            log.info(f"{symbol} excluido por alto riesgo: {risk_score:.2f}")
             return False
             
         return True
@@ -604,7 +596,7 @@ class TradingBot:
             account_info = self.api._safe_api_call(self.api.client.futures_account)
             return account_info is not None
         except Exception as e:
-            log.error(f"❌ Error conectando a API: {e}")
+            log.error(f"Error conectando a API: {e}")
             return False
 
     def get_top_symbols(self) -> List[str]:
@@ -628,7 +620,7 @@ class TradingBot:
             return valid_symbols[:config.NUM_SYMBOLS_TO_SCAN]
             
         except Exception as e:
-            log.error(f"Error obteniendo símbolos: {e}")
+            log.error(f"Error obteniendo simbolos: {e}")
             return []
 
     def get_klines_for_symbol(self, symbol: str, interval: str = None, limit: int = None) -> Optional[pd.DataFrame]:
@@ -705,7 +697,7 @@ class TradingBot:
         if not rsi_confirm:
             return None
 
-        log.info(f"📶 Señal {signal} detectada para {symbol}")
+        log.info(f"Senal {signal} detectada para {symbol}")
         return signal
 
     def calculate_position_size(self, symbol: str, price: float) -> float:
@@ -788,7 +780,7 @@ class TradingBot:
 
         order_side = SIDE_BUY if side == 'LONG' else SIDE_SELL
 
-        log.info(f"🟢 Intentando abrir {side} {symbol} (Qty: {quantity:.6f})")
+        log.info(f"Intentando abrir {side} {symbol} (Qty: {quantity:.6f})")
 
         if config.DRY_RUN:
             log.info(f"[DRY_RUN] Orden {side} para {symbol}")
@@ -797,13 +789,13 @@ class TradingBot:
         order = self.api.place_order(symbol, order_side, FUTURE_ORDER_TYPE_MARKET, quantity)
 
         if order and order.get('orderId'):
-            log.info(f"✅ ORDEN CREADA: {side} {quantity:.6f} {symbol}")
+            log.info(f"ORDEN CREADA: {side} {quantity:.6f} {symbol}")
             
             if self.telegram_notifier.enabled:
                 self.telegram_notifier.send_message(
-                    f"🟢 NUEVA POSICIÓN\n"
-                    f"Símbolo: {symbol}\n"
-                    f"Dirección: {side}\n"
+                    f"NUEVA POSICION\n"
+                    f"Simbolo: {symbol}\n"
+                    f"Direccion: {side}\n"
                     f"Cantidad: {quantity:.6f}\n"
                     f"Precio: ${price:.4f}\n"
                     f"Balance: ${self.capital_manager.current_balance:.2f}"
@@ -822,26 +814,26 @@ class TradingBot:
 
     def run(self):
         """Método principal del bot"""
-        log.info("🚀 Iniciando Bot de Trading - Modo 20x")
+        log.info("Iniciando Bot de Trading - Modo 20x")
         
         # Verificar conexión
         if not self.test_api_connection():
-            log.error("❌ No se pudo conectar a Binance. Deteniendo bot.")
+            log.error("No se pudo conectar a Binance. Deteniendo bot.")
             return
 
         # Actualizar balance inicial
         if not self.capital_manager.update_balance(force=True):
-            log.error("❌ No se pudo obtener balance inicial. Deteniendo bot.")
+            log.error("No se pudo obtener balance inicial. Deteniendo bot.")
             return
 
-        log.info(f"💰 Balance inicial: {self.capital_manager.current_balance:.2f} USDT")
+        log.info(f"Balance inicial: {self.capital_manager.current_balance:.2f} USDT")
 
         try:
             self._main_loop()
         except KeyboardInterrupt:
-            log.info("⏹️ Bot detenido por el usuario")
+            log.info("Bot detenido por el usuario")
         except Exception as e:
-            log.error(f"❌ Error crítico en el bot: {e}")
+            log.error(f"Error critico en el bot: {e}")
 
     def _main_loop(self):
         """Loop principal del bot"""
@@ -860,7 +852,7 @@ class TradingBot:
                 # Obtener símbolos y procesar
                 symbols = self.get_top_symbols()
                 if not symbols:
-                    log.warning("⚠️ No se encontraron símbolos válidos")
+                    log.warning("No se encontraron simbolos validos")
                     time.sleep(config.POLL_SEC)
                     continue
 
@@ -887,7 +879,7 @@ class TradingBot:
                 time.sleep(config.POLL_SEC)
                 
             except Exception as e:
-                log.error(f"❌ ERROR en ciclo principal: {e}")
+                log.error(f"ERROR en ciclo principal: {e}")
                 time.sleep(30)  # Esperar 30 segundos antes de reintentar
 
 # === ESTADO DE LA APLICACIÓN ===
@@ -909,29 +901,6 @@ app_state = {
 }
 
 # === RUTAS FLASK ===
-
-# === BOOTSTRAP (Windows-friendly) ===
-try:
-    app
-except NameError:
-    app = Flask(__name__)
-try:
-    CORS(app, resources={r"/*": {"origins": "*"}})
-except Exception:
-    pass
-try:
-    socketio
-except NameError:
-    socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*")
-try:
-    state_lock
-except NameError:
-    state_lock = threading.RLock()
-try:
-    app_state
-except NameError:
-    app_state = {"running": False, "open_positions": {}, "trailing_stop_data": {}, "sl_tp_data": {}}
-# === END BOOTSTRAP ===
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -963,7 +932,7 @@ def api_start():
             return jsonify({"status": "already_running"})
         
         app_state["running"] = True
-        app_state["status_message"] = "Ejecutándose"
+        app_state["status_message"] = "Ejecutandose"
         
     def run_bot():
         try:
@@ -1042,43 +1011,43 @@ def auto_start_bot():
     auto_start = os.getenv('AUTO_START_BOT', 'false').lower() == 'true'
     
     if auto_start:
-        log.info("🚀 INICIO AUTOMÁTICO CONFIGURADO - Iniciando bot...")
+        log.info("INICIO AUTOMATICO CONFIGURADO - Iniciando bot...")
         time.sleep(2)
         
         with state_lock:
             if not app_state["running"]:
                 app_state["running"] = True
-                app_state["status_message"] = "Ejecutándose (Inicio Automático)"
+                app_state["status_message"] = "Ejecutandose (Inicio Automatico)"
         
         def run_bot():
             try:
-                log.info("🤖 CREANDO INSTANCIA DEL BOT DE TRADING...")
+                log.info("CREANDO INSTANCIA DEL BOT DE TRADING...")
                 bot = TradingBot()
-                log.info("🎯 INICIANDO CICLO PRINCIPAL DEL BOT...")
+                log.info("INICIANDO CICLO PRINCIPAL DEL BOT...")
                 bot.run()
             except Exception as e:
-                log.error(f"❌ Error en el bot (inicio automático): {e}")
+                log.error(f"Error en el bot (inicio automatico): {e}")
                 with state_lock:
                     app_state["running"] = False
                     app_state["status_message"] = f"Error: {str(e)}"
         
         bot_thread = threading.Thread(target=run_bot, daemon=True)
         bot_thread.start()
-        log.info("✅ Bot iniciado automáticamente")
+        log.info("Bot iniciado automaticamente")
     else:
-        log.info("⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot")
+        log.info("Inicio automatico desactivado - Use la interfaz web para iniciar el bot")
 
 # === EJECUCIÓN PRINCIPAL ===
 if __name__ == '__main__':
-    log.info("🚀 Iniciando aplicación Flask con Socket.IO...")
+    log.info("Iniciando aplicacion Flask con Socket.IO...")
     
     # Verificar variables de entorno críticas
     required_env_vars = ['BINANCE_API_KEY', 'BINANCE_API_SECRET']
     missing_vars = [var for var in required_env_vars if not os.getenv(var)]
     
     if missing_vars:
-        log.error(f"❌ Variables de entorno faltantes: {', '.join(missing_vars)}")
-        log.error("💡 Asegúrate de crear un archivo .env con BINANCE_API_KEY y BINANCE_API_SECRET")
+        log.error(f"Variables de entorno faltantes: {', '.join(missing_vars)}")
+        log.error("Asegurate de crear un archivo .env con BINANCE_API_KEY y BINANCE_API_SECRET")
         exit(1)
     
     # Iniciar hilo de actualizaciones
@@ -1088,11 +1057,11 @@ if __name__ == '__main__':
     # Iniciar bot automáticamente si está configurado
     auto_start_bot()
     
-    log.info("✅ Sistema inicializado correctamente")
-    log.info(f"🌐 Servidor web iniciando en http://0.0.0.0:5000")
+    log.info("Sistema inicializado correctamente")
+    log.info(f"Servidor web iniciando en http://0.0.0.0:5000")
     
     # Iniciar servidor
     try:
         socketio.run(app, host='0.0.0.0', port=5000, debug=False, use_reloader=False)
     except Exception as e:
-        log.error(f"❌ Error al iniciar el servidor: {e}")
+        log.error(f"Error al iniciar el servidor: {e}")

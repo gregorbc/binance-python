@@ -2,7 +2,6 @@ from __future__ import annotations
 
 
 # === Windows UTF-8 logging shim ===
-import logging
 import sys, io
 def _reconfigure_windows_console_utf8():
     try:

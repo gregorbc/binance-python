@@ -1,1106 +1,940 @@
-2025-10-08 18:19:53,755 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 18:19:55,439 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 18:19:55,440 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 18:19:55,444 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 18:19:55,445 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
-2025-10-08 18:19:55,447 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 20
-2025-10-08 18:19:55,455 - INFO - 🔑 API Key presente: True
-2025-10-08 18:19:55,461 - INFO - 🔑 API Secret presente: True
-2025-10-08 18:19:55,476 - INFO - 🌐 Modo Testnet: True
-2025-10-08 18:19:55,482 - INFO - 🔧 Dry Run: False
-2025-10-08 18:19:56,856 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 18:19:56,857 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:20:06,226 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:20:15,611 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:20:24,986 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:20:34,356 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:20:43,728 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:20:53,094 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:21:02,467 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:21:11,839 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:21:21,227 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:21:30,616 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:21:39,985 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:21:39,996 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:21:39,998 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:21:49,370 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:21:58,741 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:22:08,112 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:22:17,484 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:22:26,855 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:22:36,239 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:22:45,607 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:22:54,982 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:23:04,355 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:23:13,725 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:23:23,103 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:23:32,481 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:23:32,485 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:23:32,490 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:23:41,873 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:39:07,555 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 18:39:08,859 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 18:39:08,859 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 18:39:08,860 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 18:39:08,860 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
-2025-10-08 18:39:08,860 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 20
-2025-10-08 18:39:08,860 - INFO - 🔑 API Key presente: True
-2025-10-08 18:39:08,860 - INFO - 🔑 API Secret presente: True
-2025-10-08 18:39:08,860 - INFO - 🌐 Modo Testnet: True
-2025-10-08 18:39:08,860 - INFO - 🔧 Dry Run: False
-2025-10-08 18:39:10,224 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 18:39:10,224 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:39:19,590 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:39:28,960 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:39:38,329 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:39:47,703 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:39:57,071 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:40:06,437 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:40:15,806 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:40:25,173 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:40:34,542 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:40:43,910 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:40:53,277 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:40:53,277 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:40:53,278 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:41:02,665 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:41:12,030 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:41:21,401 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:41:30,769 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:41:40,147 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:41:49,516 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:41:58,884 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:42:08,247 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:42:17,654 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:42:27,018 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:42:36,387 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:42:45,762 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:42:45,763 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:42:45,763 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:42:55,130 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:43:04,501 - INFO - --- 🔄 Cycle 26 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:43:13,869 - INFO - --- 🔄 Cycle 27 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:43:23,237 - INFO - --- 🔄 Cycle 28 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:43:32,604 - INFO - --- 🔄 Cycle 29 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:43:41,973 - INFO - --- 🔄 Cycle 30 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:43:51,339 - INFO - --- 🔄 Cycle 31 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:44:00,709 - INFO - --- 🔄 Cycle 32 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:44:10,084 - INFO - --- 🔄 Cycle 33 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:44:19,465 - INFO - --- 🔄 Cycle 34 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:44:28,832 - INFO - --- 🔄 Cycle 35 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:44:38,199 - INFO - --- 🔄 Cycle 36 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:44:38,200 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:44:38,200 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:44:47,569 - INFO - --- 🔄 Cycle 37 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:44:56,940 - INFO - --- 🔄 Cycle 38 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:45:01,357 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 18:45:01,800 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 18:45:20,004 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 18:45:21,287 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 18:45:21,287 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 18:45:21,287 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 18:45:21,288 - INFO - ⚡ Configuración 20x: SL=1.0%, TP=2.5%
-2025-10-08 18:45:21,288 - INFO - ⚡ Risk per trade: 1.5%, Max positions: 20
-2025-10-08 18:45:21,288 - INFO - 🔑 API Key presente: True
-2025-10-08 18:45:21,288 - INFO - 🔑 API Secret presente: True
-2025-10-08 18:45:21,288 - INFO - 🌐 Modo Testnet: True
-2025-10-08 18:45:21,288 - INFO - 🔧 Dry Run: False
-2025-10-08 18:45:22,657 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 18:45:22,657 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:45:32,022 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:45:41,391 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:45:50,758 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:46:00,189 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:46:09,554 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:46:18,921 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:46:28,288 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:46:37,657 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:46:48,682 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:46:58,046 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:47:07,412 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:47:07,412 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:47:07,412 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:47:16,781 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:47:26,148 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:47:35,514 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:47:44,880 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:47:54,279 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:48:03,647 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:48:13,016 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:48:22,383 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:48:31,750 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:48:41,116 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:48:50,483 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:48:59,851 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:48:59,851 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:48:59,851 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:49:09,221 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:49:18,588 - INFO - --- 🔄 Cycle 26 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:49:27,955 - INFO - --- 🔄 Cycle 27 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:49:37,322 - INFO - --- 🔄 Cycle 28 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:49:46,688 - INFO - --- 🔄 Cycle 29 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:49:56,052 - INFO - --- 🔄 Cycle 30 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:50:05,423 - INFO - --- 🔄 Cycle 31 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:50:14,801 - INFO - --- 🔄 Cycle 32 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:50:24,168 - INFO - --- 🔄 Cycle 33 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:50:33,535 - INFO - --- 🔄 Cycle 34 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:50:42,906 - INFO - --- 🔄 Cycle 35 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:50:52,274 - INFO - --- 🔄 Cycle 36 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:50:52,274 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:50:52,275 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:51:01,644 - INFO - --- 🔄 Cycle 37 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:51:11,012 - INFO - --- 🔄 Cycle 38 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:51:20,380 - INFO - --- 🔄 Cycle 39 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:51:29,751 - INFO - --- 🔄 Cycle 40 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:51:39,119 - INFO - --- 🔄 Cycle 41 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:51:48,487 - INFO - --- 🔄 Cycle 42 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:51:57,853 - INFO - --- 🔄 Cycle 43 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:52:07,222 - INFO - --- 🔄 Cycle 44 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:52:16,591 - INFO - --- 🔄 Cycle 45 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:52:25,960 - INFO - --- 🔄 Cycle 46 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:52:35,326 - INFO - --- 🔄 Cycle 47 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:52:44,692 - INFO - --- 🔄 Cycle 48 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:52:44,693 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:52:44,693 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:52:54,063 - INFO - --- 🔄 Cycle 49 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:53:03,430 - INFO - --- 🔄 Cycle 50 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:53:04,873 - INFO - 🔍 Encontrados 99 símbolos válidos de 416 posibles
-2025-10-08 18:53:15,607 - INFO - --- 🔄 Cycle 51 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:53:24,977 - INFO - --- 🔄 Cycle 52 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:53:34,353 - INFO - --- 🔄 Cycle 53 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:53:43,726 - INFO - --- 🔄 Cycle 54 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:53:53,091 - INFO - --- 🔄 Cycle 55 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:54:02,458 - INFO - --- 🔄 Cycle 56 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:54:11,823 - INFO - --- 🔄 Cycle 57 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:54:21,195 - INFO - --- 🔄 Cycle 58 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:54:30,569 - INFO - --- 🔄 Cycle 59 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:54:39,936 - INFO - --- 🔄 Cycle 60 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:54:39,936 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:54:39,936 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:54:49,304 - INFO - --- 🔄 Cycle 61 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:54:58,680 - INFO - --- 🔄 Cycle 62 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:55:08,045 - INFO - --- 🔄 Cycle 63 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:55:17,416 - INFO - --- 🔄 Cycle 64 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:55:26,794 - INFO - --- 🔄 Cycle 65 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:55:36,169 - INFO - --- 🔄 Cycle 66 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:55:45,542 - INFO - --- 🔄 Cycle 67 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:55:54,912 - INFO - --- 🔄 Cycle 68 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:56:04,281 - INFO - --- 🔄 Cycle 69 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:56:13,651 - INFO - --- 🔄 Cycle 70 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:56:23,016 - INFO - --- 🔄 Cycle 71 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:56:32,384 - INFO - --- 🔄 Cycle 72 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:56:32,384 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:56:32,385 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:56:41,754 - INFO - --- 🔄 Cycle 73 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:56:51,129 - INFO - --- 🔄 Cycle 74 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:57:00,498 - INFO - --- 🔄 Cycle 75 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:57:09,868 - INFO - --- 🔄 Cycle 76 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:57:19,241 - INFO - --- 🔄 Cycle 77 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:57:28,620 - INFO - --- 🔄 Cycle 78 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:57:37,988 - INFO - --- 🔄 Cycle 79 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:57:48,447 - INFO - --- 🔄 Cycle 80 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:57:57,818 - INFO - --- 🔄 Cycle 81 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:58:07,188 - INFO - --- 🔄 Cycle 82 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:58:16,551 - INFO - --- 🔄 Cycle 83 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:58:25,919 - INFO - --- 🔄 Cycle 84 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 18:58:25,920 - WARNING - Intentando obtener klines para símbolo no tradable: BTCUSDT
-2025-10-08 18:58:25,921 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 18:58:30,382 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 19:47:15,197 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 19:47:17,919 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 19:47:28,585 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 19:47:29,834 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 19:47:29,835 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 19:47:29,835 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 19:47:29,836 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 19:47:29,836 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 19:47:29,837 - INFO - 🔑 API Key presente: True
-2025-10-08 19:47:29,837 - INFO - 🔑 API Secret presente: True
-2025-10-08 19:47:29,837 - INFO - 🌐 Modo Testnet: True
-2025-10-08 19:47:29,839 - INFO - 🔧 Dry Run: False
-2025-10-08 19:47:31,201 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 19:47:31,202 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:47:40,565 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:47:49,926 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:47:59,290 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:48:08,649 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:48:18,010 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:48:27,372 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:48:36,737 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:48:46,097 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:48:55,463 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:49:04,824 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:49:14,187 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:49:19,646 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 19:49:29,004 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:49:38,366 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:49:47,727 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:49:57,093 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:50:06,466 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:50:15,829 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:50:25,191 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:50:34,557 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:50:43,930 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:50:53,292 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:51:02,664 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:51:12,030 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:51:17,445 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 19:51:26,815 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:51:36,180 - INFO - --- 🔄 Cycle 26 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:51:45,541 - INFO - --- 🔄 Cycle 27 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:51:54,908 - INFO - --- 🔄 Cycle 28 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:52:04,283 - INFO - --- 🔄 Cycle 29 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:52:13,650 - INFO - --- 🔄 Cycle 30 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:52:23,015 - INFO - --- 🔄 Cycle 31 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:52:32,379 - INFO - --- 🔄 Cycle 32 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:52:41,740 - INFO - --- 🔄 Cycle 33 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:52:51,107 - INFO - --- 🔄 Cycle 34 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:53:00,473 - INFO - --- 🔄 Cycle 35 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:53:09,836 - INFO - --- 🔄 Cycle 36 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:53:15,257 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 19:53:24,625 - INFO - --- 🔄 Cycle 37 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:53:33,991 - INFO - --- 🔄 Cycle 38 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:53:43,356 - INFO - --- 🔄 Cycle 39 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:53:52,721 - INFO - --- 🔄 Cycle 40 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:54:02,087 - INFO - --- 🔄 Cycle 41 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:54:11,457 - INFO - --- 🔄 Cycle 42 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:54:20,821 - INFO - --- 🔄 Cycle 43 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:54:30,190 - INFO - --- 🔄 Cycle 44 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:54:39,554 - INFO - --- 🔄 Cycle 45 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:54:49,033 - INFO - --- 🔄 Cycle 46 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:54:58,399 - INFO - --- 🔄 Cycle 47 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:55:07,766 - INFO - --- 🔄 Cycle 48 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:55:13,186 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 19:55:22,549 - INFO - --- 🔄 Cycle 49 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:55:31,911 - INFO - --- 🔄 Cycle 50 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:55:33,364 - INFO - 🧹 Limpiados 1 símbolos problemáticos
-2025-10-08 19:55:33,369 - INFO - 🔍 Encontrados 147 símbolos válidos de 420 posibles
-2025-10-08 19:55:44,102 - INFO - --- 🔄 Cycle 51 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:55:53,561 - INFO - --- 🔄 Cycle 52 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:56:02,937 - INFO - --- 🔄 Cycle 53 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:56:12,301 - INFO - --- 🔄 Cycle 54 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:56:21,662 - INFO - --- 🔄 Cycle 55 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:56:31,022 - INFO - --- 🔄 Cycle 56 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:56:40,385 - INFO - --- 🔄 Cycle 57 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:56:49,749 - INFO - --- 🔄 Cycle 58 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:56:59,108 - INFO - --- 🔄 Cycle 59 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:57:08,470 - INFO - --- 🔄 Cycle 60 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:57:13,883 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 19:57:23,244 - INFO - --- 🔄 Cycle 61 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:57:32,609 - INFO - --- 🔄 Cycle 62 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:57:41,972 - INFO - --- 🔄 Cycle 63 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:57:51,336 - INFO - --- 🔄 Cycle 64 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:58:00,697 - INFO - --- 🔄 Cycle 65 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:58:10,063 - INFO - --- 🔄 Cycle 66 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:58:19,424 - INFO - --- 🔄 Cycle 67 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:58:28,785 - INFO - --- 🔄 Cycle 68 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:58:38,153 - INFO - --- 🔄 Cycle 69 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:58:47,516 - INFO - --- 🔄 Cycle 70 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:58:56,881 - INFO - --- 🔄 Cycle 71 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:59:06,241 - INFO - --- 🔄 Cycle 72 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:59:11,660 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 19:59:21,023 - INFO - --- 🔄 Cycle 73 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:59:30,392 - INFO - --- 🔄 Cycle 74 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:59:39,757 - INFO - --- 🔄 Cycle 75 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:59:50,479 - INFO - --- 🔄 Cycle 76 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 19:59:59,841 - INFO - --- 🔄 Cycle 77 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:00:09,202 - INFO - --- 🔄 Cycle 78 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:00:18,561 - INFO - --- 🔄 Cycle 79 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:00:27,920 - INFO - --- 🔄 Cycle 80 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:00:37,280 - INFO - --- 🔄 Cycle 81 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:00:46,644 - INFO - --- 🔄 Cycle 82 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:00:56,004 - INFO - --- 🔄 Cycle 83 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:01:05,366 - INFO - --- 🔄 Cycle 84 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:01:10,771 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:01:20,135 - INFO - --- 🔄 Cycle 85 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:15:45,351 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 20:15:47,759 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 20:16:01,819 - ERROR - Error en el bot: APIError(code=0): Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error.
-2025-10-08 20:16:45,791 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 20:16:48,154 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 20:16:55,278 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 20:16:56,504 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 20:16:56,504 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 20:16:56,505 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 20:16:56,505 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 20:16:56,506 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 20:16:56,506 - INFO - 🔑 API Key presente: True
-2025-10-08 20:16:56,506 - INFO - 🔑 API Secret presente: True
-2025-10-08 20:16:56,507 - INFO - 🌐 Modo Testnet: True
-2025-10-08 20:16:56,507 - INFO - 🔧 Dry Run: False
-2025-10-08 20:16:57,865 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 20:16:57,865 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:17:07,225 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:17:16,584 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:17:25,944 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:17:35,304 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:17:44,668 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:17:54,032 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:18:03,393 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:18:12,757 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:18:22,120 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:18:31,483 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:18:40,848 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:18:46,266 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:18:55,632 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:19:04,998 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:19:14,356 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:19:23,713 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:19:33,072 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:19:42,438 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:19:51,802 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:20:01,163 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:20:10,531 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:20:19,896 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:20:29,259 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:20:38,618 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:20:44,037 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:20:53,399 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:21:02,758 - INFO - --- 🔄 Cycle 26 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:21:12,121 - INFO - --- 🔄 Cycle 27 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:21:21,482 - INFO - --- 🔄 Cycle 28 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:21:30,846 - INFO - --- 🔄 Cycle 29 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:21:40,210 - INFO - --- 🔄 Cycle 30 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:21:49,576 - INFO - --- 🔄 Cycle 31 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:21:58,939 - INFO - --- 🔄 Cycle 32 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:22:08,299 - INFO - --- 🔄 Cycle 33 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:22:17,663 - INFO - --- 🔄 Cycle 34 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:22:27,027 - INFO - --- 🔄 Cycle 35 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:22:36,387 - INFO - --- 🔄 Cycle 36 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:22:41,810 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:22:51,173 - INFO - --- 🔄 Cycle 37 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:23:00,535 - INFO - --- 🔄 Cycle 38 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:23:09,907 - INFO - --- 🔄 Cycle 39 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:23:19,275 - INFO - --- 🔄 Cycle 40 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:23:28,647 - INFO - --- 🔄 Cycle 41 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:23:38,013 - INFO - --- 🔄 Cycle 42 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:23:47,385 - INFO - --- 🔄 Cycle 43 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:23:56,750 - INFO - --- 🔄 Cycle 44 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:24:06,114 - INFO - --- 🔄 Cycle 45 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:24:15,474 - INFO - --- 🔄 Cycle 46 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:24:24,845 - INFO - --- 🔄 Cycle 47 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:24:34,208 - INFO - --- 🔄 Cycle 48 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:24:40,954 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:24:50,313 - INFO - --- 🔄 Cycle 49 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:24:59,676 - INFO - --- 🔄 Cycle 50 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:25:01,122 - INFO - 🧹 Limpiados 1 símbolos problemáticos
-2025-10-08 20:25:01,124 - INFO - 🔍 Encontrados 147 símbolos válidos de 420 posibles
-2025-10-08 20:25:11,858 - INFO - --- 🔄 Cycle 51 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:25:21,222 - INFO - --- 🔄 Cycle 52 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:25:30,588 - INFO - --- 🔄 Cycle 53 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:25:39,949 - INFO - --- 🔄 Cycle 54 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:25:49,306 - INFO - --- 🔄 Cycle 55 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:25:58,665 - INFO - --- 🔄 Cycle 56 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:26:08,029 - INFO - --- 🔄 Cycle 57 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:26:17,390 - INFO - --- 🔄 Cycle 58 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:26:26,754 - INFO - --- 🔄 Cycle 59 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:26:36,113 - INFO - --- 🔄 Cycle 60 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:26:41,526 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:26:50,888 - INFO - --- 🔄 Cycle 61 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:27:00,246 - INFO - --- 🔄 Cycle 62 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:27:09,606 - INFO - --- 🔄 Cycle 63 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:27:18,967 - INFO - --- 🔄 Cycle 64 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:27:28,325 - INFO - --- 🔄 Cycle 65 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:27:37,686 - INFO - --- 🔄 Cycle 66 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:27:47,045 - INFO - --- 🔄 Cycle 67 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:27:56,404 - INFO - --- 🔄 Cycle 68 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:28:06,221 - INFO - --- 🔄 Cycle 69 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:28:15,585 - INFO - --- 🔄 Cycle 70 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:28:24,945 - INFO - --- 🔄 Cycle 71 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:28:34,307 - INFO - --- 🔄 Cycle 72 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:28:39,719 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:28:49,081 - INFO - --- 🔄 Cycle 73 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:28:58,444 - INFO - --- 🔄 Cycle 74 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:29:07,813 - INFO - --- 🔄 Cycle 75 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:29:18,985 - INFO - --- 🔄 Cycle 76 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:29:28,353 - INFO - --- 🔄 Cycle 77 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:29:37,733 - INFO - --- 🔄 Cycle 78 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:29:47,096 - INFO - --- 🔄 Cycle 79 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:29:56,455 - INFO - --- 🔄 Cycle 80 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:30:08,172 - INFO - --- 🔄 Cycle 81 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:30:17,540 - INFO - --- 🔄 Cycle 82 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:30:26,896 - INFO - --- 🔄 Cycle 83 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:30:36,257 - INFO - --- 🔄 Cycle 84 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:30:41,660 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:30:51,024 - INFO - --- 🔄 Cycle 85 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:31:00,387 - INFO - --- 🔄 Cycle 86 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:33:47,630 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 20:33:50,342 - INFO - 🚀 Sistema de logs en tiempo real inicializado
-2025-10-08 20:34:08,655 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 20:34:09,964 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 20:34:09,965 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 20:34:09,965 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS
-2025-10-08 20:34:09,966 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 20:34:09,966 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 20:34:09,967 - INFO - 🔑 API Key presente: True
-2025-10-08 20:34:09,967 - INFO - 🔑 API Secret presente: True
-2025-10-08 20:34:09,968 - INFO - 🌐 Modo Testnet: True
-2025-10-08 20:34:09,968 - INFO - 🔧 Dry Run: False
-2025-10-08 20:34:11,329 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 20:34:11,330 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:34:20,690 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:34:30,055 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:34:39,419 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:34:48,782 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:34:58,147 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:35:07,511 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:35:16,880 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:35:26,243 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:35:35,611 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:35:45,015 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:35:54,387 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:35:59,803 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:36:09,163 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:36:18,525 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:36:27,892 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:36:37,258 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:36:46,622 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:36:55,987 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:37:05,349 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:37:14,712 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:37:24,077 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:37:33,441 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:37:42,814 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:37:52,291 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:37:57,708 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:38:07,069 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:38:16,435 - INFO - --- 🔄 Cycle 26 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:38:26,364 - INFO - --- 🔄 Cycle 27 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:38:35,746 - INFO - --- 🔄 Cycle 28 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:38:45,113 - INFO - --- 🔄 Cycle 29 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:38:55,470 - INFO - --- 🔄 Cycle 30 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:39:04,828 - INFO - --- 🔄 Cycle 31 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:39:14,189 - INFO - --- 🔄 Cycle 32 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:39:23,550 - INFO - --- 🔄 Cycle 33 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:39:32,964 - INFO - --- 🔄 Cycle 34 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:39:42,325 - INFO - --- 🔄 Cycle 35 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:39:51,685 - INFO - --- 🔄 Cycle 36 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:39:57,090 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:40:06,448 - INFO - --- 🔄 Cycle 37 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:40:15,807 - INFO - --- 🔄 Cycle 38 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:40:25,171 - INFO - --- 🔄 Cycle 39 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:40:34,531 - INFO - --- 🔄 Cycle 40 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:40:43,890 - INFO - --- 🔄 Cycle 41 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:40:53,250 - INFO - --- 🔄 Cycle 42 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:41:02,610 - INFO - --- 🔄 Cycle 43 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:41:11,976 - INFO - --- 🔄 Cycle 44 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:41:21,336 - INFO - --- 🔄 Cycle 45 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:41:30,698 - INFO - --- 🔄 Cycle 46 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:41:40,063 - INFO - --- 🔄 Cycle 47 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:41:49,426 - INFO - --- 🔄 Cycle 48 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:41:54,836 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:42:04,199 - INFO - --- 🔄 Cycle 49 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:42:13,568 - INFO - --- 🔄 Cycle 50 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:42:15,010 - INFO - 🧹 Limpiados 1 símbolos problemáticos
-2025-10-08 20:42:15,011 - INFO - 🔍 Encontrados 147 símbolos válidos de 420 posibles
-2025-10-08 20:42:25,735 - INFO - --- 🔄 Cycle 51 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:42:35,092 - INFO - --- 🔄 Cycle 52 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:42:46,836 - INFO - --- 🔄 Cycle 53 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:42:56,196 - INFO - --- 🔄 Cycle 54 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:43:05,564 - INFO - --- 🔄 Cycle 55 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:43:15,814 - INFO - --- 🔄 Cycle 56 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:43:25,180 - INFO - --- 🔄 Cycle 57 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:43:34,541 - INFO - --- 🔄 Cycle 58 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:43:43,919 - INFO - --- 🔄 Cycle 59 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:43:53,302 - INFO - --- 🔄 Cycle 60 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:43:58,704 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:44:08,067 - INFO - --- 🔄 Cycle 61 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:44:17,429 - INFO - --- 🔄 Cycle 62 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:44:26,827 - INFO - --- 🔄 Cycle 63 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:44:36,186 - INFO - --- 🔄 Cycle 64 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:44:45,546 - INFO - --- 🔄 Cycle 65 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:44:54,908 - INFO - --- 🔄 Cycle 66 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:45:04,271 - INFO - --- 🔄 Cycle 67 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:45:13,651 - INFO - --- 🔄 Cycle 68 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:45:23,016 - INFO - --- 🔄 Cycle 69 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:45:32,381 - INFO - --- 🔄 Cycle 70 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:45:41,742 - INFO - --- 🔄 Cycle 71 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:45:51,103 - INFO - --- 🔄 Cycle 72 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:45:56,513 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:46:05,882 - INFO - --- 🔄 Cycle 73 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:46:15,249 - INFO - --- 🔄 Cycle 74 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:46:24,614 - INFO - --- 🔄 Cycle 75 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:46:35,334 - INFO - --- 🔄 Cycle 76 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:46:44,692 - INFO - --- 🔄 Cycle 77 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:46:54,058 - INFO - --- 🔄 Cycle 78 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:47:03,422 - INFO - --- 🔄 Cycle 79 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:47:12,785 - INFO - --- 🔄 Cycle 80 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:47:22,147 - INFO - --- 🔄 Cycle 81 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:47:31,511 - INFO - --- 🔄 Cycle 82 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:47:40,871 - INFO - --- 🔄 Cycle 83 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:47:50,240 - INFO - --- 🔄 Cycle 84 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:47:55,716 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:48:05,080 - INFO - --- 🔄 Cycle 85 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:48:14,447 - INFO - --- 🔄 Cycle 86 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:48:23,812 - INFO - --- 🔄 Cycle 87 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:48:33,180 - INFO - --- 🔄 Cycle 88 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:48:42,541 - INFO - --- 🔄 Cycle 89 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:48:51,913 - INFO - --- 🔄 Cycle 90 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:49:01,278 - INFO - --- 🔄 Cycle 91 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:49:10,643 - INFO - --- 🔄 Cycle 92 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:49:20,005 - INFO - --- 🔄 Cycle 93 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:49:29,373 - INFO - --- 🔄 Cycle 94 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:49:38,736 - INFO - --- 🔄 Cycle 95 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:49:48,103 - INFO - --- 🔄 Cycle 96 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:49:53,511 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:50:02,874 - INFO - --- 🔄 Cycle 97 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:50:12,238 - INFO - --- 🔄 Cycle 98 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:50:21,602 - INFO - --- 🔄 Cycle 99 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:50:30,968 - INFO - --- 🔄 Cycle 100 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:50:32,411 - INFO - 🧹 Limpiados 1 símbolos problemáticos
-2025-10-08 20:50:32,415 - INFO - 🔍 Encontrados 147 símbolos válidos de 420 posibles
-2025-10-08 20:50:43,145 - INFO - --- 🔄 Cycle 101 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:50:52,504 - INFO - --- 🔄 Cycle 102 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:51:01,865 - INFO - --- 🔄 Cycle 103 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:51:11,245 - INFO - --- 🔄 Cycle 104 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:51:20,608 - INFO - --- 🔄 Cycle 105 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:51:29,997 - INFO - --- 🔄 Cycle 106 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:51:39,361 - INFO - --- 🔄 Cycle 107 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:51:48,722 - INFO - --- 🔄 Cycle 108 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:51:54,589 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:52:03,953 - INFO - --- 🔄 Cycle 109 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:52:13,313 - INFO - --- 🔄 Cycle 110 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:52:22,675 - INFO - --- 🔄 Cycle 111 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:52:32,036 - INFO - --- 🔄 Cycle 112 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:52:41,394 - INFO - --- 🔄 Cycle 113 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:52:50,753 - INFO - --- 🔄 Cycle 114 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:52:57,587 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 20:52:57,588 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 20:52:57,588 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 20:52:57,589 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 20:52:57,589 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 20:52:57,589 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 20:53:23,921 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 20:53:23,921 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 20:53:23,922 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 20:53:23,922 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 20:53:23,922 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 20:53:23,923 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 20:54:15,943 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 20:54:15,944 - INFO - ⚠️ MODO TESTNET - No se realizarán operaciones reales
-2025-10-08 20:54:17,187 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 20:54:17,188 - WARNING - ⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env
-2025-10-08 20:54:17,189 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - TESTNET
-2025-10-08 20:54:17,189 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 20:54:17,189 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 20:54:17,190 - INFO - 🔑 API Key presente: True
-2025-10-08 20:54:17,190 - INFO - 🔑 API Secret presente: True
-2025-10-08 20:54:17,190 - INFO - 🌐 Modo: TESTNET
-2025-10-08 20:54:17,191 - INFO - 🔧 Dry Run: False
-2025-10-08 20:54:17,191 - INFO - 🤖 Telegram: ❌ NO CONFIGURADO
-2025-10-08 20:54:18,548 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 20:54:18,549 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:54:27,913 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:54:37,726 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:54:47,084 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:54:56,444 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:55:05,802 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:55:15,164 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:55:24,529 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:55:33,891 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:55:43,254 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:55:52,619 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:56:01,979 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:56:08,639 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:56:18,009 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:56:27,373 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:56:36,738 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:56:46,100 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:56:55,461 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:57:04,823 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:57:14,186 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:57:23,548 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:57:32,910 - INFO - --- 🔄 Cycle 21 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:57:42,271 - INFO - --- 🔄 Cycle 22 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:57:51,631 - INFO - --- 🔄 Cycle 23 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:58:00,992 - INFO - --- 🔄 Cycle 24 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:58:06,408 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 20:58:15,770 - INFO - --- 🔄 Cycle 25 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:58:25,133 - INFO - --- 🔄 Cycle 26 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:58:34,493 - INFO - --- 🔄 Cycle 27 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:58:43,855 - INFO - --- 🔄 Cycle 28 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:58:53,218 - INFO - --- 🔄 Cycle 29 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:59:02,583 - INFO - --- 🔄 Cycle 30 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:59:11,943 - INFO - --- 🔄 Cycle 31 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:59:21,325 - INFO - --- 🔄 Cycle 32 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:59:30,687 - INFO - --- 🔄 Cycle 33 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:59:40,048 - INFO - --- 🔄 Cycle 34 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:59:49,407 - INFO - --- 🔄 Cycle 35 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 20:59:58,767 - INFO - --- 🔄 Cycle 36 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:00:04,189 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:00:13,555 - INFO - --- 🔄 Cycle 37 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:00:22,916 - INFO - --- 🔄 Cycle 38 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:00:32,281 - INFO - --- 🔄 Cycle 39 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:00:41,646 - INFO - --- 🔄 Cycle 40 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:00:51,012 - INFO - --- 🔄 Cycle 41 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:01:00,373 - INFO - --- 🔄 Cycle 42 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:01:09,734 - INFO - --- 🔄 Cycle 43 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:01:19,093 - INFO - --- 🔄 Cycle 44 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:01:28,455 - INFO - --- 🔄 Cycle 45 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:01:37,817 - INFO - --- 🔄 Cycle 46 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:01:47,181 - INFO - --- 🔄 Cycle 47 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:01:56,542 - INFO - --- 🔄 Cycle 48 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:02:01,960 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:02:11,323 - INFO - --- 🔄 Cycle 49 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:02:20,683 - INFO - --- 🔄 Cycle 50 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:02:24,544 - INFO - 🧹 Limpiados 1 símbolos problemáticos
-2025-10-08 21:02:24,545 - INFO - 🔍 Encontrados 147 símbolos válidos de 420 posibles
-2025-10-08 21:02:35,272 - INFO - --- 🔄 Cycle 51 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:02:44,633 - INFO - --- 🔄 Cycle 52 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:02:53,994 - INFO - --- 🔄 Cycle 53 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:03:03,356 - INFO - --- 🔄 Cycle 54 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:03:12,716 - INFO - --- 🔄 Cycle 55 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:03:22,073 - INFO - --- 🔄 Cycle 56 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:03:31,432 - INFO - --- 🔄 Cycle 57 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:03:40,807 - INFO - --- 🔄 Cycle 58 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:03:50,167 - INFO - --- 🔄 Cycle 59 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:03:59,524 - INFO - --- 🔄 Cycle 60 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:04:29,534 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:04:29,535 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:04:29,535 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:04:29,535 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:04:29,536 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:04:29,536 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:04:45,453 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 21:04:45,453 - INFO - ⚠️ MODO TESTNET - No se realizarán operaciones reales
-2025-10-08 21:04:46,680 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:04:46,681 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:04:46,682 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:04:46,683 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - TESTNET
-2025-10-08 21:04:46,684 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:04:46,685 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 21:04:46,685 - INFO - 🔑 API Key presente: True
-2025-10-08 21:04:46,686 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:04:46,686 - INFO - 🌐 Modo: TESTNET
-2025-10-08 21:04:46,687 - INFO - 🔧 Dry Run: False
-2025-10-08 21:04:46,687 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:04:49,878 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 21:04:49,879 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:04:59,239 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:05:08,639 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:05:17,999 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:05:27,363 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:05:36,723 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:05:46,090 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:05:55,451 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:06:04,818 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:06:14,181 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:06:23,545 - INFO - --- 🔄 Cycle 11 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:06:32,907 - INFO - --- 🔄 Cycle 12 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:06:38,323 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:06:48,753 - INFO - --- 🔄 Cycle 13 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:06:58,121 - INFO - --- 🔄 Cycle 14 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:07:07,485 - INFO - --- 🔄 Cycle 15 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:07:16,851 - INFO - --- 🔄 Cycle 16 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:07:26,212 - INFO - --- 🔄 Cycle 17 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:07:35,573 - INFO - --- 🔄 Cycle 18 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:07:44,935 - INFO - --- 🔄 Cycle 19 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:07:54,297 - INFO - --- 🔄 Cycle 20 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:08:20,181 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:08:20,182 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:08:20,182 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:08:20,183 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:08:20,183 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:08:20,183 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:08:32,890 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 21:08:32,891 - INFO - ⚠️ MODO TESTNET - No se realizarán operaciones reales
-2025-10-08 21:08:34,116 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:08:34,117 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:08:34,118 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:08:34,119 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - TESTNET
-2025-10-08 21:08:34,120 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:08:34,120 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 21:08:34,121 - INFO - 🔑 API Key presente: True
-2025-10-08 21:08:34,122 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:08:34,122 - INFO - 🌐 Modo: TESTNET
-2025-10-08 21:08:34,122 - INFO - 🔧 Dry Run: False
-2025-10-08 21:08:34,123 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:08:36,655 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 21:08:36,656 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:08:46,016 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:08:55,378 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:09:04,741 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:09:14,105 - INFO - --- 🔄 Cycle 5 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:09:23,465 - INFO - --- 🔄 Cycle 6 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:09:32,827 - INFO - --- 🔄 Cycle 7 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:09:42,191 - INFO - --- 🔄 Cycle 8 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:09:51,554 - INFO - --- 🔄 Cycle 9 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:10:00,916 - INFO - --- 🔄 Cycle 10 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:10:21,097 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:10:21,098 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:10:21,098 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:10:21,099 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:10:21,102 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:10:21,103 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:10:32,175 - INFO - 🔧 CONECTADO A BINANCE FUTURES TESTNET - 20x LEVERAGE
-2025-10-08 21:10:32,176 - INFO - ⚠️ MODO TESTNET - No se realizarán operaciones reales
-2025-10-08 21:10:33,409 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:10:33,410 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:10:33,411 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:10:33,412 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - TESTNET
-2025-10-08 21:10:33,413 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:10:33,415 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 21:10:33,415 - INFO - 🔑 API Key presente: True
-2025-10-08 21:10:33,416 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:10:33,416 - INFO - 🌐 Modo: TESTNET
-2025-10-08 21:10:33,416 - INFO - 🔧 Dry Run: False
-2025-10-08 21:10:33,417 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:10:36,005 - INFO - 💰 Capital inicial: 5000.00 USDT (20x leverage)
-2025-10-08 21:10:36,006 - INFO - --- 🔄 Cycle 1 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:10:45,367 - INFO - --- 🔄 Cycle 2 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:10:54,734 - INFO - --- 🔄 Cycle 3 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:11:04,099 - INFO - --- 🔄 Cycle 4 - Capital: 5000.00 USDT (20x) ---
-2025-10-08 21:11:13,412 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:11:13,413 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:11:13,413 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:11:13,414 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:11:13,414 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:11:13,414 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:11:20,760 - INFO - 🔧 CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
-2025-10-08 21:11:20,761 - INFO - 🚀 MODO REAL - Se realizarán operaciones con dinero real
-2025-10-08 21:11:22,001 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:11:22,001 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:11:22,003 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:11:22,005 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - MAINNET REAL
-2025-10-08 21:11:22,010 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:11:22,010 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 21:11:22,011 - INFO - 🔑 API Key presente: True
-2025-10-08 21:11:22,012 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:11:22,012 - INFO - 🌐 Modo: MAINNET REAL
-2025-10-08 21:11:22,013 - INFO - 🔧 Dry Run: False
-2025-10-08 21:11:22,013 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:11:24,555 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:26,898 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:31,241 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:31,242 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:31,242 - WARNING - ⚠️ Balance insuficiente: 0.00 USDT < 10.0 USDT
-2025-10-08 21:11:32,375 - INFO - --- 🔄 Cycle 1 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:11:33,719 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:36,061 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:40,405 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:40,406 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:48,407 - INFO - --- 🔄 Cycle 2 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:11:49,749 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:52,107 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:56,449 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:11:56,450 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:04,451 - INFO - --- 🔄 Cycle 3 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:12:05,799 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:08,147 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:12,495 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:12,495 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:20,497 - INFO - --- 🔄 Cycle 4 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:12:21,846 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:24,195 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:28,544 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:28,544 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:36,546 - INFO - --- 🔄 Cycle 5 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:12:37,893 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:40,387 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:44,733 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:44,734 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:52,735 - INFO - --- 🔄 Cycle 6 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:12:54,083 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:12:56,432 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:00,780 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:00,781 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:08,782 - INFO - --- 🔄 Cycle 7 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:13:11,469 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:13,835 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:18,183 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:18,184 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:26,184 - INFO - --- 🔄 Cycle 8 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:13:27,534 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:30,540 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:34,888 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:34,888 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:42,889 - INFO - --- 🔄 Cycle 9 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:13:44,240 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:46,590 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:50,939 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:50,940 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:13:58,941 - INFO - --- 🔄 Cycle 10 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:14:00,293 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:02,641 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:06,987 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:06,987 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:14,989 - INFO - --- 🔄 Cycle 11 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:14:16,335 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:18,682 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:23,032 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:23,033 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:31,034 - INFO - --- 🔄 Cycle 12 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:14:36,460 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:14:38,976 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:41,324 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:45,672 - WARNING - Error no crítico de API: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:45,672 - ERROR - Error final de API después de todos los reintentos: -2015 - Invalid API-key, IP, or permissions for action
-2025-10-08 21:14:53,673 - INFO - --- 🔄 Cycle 13 - Capital: 0.00 USDT (20x) ---
-2025-10-08 21:15:00,132 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:15:00,133 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:15:00,134 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:15:00,134 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:15:00,134 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:15:00,135 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:15:08,482 - INFO - 🔧 CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
-2025-10-08 21:15:08,483 - INFO - 🚀 MODO REAL - Se realizarán operaciones con dinero real
-2025-10-08 21:15:09,733 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:15:09,734 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:15:09,735 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:15:09,737 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - MAINNET REAL
-2025-10-08 21:15:09,738 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:15:09,738 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 20
-2025-10-08 21:15:09,739 - INFO - 🔑 API Key presente: True
-2025-10-08 21:15:09,739 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:15:09,740 - INFO - 🌐 Modo: MAINNET REAL
-2025-10-08 21:15:09,740 - INFO - 🔧 Dry Run: False
-2025-10-08 21:15:09,740 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:15:12,315 - INFO - 💰 Capital inicial: 30.00 USDT (20x leverage)
-2025-10-08 21:15:12,316 - INFO - --- 🔄 Cycle 1 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:15:21,688 - INFO - --- 🔄 Cycle 2 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:15:31,058 - INFO - --- 🔄 Cycle 3 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:15:40,932 - INFO - --- 🔄 Cycle 4 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:15:50,297 - INFO - --- 🔄 Cycle 5 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:15:59,663 - INFO - --- 🔄 Cycle 6 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:16:09,027 - INFO - --- 🔄 Cycle 7 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:16:18,392 - INFO - --- 🔄 Cycle 8 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:16:27,757 - INFO - --- 🔄 Cycle 9 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:16:37,126 - INFO - --- 🔄 Cycle 10 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:16:46,493 - INFO - --- 🔄 Cycle 11 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:16:55,860 - INFO - --- 🔄 Cycle 12 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:17:01,284 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:17:16,746 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:17:16,747 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:17:16,747 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:17:16,747 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:17:16,747 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:17:16,748 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:17:22,517 - INFO - 🔧 CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
-2025-10-08 21:17:22,518 - INFO - 🚀 MODO REAL - Se realizarán operaciones con dinero real
-2025-10-08 21:17:23,775 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:17:23,776 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:17:23,777 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:17:23,779 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - MAINNET REAL
-2025-10-08 21:17:23,780 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:17:23,780 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 5
-2025-10-08 21:17:23,781 - INFO - 🔑 API Key presente: True
-2025-10-08 21:17:23,781 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:17:23,782 - INFO - 🌐 Modo: MAINNET REAL
-2025-10-08 21:17:23,782 - INFO - 🔧 Dry Run: False
-2025-10-08 21:17:23,782 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:17:26,422 - INFO - 💰 Capital inicial: 30.00 USDT (20x leverage)
-2025-10-08 21:17:26,423 - INFO - --- 🔄 Cycle 1 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:17:35,807 - INFO - --- 🔄 Cycle 2 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:17:45,173 - INFO - --- 🔄 Cycle 3 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:17:54,536 - INFO - --- 🔄 Cycle 4 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:18:03,902 - INFO - --- 🔄 Cycle 5 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:18:13,267 - INFO - --- 🔄 Cycle 6 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:18:22,637 - INFO - --- 🔄 Cycle 7 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:18:32,003 - INFO - --- 🔄 Cycle 8 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:18:41,369 - INFO - --- 🔄 Cycle 9 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:18:50,734 - INFO - --- 🔄 Cycle 10 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:19:00,099 - INFO - --- 🔄 Cycle 11 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:19:09,482 - INFO - --- 🔄 Cycle 12 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:19:14,903 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:19:25,337 - INFO - --- 🔄 Cycle 13 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:19:34,701 - INFO - --- 🔄 Cycle 14 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:19:45,276 - INFO - --- 🔄 Cycle 15 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:19:54,640 - INFO - --- 🔄 Cycle 16 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:20:04,008 - INFO - --- 🔄 Cycle 17 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:20:13,385 - INFO - --- 🔄 Cycle 18 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:20:22,747 - INFO - --- 🔄 Cycle 19 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:20:32,120 - INFO - --- 🔄 Cycle 20 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:20:41,484 - INFO - --- 🔄 Cycle 21 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:20:50,850 - INFO - --- 🔄 Cycle 22 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:21:00,214 - INFO - --- 🔄 Cycle 23 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:21:09,583 - INFO - --- 🔄 Cycle 24 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:21:14,996 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:21:25,369 - INFO - --- 🔄 Cycle 25 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:21:37,146 - INFO - --- 🔄 Cycle 26 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:21:46,511 - INFO - --- 🔄 Cycle 27 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:21:55,882 - INFO - --- 🔄 Cycle 28 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:22:05,247 - INFO - --- 🔄 Cycle 29 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:22:14,620 - INFO - --- 🔄 Cycle 30 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:22:23,984 - INFO - --- 🔄 Cycle 31 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:22:33,349 - INFO - --- 🔄 Cycle 32 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:22:42,713 - INFO - --- 🔄 Cycle 33 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:22:52,080 - INFO - --- 🔄 Cycle 34 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:23:01,448 - INFO - --- 🔄 Cycle 35 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:23:10,815 - INFO - --- 🔄 Cycle 36 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:23:16,229 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:23:26,699 - INFO - --- 🔄 Cycle 37 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:23:36,066 - INFO - --- 🔄 Cycle 38 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:23:45,437 - INFO - --- 🔄 Cycle 39 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:23:54,806 - INFO - --- 🔄 Cycle 40 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:24:04,186 - INFO - --- 🔄 Cycle 41 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:24:13,551 - INFO - --- 🔄 Cycle 42 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:24:22,914 - INFO - --- 🔄 Cycle 43 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:24:33,706 - INFO - --- 🔄 Cycle 44 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:24:43,074 - INFO - --- 🔄 Cycle 45 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:24:52,437 - INFO - --- 🔄 Cycle 46 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:25:01,803 - INFO - --- 🔄 Cycle 47 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:25:11,169 - INFO - --- 🔄 Cycle 48 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:25:17,029 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:25:27,445 - INFO - --- 🔄 Cycle 49 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:25:36,808 - INFO - --- 🔄 Cycle 50 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:25:38,238 - INFO - 🧹 Limpiados 1 símbolos problemáticos
-2025-10-08 21:25:38,239 - INFO - 🔍 Encontrados 148 símbolos válidos de 278 posibles
-2025-10-08 21:25:50,161 - INFO - --- 🔄 Cycle 51 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:25:59,525 - INFO - --- 🔄 Cycle 52 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:26:08,893 - INFO - --- 🔄 Cycle 53 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:26:18,256 - INFO - --- 🔄 Cycle 54 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:26:27,618 - INFO - --- 🔄 Cycle 55 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:26:36,982 - INFO - --- 🔄 Cycle 56 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:26:46,343 - INFO - --- 🔄 Cycle 57 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:26:55,711 - INFO - --- 🔄 Cycle 58 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:27:05,077 - INFO - --- 🔄 Cycle 59 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:27:14,442 - INFO - --- 🔄 Cycle 60 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:27:19,848 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:27:30,556 - INFO - --- 🔄 Cycle 61 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:27:39,925 - INFO - --- 🔄 Cycle 62 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:27:49,293 - INFO - --- 🔄 Cycle 63 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:27:58,660 - INFO - --- 🔄 Cycle 64 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:28:08,027 - INFO - --- 🔄 Cycle 65 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:28:17,390 - INFO - --- 🔄 Cycle 66 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:28:26,863 - INFO - --- 🔄 Cycle 67 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:28:36,231 - INFO - --- 🔄 Cycle 68 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:28:45,593 - INFO - --- 🔄 Cycle 69 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:28:57,422 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:28:57,423 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:28:57,423 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:28:57,424 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:28:57,424 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:28:57,424 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:29:07,032 - INFO - 🔧 CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
-2025-10-08 21:29:07,033 - INFO - 🚀 MODO REAL - Se realizarán operaciones con dinero real
-2025-10-08 21:29:08,406 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:29:08,407 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:29:08,408 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:29:08,409 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - MAINNET REAL
-2025-10-08 21:29:08,410 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:29:08,411 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 5
-2025-10-08 21:29:08,412 - INFO - 🔑 API Key presente: True
-2025-10-08 21:29:08,412 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:29:08,413 - INFO - 🌐 Modo: MAINNET REAL
-2025-10-08 21:29:08,413 - INFO - 🔧 Dry Run: False
-2025-10-08 21:29:08,414 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:29:11,229 - INFO - 💰 Capital inicial: 30.00 USDT (20x leverage)
-2025-10-08 21:29:11,229 - INFO - --- 🔄 Cycle 1 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:29:20,594 - INFO - --- 🔄 Cycle 2 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:29:29,961 - INFO - --- 🔄 Cycle 3 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:29:39,328 - INFO - --- 🔄 Cycle 4 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:29:48,692 - INFO - --- 🔄 Cycle 5 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:29:58,054 - INFO - --- 🔄 Cycle 6 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:30:07,428 - INFO - --- 🔄 Cycle 7 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:30:16,849 - INFO - --- 🔄 Cycle 8 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:30:26,215 - INFO - --- 🔄 Cycle 9 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:30:35,577 - INFO - --- 🔄 Cycle 10 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:30:44,944 - INFO - --- 🔄 Cycle 11 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:30:54,310 - INFO - --- 🔄 Cycle 12 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:30:59,728 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:31:10,309 - INFO - --- 🔄 Cycle 13 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:31:19,675 - INFO - --- 🔄 Cycle 14 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:31:29,062 - INFO - --- 🔄 Cycle 15 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:31:38,431 - INFO - --- 🔄 Cycle 16 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:31:47,797 - INFO - --- 🔄 Cycle 17 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:31:57,240 - INFO - --- 🔄 Cycle 18 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:32:06,609 - INFO - --- 🔄 Cycle 19 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:32:15,977 - INFO - --- 🔄 Cycle 20 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:32:25,344 - INFO - --- 🔄 Cycle 21 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:32:34,708 - INFO - --- 🔄 Cycle 22 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:32:44,075 - INFO - --- 🔄 Cycle 23 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:32:53,442 - INFO - --- 🔄 Cycle 24 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:32:58,853 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:33:09,516 - INFO - --- 🔄 Cycle 25 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:33:18,884 - INFO - --- 🔄 Cycle 26 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:33:28,251 - INFO - --- 🔄 Cycle 27 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:33:37,616 - INFO - --- 🔄 Cycle 28 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:33:46,982 - INFO - --- 🔄 Cycle 29 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:33:56,347 - INFO - --- 🔄 Cycle 30 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:34:05,714 - INFO - --- 🔄 Cycle 31 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:34:15,077 - INFO - --- 🔄 Cycle 32 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:34:24,442 - INFO - --- 🔄 Cycle 33 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:34:33,808 - INFO - --- 🔄 Cycle 34 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:34:43,176 - INFO - --- 🔄 Cycle 35 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:34:52,541 - INFO - --- 🔄 Cycle 36 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:34:57,945 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:35:08,307 - INFO - --- 🔄 Cycle 37 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:35:17,675 - INFO - --- 🔄 Cycle 38 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:35:27,038 - INFO - --- 🔄 Cycle 39 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:35:36,405 - INFO - --- 🔄 Cycle 40 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:35:45,771 - INFO - --- 🔄 Cycle 41 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:35:55,132 - INFO - --- 🔄 Cycle 42 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:36:04,495 - INFO - --- 🔄 Cycle 43 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:36:13,863 - INFO - --- 🔄 Cycle 44 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:36:23,227 - INFO - --- 🔄 Cycle 45 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:36:32,593 - INFO - --- 🔄 Cycle 46 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:36:44,888 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:36:44,888 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:36:44,889 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:36:44,889 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:36:44,889 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:36:44,890 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:36:52,222 - INFO - 🔧 CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
-2025-10-08 21:36:52,223 - INFO - 🚀 MODO REAL - Se realizarán operaciones con dinero real
-2025-10-08 21:36:53,476 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:36:53,477 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:36:53,478 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:36:53,479 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - MAINNET REAL
-2025-10-08 21:36:53,480 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:36:53,481 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 5
-2025-10-08 21:36:53,481 - INFO - 🔑 API Key presente: True
-2025-10-08 21:36:53,482 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:36:53,482 - INFO - 🌐 Modo: MAINNET REAL
-2025-10-08 21:36:53,483 - INFO - 🔧 Dry Run: False
-2025-10-08 21:36:53,483 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:36:56,435 - INFO - 💰 Capital inicial: 30.00 USDT (20x leverage)
-2025-10-08 21:36:56,436 - INFO - --- 🔄 Cycle 1 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:37:05,805 - INFO - --- 🔄 Cycle 2 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:37:15,170 - INFO - --- 🔄 Cycle 3 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:37:24,533 - INFO - --- 🔄 Cycle 4 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:37:33,897 - INFO - --- 🔄 Cycle 5 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:37:43,259 - INFO - --- 🔄 Cycle 6 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:37:52,623 - INFO - --- 🔄 Cycle 7 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:38:01,991 - INFO - --- 🔄 Cycle 8 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:38:11,355 - INFO - --- 🔄 Cycle 9 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:38:20,721 - INFO - --- 🔄 Cycle 10 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:38:30,090 - INFO - --- 🔄 Cycle 11 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:38:39,454 - INFO - --- 🔄 Cycle 12 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:38:44,865 - INFO - 🏛️ Market Regime: NEUTRAL (20x)
-2025-10-08 21:38:55,334 - INFO - --- 🔄 Cycle 13 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:39:04,700 - INFO - --- 🔄 Cycle 14 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:39:14,066 - INFO - --- 🔄 Cycle 15 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:39:23,428 - INFO - --- 🔄 Cycle 16 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:39:32,791 - INFO - --- 🔄 Cycle 17 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:39:42,158 - INFO - --- 🔄 Cycle 18 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:39:51,523 - INFO - --- 🔄 Cycle 19 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:40:00,886 - INFO - --- 🔄 Cycle 20 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:40:10,253 - INFO - --- 🔄 Cycle 21 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:40:19,620 - INFO - --- 🔄 Cycle 22 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:40:31,392 - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
-2025-10-08 21:40:31,392 - INFO - 📊 Sistema de logs en tiempo real inicializado
-2025-10-08 21:40:31,393 - INFO - ⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot
-2025-10-08 21:40:31,393 - INFO - 🔧 Estado del bot: INACTIVO
-2025-10-08 21:40:31,393 - INFO - 💰 Balance inicial: 0.00 USDT
-2025-10-08 21:40:31,394 - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
-2025-10-08 21:40:42,477 - INFO - 🔧 CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
-2025-10-08 21:40:42,478 - INFO - 🚀 MODO REAL - Se realizarán operaciones con dinero real
-2025-10-08 21:40:43,815 - INFO - ✅ Información de exchange cargada exitosamente
-2025-10-08 21:40:43,816 - INFO - ✅ Bot de Telegram configurado: Chat ID 8435342365
-2025-10-08 21:40:43,817 - INFO - ✅ Sistema de comandos de Telegram iniciado
-2025-10-08 21:40:43,818 - INFO - 🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - MAINNET REAL
-2025-10-08 21:40:43,819 - INFO - ⚡ Configuración 20x: SL=0.8%, TP=1.8%
-2025-10-08 21:40:43,819 - INFO - ⚡ Risk per trade: 2.0%, Max positions: 5
-2025-10-08 21:40:43,820 - INFO - 🔑 API Key presente: True
-2025-10-08 21:40:43,821 - INFO - 🔑 API Secret presente: True
-2025-10-08 21:40:43,821 - INFO - 🌐 Modo: MAINNET REAL
-2025-10-08 21:40:43,821 - INFO - 🔧 Dry Run: False
-2025-10-08 21:40:43,822 - INFO - 🤖 Telegram: ✅ CONFIGURADO
-2025-10-08 21:40:46,536 - INFO - 💰 Capital inicial: 30.00 USDT (20x leverage)
-2025-10-08 21:40:46,536 - INFO - --- 🔄 Cycle 1 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:40:55,900 - INFO - --- 🔄 Cycle 2 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:41:05,268 - INFO - --- 🔄 Cycle 3 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:41:14,634 - INFO - --- 🔄 Cycle 4 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:41:23,998 - INFO - --- 🔄 Cycle 5 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:41:33,818 - INFO - --- 🔄 Cycle 6 - Capital: 30.00 USDT (20x) ---
-2025-10-08 21:41:43,204 - INFO - --- 🔄 Cycle 7 - Capital: 30.00 USDT (20x) ---
+2025-10-09 00:51:31 - BinanceFuturesBot - INFO - Iniciando aplicacion Flask con Socket.IO...
+2025-10-09 00:51:31 - BinanceFuturesBot - INFO - INICIO AUTOMATICO CONFIGURADO - Iniciando bot...
+2025-10-09 00:51:33 - BinanceFuturesBot - INFO - CREANDO INSTANCIA DEL BOT DE TRADING...
+2025-10-09 00:51:33 - BinanceFuturesBot - INFO - Bot iniciado automaticamente
+2025-10-09 00:51:33 - BinanceFuturesBot - INFO - Sistema inicializado correctamente
+2025-10-09 00:51:33 - BinanceFuturesBot - INFO - Servidor web iniciando en http://0.0.0.0:5000
+2025-10-09 00:51:38 - BinanceFuturesBot - INFO - CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
+2025-10-09 00:51:38 - BinanceFuturesBot - INFO - MODO REAL - Se realizaran operaciones con dinero real
+2025-10-09 00:51:43 - BinanceFuturesBot - INFO - Informacion de exchange cargada exitosamente
+2025-10-09 00:51:43 - BinanceFuturesBot - INFO - Telegram notifier habilitado
+2025-10-09 00:51:43 - BinanceFuturesBot - INFO - INICIANDO CICLO PRINCIPAL DEL BOT...
+2025-10-09 00:51:43 - BinanceFuturesBot - INFO - Iniciando Bot de Trading - Modo 20x
+2025-10-09 00:51:44 - BinanceFuturesBot - INFO - Capital inicial: 30.00 USDT
+2025-10-09 00:51:44 - BinanceFuturesBot - INFO - Balance actualizado: 30.00 USDT | P&L Diario: +0.00 USDT
+2025-10-09 00:51:44 - BinanceFuturesBot - INFO - Balance inicial: 30.00 USDT
+2025-10-09 00:51:45 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 00:51:46 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:51:47 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:51:47 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 00:51:49 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:51:49 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:51:50 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:51:51 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:51:51 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:52:08 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 00:52:09 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:52:09 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:52:10 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 00:52:12 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:52:13 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:52:14 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:52:15 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:52:16 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:52:33 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:52:33 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:52:34 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:52:35 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 00:52:36 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:52:37 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:52:38 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:52:39 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 00:52:40 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:52:57 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:52:57 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:52:58 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:52:59 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 00:53:00 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:53:01 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 00:53:02 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:53:02 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:53:03 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:53:19 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:53:20 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:53:21 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:53:22 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 00:53:23 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:53:24 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:53:24 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:53:25 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:53:26 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:53:42 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:53:43 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:53:44 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:53:44 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 00:53:46 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:53:46 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:53:47 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:53:48 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.71
+2025-10-09 00:53:49 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:54:05 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:54:06 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:07 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:54:08 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 00:54:09 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:54:10 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:54:10 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:54:11 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:54:12 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:54:28 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:54:29 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:30 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:54:30 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 00:54:32 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:54:32 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:54:33 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:54:34 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:35 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:54:52 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:54:52 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:53 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:54:54 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 00:54:55 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:54:56 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 00:54:57 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:54:57 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:58 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:55:15 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 00:55:16 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:55:16 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:55:17 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:55:19 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 00:55:19 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:55:20 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 00:55:21 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:55:21 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 00:55:38 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:55:39 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:55:39 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:55:40 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:55:41 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:55:42 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:55:43 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:55:43 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:55:44 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:01 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:56:02 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:56:02 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:56:03 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:56:04 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:05 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:56:06 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:56:06 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:56:07 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:24 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:56:24 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:56:25 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:56:26 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:56:27 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:28 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:56:28 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:56:29 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:56:30 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:46 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:56:47 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 00:56:48 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:56:48 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 00:56:50 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 00:56:51 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:56:52 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:56:52 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:56:53 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 00:57:10 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:57:10 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 00:57:11 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:57:12 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 00:57:13 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:57:14 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:57:15 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:57:15 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:57:16 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:57:33 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:57:33 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 00:57:34 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:57:35 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 00:57:36 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:57:37 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:57:37 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:57:38 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:57:39 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:57:55 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:57:56 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:57:57 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:57:57 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:57:59 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:58:00 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:58:00 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:58:01 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:58:02 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:58:18 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:58:19 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:58:20 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:58:20 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:58:22 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:58:22 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:58:23 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:58:24 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:58:24 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:58:41 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:58:42 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:58:42 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:58:43 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:58:44 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:58:45 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:58:46 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:58:46 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 00:58:47 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:59:04 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:59:05 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:59:05 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 00:59:07 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:59:08 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:59:09 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:59:09 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:59:10 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 00:59:11 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:59:27 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:59:28 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:59:29 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 00:59:29 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:59:31 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:59:31 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:59:32 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:59:33 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:59:34 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:59:50 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:59:51 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:59:51 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 00:59:52 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:59:53 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:59:54 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 00:59:55 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 00:59:56 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:59:56 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:00:13 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:00:13 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:00:14 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:00:15 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:00:16 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:00:17 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:00:18 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:00:18 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:00:19 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:00:36 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:00:36 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:00:37 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:00:38 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:00:39 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:00:40 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:00:41 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:00:41 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:00:42 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:00:59 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:00:59 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:01:00 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:01:01 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:01:02 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:01:03 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:01:03 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:01:04 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:01:05 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:01:21 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:01:22 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:01:23 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:01:23 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:01:25 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:01:26 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:01:26 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:01:27 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:01:28 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:01:44 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:01:45 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:01:46 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:01:46 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:01:48 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:01:48 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:01:49 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:01:50 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:01:50 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:02:07 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:02:08 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:02:08 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:02:09 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:02:10 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:02:11 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:02:12 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:02:12 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:02:13 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:02:30 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:02:31 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:02:31 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:02:32 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:02:33 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:02:34 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:02:35 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:02:36 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:02:36 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:02:53 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:02:53 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:02:54 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:02:55 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:02:56 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:02:57 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:02:58 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:02:58 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:02:59 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:03:15 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:03:16 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:03:17 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:03:18 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:03:19 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:03:20 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:03:20 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:03:21 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:03:22 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:03:38 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:03:39 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.64
+2025-10-09 01:03:40 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:03:40 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:03:42 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:03:42 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:03:43 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:03:44 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:03:45 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:04:01 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:04:02 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.63
+2025-10-09 01:04:03 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:04:03 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:04:05 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:04:05 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:04:06 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:04:07 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:04:08 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:04:24 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:04:25 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.61
+2025-10-09 01:04:25 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:04:26 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:04:28 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:04:28 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:04:29 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:04:30 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:04:30 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:04:47 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:04:48 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.60
+2025-10-09 01:04:48 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.81
+2025-10-09 01:04:49 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:04:50 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:04:51 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:04:52 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:04:52 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:04:53 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:05:10 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:05:10 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:05:11 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:05:12 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:05:13 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:05:14 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:05:15 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:05:15 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:05:16 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 1.00
+2025-10-09 01:05:32 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:05:33 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:05:34 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:05:35 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:05:36 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:05:37 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:05:37 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:05:38 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:05:39 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:05:55 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:05:56 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:05:57 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:05:57 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:05:59 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:05:59 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:06:00 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:06:01 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:06:02 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:06:18 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:06:19 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:06:20 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:06:20 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:06:22 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:06:22 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:06:23 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:06:24 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:06:24 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:06:41 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:06:42 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:06:43 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:06:43 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:06:45 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:06:46 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:06:46 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:06:47 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:06:48 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:04 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:07:05 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:07:06 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:07:06 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:07:08 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:08 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:07:09 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:07:10 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:07:11 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:27 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:07:28 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:07:28 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:07:29 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:07:31 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:31 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.81
+2025-10-09 01:07:32 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:07:33 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:07:33 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:50 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:07:51 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:07:51 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:07:52 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:07:54 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:07:54 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:07:55 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:07:56 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:07:57 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:08:13 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:08:14 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:08:14 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:08:15 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:08:17 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:08:17 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:08:18 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:08:19 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:08:19 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:08:36 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:08:37 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:08:37 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:08:38 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:08:39 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:08:40 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:08:41 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:08:42 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:08:42 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:08:59 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:08:59 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:09:00 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:09:01 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:09:02 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:09:03 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:09:04 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:09:04 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:09:05 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:09:22 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:09:22 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:09:23 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:09:24 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:09:25 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:09:26 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:09:26 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:09:27 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:09:28 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:09:44 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:09:45 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:09:46 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:09:46 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:09:48 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:09:49 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:09:49 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:09:50 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:09:51 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:10:08 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:10:08 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:10:09 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:10:10 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:10:11 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:10:12 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:10:13 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:10:13 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:10:14 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:10:30 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:10:31 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:10:32 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:10:33 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:10:34 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:10:35 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:10:35 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:10:36 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:10:37 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:10:53 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:10:54 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:10:55 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:10:55 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:10:57 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:10:58 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:10:58 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:10:59 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:11:00 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:11:16 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:11:17 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:11:18 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:11:18 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:11:20 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:11:21 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:11:21 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:11:22 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:11:23 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:11:39 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:11:40 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:11:41 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:11:41 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:11:43 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:11:43 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:11:44 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:11:45 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:11:45 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:12:02 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:12:03 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:12:03 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:12:04 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:12:05 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:12:07 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:12:07 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:12:08 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:12:09 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:12:25 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:12:26 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.62
+2025-10-09 01:12:27 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:12:27 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:12:29 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:12:29 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:12:30 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:12:31 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.65
+2025-10-09 01:12:32 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:12:48 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:12:49 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.61
+2025-10-09 01:12:49 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:12:50 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:12:52 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:12:52 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:12:53 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:12:54 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.65
+2025-10-09 01:12:54 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:13:11 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:13:12 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.61
+2025-10-09 01:13:12 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:13:13 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:13:14 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:13:15 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:13:16 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:13:16 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.65
+2025-10-09 01:13:17 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:13:34 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:13:34 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.61
+2025-10-09 01:13:35 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:13:36 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:13:37 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:13:38 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.81
+2025-10-09 01:13:39 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:13:40 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.65
+2025-10-09 01:13:41 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:13:58 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:14:00 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:14:00 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:14:02 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:14:03 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.81
+2025-10-09 01:14:04 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:14:04 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.64
+2025-10-09 01:14:05 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:14:22 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:14:23 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:14:24 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:14:25 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:14:26 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:14:27 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:14:28 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.63
+2025-10-09 01:14:28 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:14:45 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:14:46 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:14:47 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:14:48 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:14:49 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:14:50 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:14:50 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.62
+2025-10-09 01:14:51 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:15:08 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:15:08 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:15:09 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:10 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:15:11 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:15:12 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:13 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:15:14 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:15:14 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:15:31 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:15:31 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:15:32 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:33 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:15:34 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:15:35 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:36 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:15:36 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:15:37 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:15:54 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:15:54 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:15:55 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:56 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:15:57 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:15:58 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:15:58 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:15:59 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:16:00 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:16:16 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:16:17 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:16:18 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:16:18 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:16:20 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:16:21 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:16:21 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:16:22 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:16:23 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:16:39 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:16:40 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:16:41 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:16:41 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:16:43 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:16:44 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:16:45 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:16:46 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:16:46 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:17:03 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:17:04 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:17:05 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:17:05 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:17:07 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:08 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:17:08 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:17:09 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:17:10 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:26 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:17:27 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:17:28 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:17:28 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:17:30 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:30 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:17:31 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:17:32 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:17:32 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:49 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:17:50 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:17:51 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:17:51 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:17:53 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:17:53 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:17:54 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:55 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:17:55 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:18:12 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:18:13 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:18:13 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:18:14 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:18:15 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:18:16 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:18:17 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:18:18 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:18:18 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:18:35 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:18:35 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:18:36 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:18:37 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:18:38 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:18:39 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:18:40 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:18:40 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:18:41 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:18:58 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:18:58 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:18:59 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:00 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:19:01 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:19:02 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:19:03 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:19:04 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:19:05 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:19:22 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:19:23 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:19:23 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:24 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:19:25 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:19:26 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:27 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:19:28 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:19:28 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.92
+2025-10-09 01:19:45 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:19:45 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:19:46 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:47 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:19:48 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:19:49 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:50 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:19:50 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:19:51 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.92
+2025-10-09 01:20:08 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:20:09 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:20:10 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:20:11 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:20:12 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:20:13 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:20:13 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:20:14 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:20:15 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 1.00
+2025-10-09 01:20:31 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:20:32 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:20:33 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:20:33 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:20:35 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:20:35 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:20:36 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:20:37 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:20:38 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:20:54 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:20:56 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:20:57 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:20:58 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:20:59 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:21:00 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:21:01 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:21:01 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:21:02 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:21:19 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:21:19 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:21:20 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:21:21 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:21:22 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:21:23 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:21:23 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:21:24 - BinanceFuturesBot - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:21:25 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:21:41 - BinanceFuturesBot - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:21:42 - BinanceFuturesBot - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:21:43 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:21:43 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:21:45 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:21:46 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:21:46 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:21:52 - BinanceFuturesBot - INFO - Iniciando aplicacion Flask con Socket.IO...
+2025-10-09 01:21:52 - BinanceFuturesBot - INFO - INICIO AUTOMATICO CONFIGURADO - Iniciando bot...
+2025-10-09 01:21:54 - BinanceFuturesBot - INFO - CREANDO INSTANCIA DEL BOT DE TRADING...
+2025-10-09 01:21:54 - BinanceFuturesBot - INFO - Bot iniciado automaticamente
+2025-10-09 01:21:54 - BinanceFuturesBot - INFO - Sistema inicializado correctamente
+2025-10-09 01:21:54 - BinanceFuturesBot - INFO - Servidor web iniciando en http://0.0.0.0:5000
+2025-10-09 01:22:00 - BinanceFuturesBot - INFO - CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
+2025-10-09 01:22:00 - BinanceFuturesBot - INFO - MODO REAL - Se realizaran operaciones con dinero real
+2025-10-09 01:22:05 - BinanceFuturesBot - INFO - Informacion de exchange cargada exitosamente
+2025-10-09 01:22:05 - BinanceFuturesBot - INFO - Telegram notifier habilitado
+2025-10-09 01:22:05 - BinanceFuturesBot - INFO - INICIANDO CICLO PRINCIPAL DEL BOT...
+2025-10-09 01:22:05 - BinanceFuturesBot - INFO - Iniciando Bot de Trading - Modo 20x
+2025-10-09 01:22:06 - BinanceFuturesBot - INFO - Capital inicial: 30.00 USDT
+2025-10-09 01:22:06 - BinanceFuturesBot - INFO - Balance actualizado: 30.00 USDT | P&L Diario: +0.00 USDT
+2025-10-09 01:22:06 - BinanceFuturesBot - INFO - Balance inicial: 30.00 USDT
+2025-10-09 01:22:07 - BinanceFuturesBot - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:22:08 - BinanceFuturesBot - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.124000)
+2025-10-09 01:22:08 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:22:09 - BinanceFuturesBot - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:22:09 - BinanceFuturesBot - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.520000)
+2025-10-09 01:22:09 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:22:10 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:22:11 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:22:13 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:22:14 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:22:31 - BinanceFuturesBot - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:22:31 - BinanceFuturesBot - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.123000)
+2025-10-09 01:22:31 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:22:32 - BinanceFuturesBot - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:22:32 - BinanceFuturesBot - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:22:32 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:22:33 - BinanceFuturesBot - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:22:34 - BinanceFuturesBot - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:22:34 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:22:35 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:22:37 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:22:39 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:22:40 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:22:57 - BinanceFuturesBot - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:22:58 - BinanceFuturesBot - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.123000)
+2025-10-09 01:22:58 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:22:58 - BinanceFuturesBot - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:22:59 - BinanceFuturesBot - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:22:59 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:22:59 - BinanceFuturesBot - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:23:00 - BinanceFuturesBot - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:23:00 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:23:00 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:23:02 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:23:04 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:23:04 - BinanceFuturesBot - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:23:05 - BinanceFuturesBot - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.400000)
+2025-10-09 01:23:05 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:23:05 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:23:22 - BinanceFuturesBot - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:23:23 - BinanceFuturesBot - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:23:23 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:23:23 - BinanceFuturesBot - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:23:24 - BinanceFuturesBot - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:23:24 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:23:24 - BinanceFuturesBot - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:23:25 - BinanceFuturesBot - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:23:25 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:23:26 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:23:27 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:23:28 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:23:29 - BinanceFuturesBot - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:23:29 - BinanceFuturesBot - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.100000)
+2025-10-09 01:23:29 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:23:30 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:23:47 - BinanceFuturesBot - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:23:47 - BinanceFuturesBot - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:23:47 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:23:49 - BinanceFuturesBot - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:23:49 - BinanceFuturesBot - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:23:49 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:23:50 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:23:51 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:23:52 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:23:53 - BinanceFuturesBot - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:23:53 - BinanceFuturesBot - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.100000)
+2025-10-09 01:23:53 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:23:54 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.92
+2025-10-09 01:24:11 - BinanceFuturesBot - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:24:11 - BinanceFuturesBot - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:24:11 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:24:12 - BinanceFuturesBot - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:24:12 - BinanceFuturesBot - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:24:12 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:24:13 - BinanceFuturesBot - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:24:13 - BinanceFuturesBot - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:24:13 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:24:14 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:24:15 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:24:17 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:24:17 - BinanceFuturesBot - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:24:18 - BinanceFuturesBot - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.200000)
+2025-10-09 01:24:18 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:24:18 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.92
+2025-10-09 01:24:35 - BinanceFuturesBot - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:24:35 - BinanceFuturesBot - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:24:35 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:24:36 - BinanceFuturesBot - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:24:36 - BinanceFuturesBot - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:24:36 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:24:37 - BinanceFuturesBot - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:24:37 - BinanceFuturesBot - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:24:37 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:24:40 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:24:41 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:24:42 - BinanceFuturesBot - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:24:42 - BinanceFuturesBot - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.100000)
+2025-10-09 01:24:42 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:24:43 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.91
+2025-10-09 01:24:59 - BinanceFuturesBot - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:25:00 - BinanceFuturesBot - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:25:00 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:25:01 - BinanceFuturesBot - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:25:01 - BinanceFuturesBot - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.500000)
+2025-10-09 01:25:01 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:25:04 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:25:05 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:25:07 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 1.00
+2025-10-09 01:25:25 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:25:25 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:25:27 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:25:28 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:25:28 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:25:30 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:25:47 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:25:48 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:25:50 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:25:50 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:25:51 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:25:52 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:26:10 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:26:11 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:26:12 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:26:13 - BinanceFuturesBot - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:26:14 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:26:15 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:26:33 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:26:34 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:26:35 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:26:36 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:26:36 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:26:36 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:26:37 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:26:38 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:26:56 - BinanceFuturesBot - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:26:57 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:26:58 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:26:59 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:26:59 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5005.000000)
+2025-10-09 01:26:59 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:27:00 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:27:01 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:27:20 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:27:22 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:27:23 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:27:23 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5006.000000)
+2025-10-09 01:27:23 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:27:24 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:27:25 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:27:44 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:27:45 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:27:46 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:27:46 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:27:46 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:27:47 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:27:48 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:28:07 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:28:09 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:28:09 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:28:10 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:28:10 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:28:10 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:28:12 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:28:30 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:28:32 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:28:32 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:28:33 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5004.000000)
+2025-10-09 01:28:33 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:28:34 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:28:35 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:28:54 - BinanceFuturesBot - INFO - BNBUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:28:55 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:28:56 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:28:56 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:28:56 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:28:57 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:28:59 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:29:19 - BinanceFuturesBot - INFO - COAIUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:29:19 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:29:20 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:29:20 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:29:20 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:29:22 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:29:44 - BinanceFuturesBot - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:29:44 - BinanceFuturesBot - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:29:44 - BinanceFuturesBot - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:29:45 - BinanceFuturesBot - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:29:46 - BinanceFuturesBot - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:34:32 - BinanceFuturesBot - INFO - 🚀 Iniciando aplicación Flask con Socket.IO...
+2025-10-09 01:34:32 - BinanceFuturesBot - INFO - 🚀 INICIO AUTOMÁTICO CONFIGURADO - Iniciando bot...
+2025-10-09 01:34:34 - BinanceFuturesBot - INFO - 🤖 CREANDO INSTANCIA DEL BOT DE TRADING...
+2025-10-09 01:34:34 - BinanceFuturesBot - INFO - ✅ Bot iniciado automáticamente
+2025-10-09 01:34:34 - BinanceFuturesBot - INFO - ✅ Sistema inicializado correctamente
+2025-10-09 01:34:34 - BinanceFuturesBot - INFO - 🌐 Servidor web iniciando en http://0.0.0.0:5000
+2025-10-09 01:34:36 - BinanceFuturesBot - INFO - 🔧 CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
+2025-10-09 01:34:36 - BinanceFuturesBot - INFO - 🚀 MODO REAL - Se realizarán operaciones con dinero real
+2025-10-09 01:34:37 - BinanceFuturesBot - INFO - ✅ Información de exchange cargada exitosamente
+2025-10-09 01:34:37 - BinanceFuturesBot - INFO - ✅ Telegram notifier habilitado
+2025-10-09 01:34:37 - BinanceFuturesBot - INFO - 🎯 INICIANDO CICLO PRINCIPAL DEL BOT...
+2025-10-09 01:34:37 - BinanceFuturesBot - INFO - 🚀 Iniciando Bot de Trading - Modo 20x
+2025-10-09 01:34:37 - BinanceFuturesBot - INFO - 💰 Capital inicial: 30.00 USDT
+2025-10-09 01:34:38 - BinanceFuturesBot - INFO - 📊 Balance actualizado: 30.00 USDT | P&L Diario: +0.00 USDT
+2025-10-09 01:34:38 - BinanceFuturesBot - INFO - 💰 Balance inicial: 30.00 USDT
+2025-10-09 01:34:46 - BinanceFuturesBot - INFO - ⏭️ 4USDT excluido por alto riesgo: 0.91

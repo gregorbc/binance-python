@@ -1,0 +1,926 @@
+2025-10-09 00:51:30,265 - WARNING - ADVERTENCIA: TA-Lib no encontrado. Algunos indicadores estaran deshabilitados.
+2025-10-09 00:51:31,133 - INFO - Iniciando aplicacion Flask con Socket.IO...
+2025-10-09 00:51:31,134 - INFO - INICIO AUTOMATICO CONFIGURADO - Iniciando bot...
+2025-10-09 00:51:33,136 - INFO - CREANDO INSTANCIA DEL BOT DE TRADING...
+2025-10-09 00:51:33,144 - INFO - Bot iniciado automaticamente
+2025-10-09 00:51:33,145 - INFO - Sistema inicializado correctamente
+2025-10-09 00:51:33,145 - INFO - Servidor web iniciando en http://0.0.0.0:5000
+2025-10-09 00:51:38,435 - INFO - CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
+2025-10-09 00:51:38,437 - INFO - MODO REAL - Se realizaran operaciones con dinero real
+2025-10-09 00:51:43,807 - INFO - Informacion de exchange cargada exitosamente
+2025-10-09 00:51:43,808 - INFO - Telegram notifier habilitado
+2025-10-09 00:51:43,808 - INFO - INICIANDO CICLO PRINCIPAL DEL BOT...
+2025-10-09 00:51:43,809 - INFO - Iniciando Bot de Trading - Modo 20x
+2025-10-09 00:51:44,535 - INFO - Capital inicial: 30.00 USDT
+2025-10-09 00:51:44,536 - INFO - Balance actualizado: 30.00 USDT | P&L Diario: +0.00 USDT
+2025-10-09 00:51:44,537 - INFO - Balance inicial: 30.00 USDT
+2025-10-09 00:51:45,661 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 00:51:46,364 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:51:47,064 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:51:47,767 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 00:51:49,161 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:51:49,861 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:51:50,565 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:51:51,265 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:51:51,971 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:52:08,449 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 00:52:09,152 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:52:09,855 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:52:10,556 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 00:52:12,855 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:52:13,563 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:52:14,711 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:52:15,859 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:52:16,563 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:52:33,068 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:52:33,767 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:52:34,464 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:52:35,166 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 00:52:36,562 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:52:37,265 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:52:38,415 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:52:39,568 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 00:52:40,267 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:52:57,204 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:52:57,903 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:52:58,605 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:52:59,306 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 00:53:00,698 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:53:01,397 - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 00:53:02,094 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:53:02,794 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:53:03,493 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:53:19,983 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:53:20,686 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:53:21,391 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:53:22,090 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 00:53:23,499 - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:53:24,201 - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:53:24,900 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:53:25,598 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:53:26,298 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:53:42,775 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:53:43,474 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:53:44,173 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:53:44,872 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 00:53:46,263 - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:53:46,964 - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:53:47,664 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:53:48,363 - INFO - XRPUSDT excluido por alto riesgo: 0.71
+2025-10-09 00:53:49,063 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:54:05,948 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:54:06,648 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:07,356 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:54:08,058 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 00:54:09,450 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:54:10,148 - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:54:10,849 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:54:11,548 - INFO - XRPUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:54:12,247 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:54:28,723 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:54:29,422 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:30,120 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:54:30,819 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 00:54:32,211 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:54:32,910 - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:54:33,610 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:54:34,310 - INFO - XRPUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:35,009 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:54:52,111 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:54:52,809 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:53,510 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:54:54,210 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 00:54:55,602 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:54:56,301 - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 00:54:57,002 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:54:57,702 - INFO - XRPUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:54:58,401 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:55:15,545 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 00:55:16,247 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:55:16,947 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:55:17,645 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:55:19,039 - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 00:55:19,740 - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:55:20,443 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 00:55:21,141 - INFO - XRPUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:55:21,839 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 00:55:38,338 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:55:39,036 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:55:39,735 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:55:40,432 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:55:41,827 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:55:42,527 - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:55:43,226 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:55:43,925 - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:55:44,623 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:01,301 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:56:02,006 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:56:02,707 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:56:03,409 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:56:04,804 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:05,502 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:56:06,201 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:56:06,900 - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:56:07,599 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:24,072 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 00:56:24,773 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:56:25,473 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:56:26,173 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:56:27,573 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:28,273 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:56:28,973 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:56:29,672 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:56:30,371 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 00:56:46,857 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:56:47,556 - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 00:56:48,254 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:56:48,953 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 00:56:50,346 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 00:56:51,499 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:56:52,208 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 00:56:52,906 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:56:53,619 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 00:57:10,299 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:57:10,998 - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 00:57:11,699 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:57:12,397 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 00:57:13,803 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:57:14,502 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:57:15,206 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:57:15,907 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:57:16,606 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:57:33,080 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 00:57:33,778 - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 00:57:34,478 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:57:35,178 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 00:57:36,568 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 00:57:37,268 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:57:37,965 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:57:38,664 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:57:39,361 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 00:57:55,843 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:57:56,549 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:57:57,249 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:57:57,951 - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:57:59,349 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:58:00,048 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:58:00,746 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:58:01,445 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:58:02,143 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:58:18,623 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:58:19,321 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:58:20,026 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:58:20,729 - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 00:58:22,119 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 00:58:22,817 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:58:23,515 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:58:24,219 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:58:24,917 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 00:58:41,404 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:58:42,106 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:58:42,802 - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 00:58:43,501 - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:58:44,896 - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:58:45,595 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:58:46,294 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:58:46,993 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 00:58:47,694 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:59:04,534 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 00:59:05,233 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 00:59:05,930 - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 00:59:07,077 - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:59:08,469 - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 00:59:09,167 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:59:09,865 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:59:10,562 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 00:59:11,262 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:59:27,735 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:59:28,432 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:59:29,130 - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 00:59:29,829 - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 00:59:31,221 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:59:31,918 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 00:59:32,621 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 00:59:33,323 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:59:34,022 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 00:59:50,494 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 00:59:51,193 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 00:59:51,891 - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 00:59:52,588 - INFO - BNBUSDT excluido por alto riesgo: 0.86
+2025-10-09 00:59:53,980 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 00:59:54,677 - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 00:59:55,380 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 00:59:56,076 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 00:59:56,775 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:00:13,266 - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:00:13,963 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:00:14,662 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:00:15,359 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:00:16,756 - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:00:17,454 - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:00:18,156 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:00:18,854 - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:00:19,553 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:00:36,244 - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:00:36,946 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:00:37,644 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:00:38,344 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:00:39,758 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:00:40,457 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:00:41,154 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:00:41,857 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:00:42,557 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:00:59,032 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:00:59,733 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:01:00,443 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:01:01,149 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:01:02,544 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:01:03,243 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:01:03,944 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:01:04,645 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:01:05,343 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:01:21,835 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:01:22,535 - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:01:23,236 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:01:23,943 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:01:25,337 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:01:26,038 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:01:26,742 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:01:27,441 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:01:28,142 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:01:44,616 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:01:45,314 - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:01:46,017 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:01:46,717 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:01:48,110 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:01:48,811 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:01:49,509 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:01:50,208 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:01:50,912 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:02:07,397 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:02:08,101 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:02:08,799 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:02:09,497 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:02:10,889 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:02:11,589 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:02:12,287 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:02:12,988 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:02:13,685 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:02:30,174 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:02:31,099 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:02:31,797 - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:02:32,503 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:02:33,905 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:02:34,602 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:02:35,303 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:02:36,002 - INFO - XRPUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:02:36,736 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:02:53,211 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:02:53,912 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:02:54,613 - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:02:55,309 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:02:56,702 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:02:57,406 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:02:58,103 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:02:58,801 - INFO - XRPUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:02:59,501 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:03:15,974 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:03:16,673 - INFO - BTCUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:03:17,372 - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:03:18,072 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:03:19,465 - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:03:20,164 - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:03:20,863 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:03:21,561 - INFO - XRPUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:03:22,260 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:03:38,742 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:03:39,442 - INFO - BTCUSDT excluido por alto riesgo: 0.64
+2025-10-09 01:03:40,144 - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:03:40,845 - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:03:42,241 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:03:42,938 - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:03:43,637 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:03:44,339 - INFO - XRPUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:03:45,039 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:04:01,513 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:04:02,438 - INFO - BTCUSDT excluido por alto riesgo: 0.63
+2025-10-09 01:04:03,140 - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:04:03,838 - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:04:05,237 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:04:05,944 - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:04:06,647 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:04:07,349 - INFO - XRPUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:04:08,048 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:04:24,521 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:04:25,221 - INFO - BTCUSDT excluido por alto riesgo: 0.61
+2025-10-09 01:04:25,922 - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:04:26,627 - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:04:28,027 - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:04:28,726 - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:04:29,426 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:04:30,132 - INFO - XRPUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:04:30,832 - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:04:47,313 - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:04:48,012 - INFO - BTCUSDT excluido por alto riesgo: 0.60
+2025-10-09 01:04:48,719 - INFO - SOLUSDT excluido por alto riesgo: 0.81
+2025-10-09 01:04:49,425 - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:04:50,819 - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:04:51,517 - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:04:52,219 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:04:52,921 - INFO - XRPUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:04:53,620 - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:05:10,113 - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:05:10,818 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:05:11,525 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:05:12,232 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:05:13,641 - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:05:14,343 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:05:15,053 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:05:15,754 - INFO - XRPUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:05:16,489 - INFO - 4USDT excluido por alto riesgo: 1.00
+2025-10-09 01:05:32,971 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:05:33,673 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:05:34,375 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:05:35,080 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:05:36,478 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:05:37,179 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:05:37,881 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:05:38,585 - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:05:39,288 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:05:55,774 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:05:56,480 - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:05:57,183 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:05:57,886 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:05:59,288 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:05:59,991 - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:06:00,700 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:06:01,403 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:06:02,109 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:06:18,592 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:06:19,296 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:06:20,001 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:06:20,733 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:06:22,152 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:06:22,866 - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:06:23,569 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:06:24,278 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:06:24,981 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:06:41,825 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:06:42,535 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:06:43,238 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:06:43,943 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:06:45,349 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:06:46,055 - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:06:46,761 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:06:47,463 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:06:48,166 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:04,653 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:07:05,361 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:07:06,064 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:07:06,766 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:07:08,175 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:08,877 - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:07:09,582 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:07:10,286 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:07:11,001 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:27,498 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:07:28,206 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:07:28,911 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:07:29,619 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:07:31,031 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:31,736 - INFO - DOGEUSDT excluido por alto riesgo: 0.81
+2025-10-09 01:07:32,438 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:07:33,142 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:07:33,864 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:07:50,366 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:07:51,082 - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:07:51,797 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:07:52,505 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:07:54,147 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:07:54,856 - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:07:55,607 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:07:56,315 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:07:57,023 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:08:13,503 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:08:14,210 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:08:14,918 - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:08:15,622 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:08:17,027 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:08:17,733 - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:08:18,438 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:08:19,141 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:08:19,862 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:08:36,361 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:08:37,068 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:08:37,775 - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:08:38,480 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:08:39,896 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:08:40,604 - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:08:41,311 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:08:42,019 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:08:42,722 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:08:59,205 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:08:59,912 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:09:00,620 - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:09:01,325 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:09:02,738 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:09:03,443 - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:09:04,148 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:09:04,850 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:09:05,555 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:09:22,042 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:09:22,747 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:09:23,451 - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:09:24,153 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:09:25,558 - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:09:26,271 - INFO - DOGEUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:09:26,973 - INFO - ASTERUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:09:27,679 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:09:28,382 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:09:44,863 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:09:45,566 - INFO - BTCUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:09:46,269 - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:09:46,971 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:09:48,373 - INFO - COAIUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:09:49,076 - INFO - DOGEUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:09:49,779 - INFO - ASTERUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:09:50,482 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:09:51,193 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:10:08,115 - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:10:08,818 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:10:09,523 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:10:10,230 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:10:11,633 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:10:12,337 - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:10:13,039 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:10:13,744 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:10:14,448 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:10:30,933 - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:10:31,636 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:10:32,339 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:10:33,045 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:10:34,451 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:10:35,154 - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:10:35,858 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:10:36,560 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:10:37,265 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:10:53,755 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:10:54,458 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:10:55,167 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:10:55,870 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:10:57,496 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:10:58,198 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:10:58,902 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:10:59,603 - INFO - XRPUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:11:00,308 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:11:16,788 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:11:17,491 - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:11:18,194 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:11:18,896 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:11:20,300 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:11:21,006 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:11:21,714 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:11:22,418 - INFO - XRPUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:11:23,120 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:11:39,605 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:11:40,310 - INFO - BTCUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:11:41,011 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:11:41,716 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:11:43,122 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:11:43,825 - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:11:44,529 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:11:45,231 - INFO - XRPUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:11:45,934 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:12:02,420 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:12:03,124 - INFO - BTCUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:12:03,827 - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:12:04,534 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:12:05,936 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:12:07,095 - INFO - DOGEUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:12:07,797 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:12:08,500 - INFO - XRPUSDT excluido por alto riesgo: 0.66
+2025-10-09 01:12:09,203 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:12:25,701 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:12:26,404 - INFO - BTCUSDT excluido por alto riesgo: 0.62
+2025-10-09 01:12:27,107 - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:12:27,812 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:12:29,220 - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:12:29,921 - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:12:30,626 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:12:31,328 - INFO - XRPUSDT excluido por alto riesgo: 0.65
+2025-10-09 01:12:32,032 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:12:48,513 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:12:49,217 - INFO - BTCUSDT excluido por alto riesgo: 0.61
+2025-10-09 01:12:49,921 - INFO - SOLUSDT excluido por alto riesgo: 0.83
+2025-10-09 01:12:50,624 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:12:52,028 - INFO - COAIUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:12:52,730 - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:12:53,433 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:12:54,136 - INFO - XRPUSDT excluido por alto riesgo: 0.65
+2025-10-09 01:12:54,841 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:13:11,327 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:13:12,030 - INFO - BTCUSDT excluido por alto riesgo: 0.61
+2025-10-09 01:13:12,736 - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:13:13,440 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:13:14,844 - INFO - COAIUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:13:15,546 - INFO - DOGEUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:13:16,253 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:13:16,955 - INFO - XRPUSDT excluido por alto riesgo: 0.65
+2025-10-09 01:13:17,660 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:13:34,151 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:13:34,856 - INFO - BTCUSDT excluido por alto riesgo: 0.61
+2025-10-09 01:13:35,568 - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:13:36,277 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:13:37,682 - INFO - COAIUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:13:38,386 - INFO - DOGEUSDT excluido por alto riesgo: 0.81
+2025-10-09 01:13:39,089 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:13:40,248 - INFO - XRPUSDT excluido por alto riesgo: 0.65
+2025-10-09 01:13:41,857 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:13:58,795 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:14:00,204 - INFO - SOLUSDT excluido por alto riesgo: 0.82
+2025-10-09 01:14:00,908 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:14:02,758 - INFO - COAIUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:14:03,469 - INFO - DOGEUSDT excluido por alto riesgo: 0.81
+2025-10-09 01:14:04,174 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:14:04,877 - INFO - XRPUSDT excluido por alto riesgo: 0.64
+2025-10-09 01:14:05,577 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:14:22,432 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:14:23,834 - INFO - SOLUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:14:24,533 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:14:25,929 - INFO - COAIUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:14:26,630 - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:14:27,329 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:14:28,032 - INFO - XRPUSDT excluido por alto riesgo: 0.63
+2025-10-09 01:14:28,734 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:14:45,213 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:14:46,611 - INFO - SOLUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:14:47,312 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:14:48,708 - INFO - COAIUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:14:49,412 - INFO - DOGEUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:14:50,114 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:14:50,813 - INFO - XRPUSDT excluido por alto riesgo: 0.62
+2025-10-09 01:14:51,514 - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:15:08,005 - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:15:08,707 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:15:09,405 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:10,106 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:15:11,504 - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:15:12,661 - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:13,362 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:15:14,062 - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:15:14,766 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:15:31,269 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:15:31,970 - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:15:32,669 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:33,369 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:15:34,765 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:15:35,463 - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:36,167 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:15:36,869 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:15:37,569 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:15:54,059 - INFO - ETHUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:15:54,758 - INFO - BTCUSDT excluido por alto riesgo: 0.71
+2025-10-09 01:15:55,469 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:15:56,175 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:15:57,571 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:15:58,276 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:15:58,975 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:15:59,677 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:16:00,382 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:16:16,870 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:16:17,570 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:16:18,270 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:16:18,970 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:16:20,367 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:16:21,068 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:16:21,767 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:16:22,470 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:16:23,175 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:16:39,650 - INFO - ETHUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:16:40,355 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:16:41,060 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:16:41,760 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:16:43,162 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:16:44,313 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:16:45,480 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:16:46,182 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:16:46,884 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:17:03,391 - INFO - ETHUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:17:04,096 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:17:05,245 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:17:05,942 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:17:07,344 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:08,045 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:17:08,746 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:17:09,447 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:17:10,148 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:26,647 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:17:27,348 - INFO - BTCUSDT excluido por alto riesgo: 0.69
+2025-10-09 01:17:28,048 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:17:28,746 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:17:30,142 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:30,842 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:17:31,541 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:17:32,245 - INFO - XRPUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:17:32,948 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:49,651 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:17:50,357 - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:17:51,060 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:17:51,765 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:17:53,164 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:17:53,865 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:17:54,569 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:17:55,269 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:17:55,974 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:18:12,458 - INFO - ETHUSDT excluido por alto riesgo: 0.74
+2025-10-09 01:18:13,187 - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:18:13,890 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:18:14,593 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:18:15,996 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:18:16,698 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:18:17,401 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:18:18,104 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:18:18,809 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:18:35,290 - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:18:35,997 - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:18:36,707 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:18:37,414 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:18:38,824 - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:18:39,533 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:18:40,241 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:18:40,954 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:18:41,659 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:18:58,151 - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:18:58,864 - INFO - BTCUSDT excluido por alto riesgo: 0.68
+2025-10-09 01:18:59,570 - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:00,277 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:19:01,685 - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:19:02,399 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:19:03,556 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:19:04,714 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:19:05,872 - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:19:22,353 - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:19:23,061 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:19:23,767 - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:24,473 - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:19:25,884 - INFO - COAIUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:19:26,598 - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:27,308 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:19:28,012 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:19:28,727 - INFO - 4USDT excluido por alto riesgo: 0.92
+2025-10-09 01:19:45,216 - INFO - ETHUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:19:45,922 - INFO - BTCUSDT excluido por alto riesgo: 0.67
+2025-10-09 01:19:46,625 - INFO - SOLUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:47,330 - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:19:48,736 - INFO - COAIUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:19:49,444 - INFO - DOGEUSDT excluido por alto riesgo: 0.84
+2025-10-09 01:19:50,155 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:19:50,866 - INFO - XRPUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:19:51,575 - INFO - 4USDT excluido por alto riesgo: 0.92
+2025-10-09 01:20:08,912 - INFO - ETHUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:20:09,615 - INFO - BTCUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:20:10,318 - INFO - SOLUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:20:11,022 - INFO - BNBUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:20:12,416 - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:20:13,116 - INFO - DOGEUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:20:13,820 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:20:14,522 - INFO - XRPUSDT excluido por alto riesgo: 0.77
+2025-10-09 01:20:15,224 - INFO - 4USDT excluido por alto riesgo: 1.00
+2025-10-09 01:20:31,712 - INFO - ETHUSDT excluido por alto riesgo: 0.80
+2025-10-09 01:20:32,429 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:20:33,133 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:20:33,834 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:20:35,230 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:20:35,928 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:20:36,628 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:20:37,325 - INFO - XRPUSDT excluido por alto riesgo: 0.76
+2025-10-09 01:20:38,029 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:20:54,519 - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:20:56,948 - INFO - BTCUSDT excluido por alto riesgo: 0.72
+2025-10-09 01:20:57,649 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:20:58,347 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:20:59,744 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:21:00,446 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:21:01,145 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:21:01,848 - INFO - XRPUSDT excluido por alto riesgo: 0.75
+2025-10-09 01:21:02,548 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:21:19,041 - INFO - ETHUSDT excluido por alto riesgo: 0.79
+2025-10-09 01:21:19,747 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:21:20,446 - INFO - SOLUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:21:21,148 - INFO - BNBUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:21:22,554 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:21:23,252 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:21:23,954 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:21:24,660 - INFO - XRPUSDT excluido por alto riesgo: 0.73
+2025-10-09 01:21:25,358 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:21:41,849 - INFO - ETHUSDT excluido por alto riesgo: 0.78
+2025-10-09 01:21:42,554 - INFO - BTCUSDT excluido por alto riesgo: 0.70
+2025-10-09 01:21:43,258 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:21:43,960 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:21:45,359 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:21:46,060 - INFO - DOGEUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:21:46,761 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:21:51,932 - WARNING - ADVERTENCIA: TA-Lib no encontrado. Algunos indicadores estaran deshabilitados.
+2025-10-09 01:21:52,944 - INFO - Iniciando aplicacion Flask con Socket.IO...
+2025-10-09 01:21:52,945 - INFO - INICIO AUTOMATICO CONFIGURADO - Iniciando bot...
+2025-10-09 01:21:54,947 - INFO - CREANDO INSTANCIA DEL BOT DE TRADING...
+2025-10-09 01:21:54,956 - INFO - Bot iniciado automaticamente
+2025-10-09 01:21:54,957 - INFO - Sistema inicializado correctamente
+2025-10-09 01:21:54,957 - INFO - Servidor web iniciando en http://0.0.0.0:5000
+2025-10-09 01:22:00,438 - INFO - CONECTADO A BINANCE FUTURES MAINNET REAL - 20x LEVERAGE
+2025-10-09 01:22:00,439 - INFO - MODO REAL - Se realizaran operaciones con dinero real
+2025-10-09 01:22:05,867 - INFO - Informacion de exchange cargada exitosamente
+2025-10-09 01:22:05,868 - INFO - Telegram notifier habilitado
+2025-10-09 01:22:05,869 - INFO - INICIANDO CICLO PRINCIPAL DEL BOT...
+2025-10-09 01:22:05,870 - INFO - Iniciando Bot de Trading - Modo 20x
+2025-10-09 01:22:06,596 - INFO - Capital inicial: 30.00 USDT
+2025-10-09 01:22:06,597 - INFO - Balance actualizado: 30.00 USDT | P&L Diario: +0.00 USDT
+2025-10-09 01:22:06,598 - INFO - Balance inicial: 30.00 USDT
+2025-10-09 01:22:07,723 - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:22:08,085 - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.124000)
+2025-10-09 01:22:08,086 - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:22:09,486 - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:22:09,847 - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.520000)
+2025-10-09 01:22:09,848 - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:22:10,546 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:22:11,940 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:22:13,345 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:22:14,754 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:22:31,231 - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:22:31,597 - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.123000)
+2025-10-09 01:22:31,598 - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:22:32,299 - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:22:32,662 - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:22:32,663 - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:22:33,364 - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:22:34,176 - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:22:34,177 - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:22:35,330 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:22:37,172 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:22:39,470 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:22:40,866 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:22:57,749 - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:22:58,113 - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.123000)
+2025-10-09 01:22:58,114 - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:22:58,817 - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:22:59,177 - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:22:59,178 - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:22:59,879 - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:23:00,240 - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:23:00,241 - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:23:00,944 - INFO - BNBUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:23:02,800 - INFO - COAIUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:23:04,198 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:23:04,898 - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:23:05,261 - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.400000)
+2025-10-09 01:23:05,262 - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:23:05,962 - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:23:22,836 - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:23:23,199 - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:23:23,200 - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:23:23,906 - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:23:24,268 - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:23:24,269 - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:23:24,970 - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:23:25,331 - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:23:25,332 - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:23:26,031 - INFO - BNBUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:23:27,422 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:23:28,823 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:23:29,528 - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:23:29,892 - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.100000)
+2025-10-09 01:23:29,893 - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:23:30,594 - INFO - 4USDT excluido por alto riesgo: 0.93
+2025-10-09 01:23:47,266 - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:23:47,631 - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:23:47,632 - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:23:49,034 - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:23:49,398 - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:23:49,399 - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:23:50,101 - INFO - BNBUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:23:51,499 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:23:52,897 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:23:53,604 - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:23:53,968 - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.100000)
+2025-10-09 01:23:53,969 - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:23:54,669 - INFO - 4USDT excluido por alto riesgo: 0.92
+2025-10-09 01:24:11,150 - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:24:11,515 - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:24:11,516 - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:24:12,235 - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:24:12,601 - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:24:12,602 - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:24:13,303 - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:24:13,672 - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:24:13,673 - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:24:14,379 - INFO - BNBUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:24:15,775 - INFO - COAIUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:24:17,176 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:24:17,876 - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:24:18,240 - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.200000)
+2025-10-09 01:24:18,241 - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:24:18,952 - INFO - 4USDT excluido por alto riesgo: 0.92
+2025-10-09 01:24:35,423 - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:24:35,788 - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:24:35,789 - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:24:36,493 - INFO - Senal LONG detectada para BTCUSDT
+2025-10-09 01:24:36,855 - INFO - Intentando abrir LONG BTCUSDT (Qty: 0.204000)
+2025-10-09 01:24:36,856 - INFO - [DRY_RUN] Orden LONG para BTCUSDT
+2025-10-09 01:24:37,554 - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:24:37,917 - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.510000)
+2025-10-09 01:24:37,918 - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:24:40,017 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:24:41,422 - INFO - ASTERUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:24:42,121 - INFO - Senal LONG detectada para XRPUSDT
+2025-10-09 01:24:42,484 - INFO - Intentando abrir LONG XRPUSDT (Qty: 439.100000)
+2025-10-09 01:24:42,485 - INFO - [DRY_RUN] Orden LONG para XRPUSDT
+2025-10-09 01:24:43,187 - INFO - 4USDT excluido por alto riesgo: 0.91
+2025-10-09 01:24:59,690 - INFO - Senal LONG detectada para ETHUSDT
+2025-10-09 01:25:00,053 - INFO - Intentando abrir LONG ETHUSDT (Qty: 1.122000)
+2025-10-09 01:25:00,054 - INFO - [DRY_RUN] Orden LONG para ETHUSDT
+2025-10-09 01:25:01,566 - INFO - Senal LONG detectada para SOLUSDT
+2025-10-09 01:25:01,930 - INFO - Intentando abrir LONG SOLUSDT (Qty: 5.500000)
+2025-10-09 01:25:01,931 - INFO - [DRY_RUN] Orden LONG para SOLUSDT
+2025-10-09 01:25:04,031 - INFO - COAIUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:25:05,437 - INFO - ASTERUSDT excluido por alto riesgo: 1.00
+2025-10-09 01:25:07,316 - INFO - 4USDT excluido por alto riesgo: 1.00
+2025-10-09 01:25:25,203 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:25:25,908 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:25:27,303 - INFO - COAIUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:25:28,006 - INFO - DOGEUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:25:28,704 - INFO - ASTERUSDT excluido por alto riesgo: 0.99
+2025-10-09 01:25:30,108 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:25:47,991 - INFO - SOLUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:25:48,692 - INFO - BNBUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:25:50,088 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:25:50,790 - INFO - DOGEUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:25:51,493 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:25:52,897 - INFO - 4USDT excluido por alto riesgo: 0.99
+2025-10-09 01:26:10,792 - INFO - SOLUSDT excluido por alto riesgo: 0.87
+2025-10-09 01:26:11,489 - INFO - BNBUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:26:12,885 - INFO - COAIUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:26:13,585 - INFO - DOGEUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:26:14,282 - INFO - ASTERUSDT excluido por alto riesgo: 0.98
+2025-10-09 01:26:15,676 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:26:33,553 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:26:34,253 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:26:35,648 - INFO - COAIUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:26:36,347 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:26:36,713 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:26:36,714 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:26:37,414 - INFO - ASTERUSDT excluido por alto riesgo: 0.97
+2025-10-09 01:26:38,818 - INFO - 4USDT excluido por alto riesgo: 0.98
+2025-10-09 01:26:56,704 - INFO - SOLUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:26:57,401 - INFO - BNBUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:26:58,792 - INFO - COAIUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:26:59,494 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:26:59,855 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5005.000000)
+2025-10-09 01:26:59,856 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:27:00,554 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:27:01,952 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:27:20,529 - INFO - BNBUSDT excluido por alto riesgo: 0.90
+2025-10-09 01:27:22,594 - INFO - COAIUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:27:23,297 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:27:23,659 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5006.000000)
+2025-10-09 01:27:23,660 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:27:24,357 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:27:25,756 - INFO - 4USDT excluido por alto riesgo: 0.97
+2025-10-09 01:27:44,340 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:27:45,734 - INFO - COAIUSDT excluido por alto riesgo: 0.92
+2025-10-09 01:27:46,432 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:27:46,791 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:27:46,792 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:27:47,491 - INFO - ASTERUSDT excluido por alto riesgo: 0.96
+2025-10-09 01:27:48,887 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:28:07,666 - INFO - BNBUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:28:09,061 - INFO - COAIUSDT excluido por alto riesgo: 0.91
+2025-10-09 01:28:09,760 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:28:10,120 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:28:10,121 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:28:10,819 - INFO - ASTERUSDT excluido por alto riesgo: 0.95
+2025-10-09 01:28:12,237 - INFO - 4USDT excluido por alto riesgo: 0.96
+2025-10-09 01:28:30,835 - INFO - BNBUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:28:32,235 - INFO - COAIUSDT excluido por alto riesgo: 0.89
+2025-10-09 01:28:32,934 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:28:33,304 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5004.000000)
+2025-10-09 01:28:33,310 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:28:34,255 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:28:35,883 - INFO - 4USDT excluido por alto riesgo: 0.95
+2025-10-09 01:28:54,468 - INFO - BNBUSDT excluido por alto riesgo: 0.86
+2025-10-09 01:28:55,864 - INFO - COAIUSDT excluido por alto riesgo: 0.88
+2025-10-09 01:28:56,560 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:28:56,925 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:28:56,926 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:28:57,627 - INFO - ASTERUSDT excluido por alto riesgo: 0.94
+2025-10-09 01:28:59,023 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:29:19,220 - INFO - COAIUSDT excluido por alto riesgo: 0.85
+2025-10-09 01:29:19,920 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:29:20,280 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:29:20,281 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:29:20,984 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:29:22,390 - INFO - 4USDT excluido por alto riesgo: 0.94
+2025-10-09 01:29:44,243 - INFO - Senal LONG detectada para DOGEUSDT
+2025-10-09 01:29:44,605 - INFO - Intentando abrir LONG DOGEUSDT (Qty: 5003.000000)
+2025-10-09 01:29:44,606 - INFO - [DRY_RUN] Orden LONG para DOGEUSDT
+2025-10-09 01:29:45,304 - INFO - ASTERUSDT excluido por alto riesgo: 0.93
+2025-10-09 01:29:46,696 - INFO - 4USDT excluido por alto riesgo: 0.94
