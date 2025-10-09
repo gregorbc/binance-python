@@ -66,8 +66,8 @@ except Exception as e:
 @dataclass
 class CONFIG:
     # Configuración Global
-    LEVERAGE: int = 20
-    MAX_CONCURRENT_POS: int = 20
+    LEVERAGE: int = 10
+    MAX_CONCURRENT_POS: int = 5
     NUM_SYMBOLS_TO_SCAN: int = 150  # Reducido de 400 a 100 para mejor calidad
     # Configuración de Estrategia
     ATR_MULT_SL: float = 2.2
@@ -312,6 +312,533 @@ class CapitalManager:
             "leverage": config.LEVERAGE
         }
 
+# -------------------- NOTIFICADOR DE TELEGRAM MEJORADO -------------------- #
+class TelegramNotifier:
+    """Sistema avanzado de notificaciones por Telegram"""
+    
+    def __init__(self):
+        self.token = os.getenv("TELEGRAM_BOT_TOKEN")
+        self.chat_id = os.getenv("TELEGRAM_CHAT_ID")
+        self.enabled = bool(self.token and self.chat_id)
+        self.message_queue = deque()
+        self.sending = False
+        
+        if self.enabled:
+            log.info(f"✅ Bot de Telegram configurado: Chat ID {self.chat_id}")
+        else:
+            log.warning("⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env")
+
+    def send_message(self, message: str, parse_mode: str = "HTML", retry_count: int = 3) -> bool:
+        """Envía mensaje a Telegram con manejo robusto de errores y cola"""
+        if not self.enabled:
+            return False
+
+        # Agregar a la cola si ya se está enviando un mensaje
+        if self.sending:
+            self.message_queue.append((message, parse_mode))
+            return True
+
+        self.sending = True
+        
+        for attempt in range(retry_count):
+            try:
+                url = f"https://api.telegram.org/bot{self.token}/sendMessage"
+                payload = {
+                    "chat_id": self.chat_id,
+                    "text": message,
+                    "parse_mode": parse_mode,
+                    "disable_web_page_preview": True,
+                    "disable_notification": False
+                }
+                
+                response = requests.post(url, json=payload, timeout=10)
+                response.raise_for_status()
+                
+                # Procesar siguiente mensaje en la cola
+                self.sending = False
+                if self.message_queue:
+                    next_msg, next_parse_mode = self.message_queue.popleft()
+                    threading.Thread(target=self.send_message, args=(next_msg, next_parse_mode), daemon=True).start()
+                
+                return True
+                
+            except requests.exceptions.RequestException as e:
+                log.warning(f"⚠️ Error enviando mensaje Telegram (intento {attempt + 1}/{retry_count}): {e}")
+                if attempt < retry_count - 1:
+                    time.sleep(2 ** attempt)  # Backoff exponencial
+            except Exception as e:
+                log.error(f"❌ Error inesperado en Telegram: {e}")
+                break
+
+        self.sending = False
+        return False
+
+    def notify_trade_opened(self, symbol: str, side: str, quantity: float, 
+                          price: float, balance: float, leverage: int = 20):
+        """Notifica apertura de trade"""
+        emoji = "🟢" if side == "LONG" else "🔴"
+        notional_value = quantity * price
+        
+        message = f"""
+{emoji} <b>TRADE ABIERTO ({leverage}x)</b>
+
+📈 <b>Símbolo:</b> {symbol}
+🎯 <b>Dirección:</b> {side}
+📊 <b>Cantidad:</b> {quantity:.4f}
+💰 <b>Precio Entrada:</b> ${price:.6f}
+💵 <b>Valor Nocional:</b> ${notional_value:.2f}
+⚡ <b>Apalancamiento:</b> {leverage}x
+🏦 <b>Capital:</b> ${balance:.2f} USDT
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        return self.send_message(message)
+
+    def notify_trade_closed(self, symbol: str, pnl: float, reason: str, 
+                          balance: float, entry_price: float, exit_price: float,
+                          quantity: float, leverage: int = 20):
+        """Notifica cierre de trade con detalles completos"""
+        emoji = "🟢" if pnl >= 0 else "🔴"
+        roe = (pnl / (quantity * entry_price / leverage)) * 100 if entry_price > 0 else 0
+        notional_value = quantity * entry_price
+        
+        message = f"""
+{emoji} <b>TRADE CERRADO ({leverage}x)</b>
+
+📈 <b>Símbolo:</b> {symbol}
+🎯 <b>Resultado:</b> {'✅ GANANCIA' if pnl >= 0 else '❌ PÉRDIDA'}
+💰 <b>P&L:</b> ${pnl:+.2f} USDT
+📊 <b>ROE:</b> {roe:+.2f}%
+🔍 <b>Razón:</b> {reason}
+
+📥 <b>Precio Entrada:</b> ${entry_price:.6f}
+📤 <b>Precio Salida:</b> ${exit_price:.6f}
+📦 <b>Cantidad:</b> {quantity:.4f}
+💵 <b>Valor:</b> ${notional_value:.2f}
+
+🏦 <b>Capital Actual:</b> ${balance:.2f} USDT
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        return self.send_message(message)
+
+    def notify_balance_update(self, balance: float, profit: float, 
+                            profit_percentage: float, leverage: int = 20):
+        """Notifica actualización de balance"""
+        emoji = "📈" if profit >= 0 else "📉"
+        
+        message = f"""
+{emoji} <b>ACTUALIZACIÓN DE CAPITAL ({leverage}x)</b>
+
+🏦 <b>Balance Actual:</b> ${balance:.2f} USDT
+💰 <b>Profit Total:</b> ${profit:+.2f} USDT
+📊 <b>Rentabilidad:</b> {profit_percentage:+.2f}%
+
+⚡ <b>Apalancamiento:</b> {leverage}x
+🎯 <b>Objetivo diario:</b> {config.CAPITAL_GROWTH_TARGET:.1f}%
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        return self.send_message(message)
+
+    def notify_error(self, error_message: str, context: str = ""):
+        """Notifica errores críticos"""
+        message = f"""
+🚨 <b>ERROR CRÍTICO</b>
+
+❌ <b>Error:</b> {error_message}
+🔧 <b>Contexto:</b> {context}
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        return self.send_message(message)
+
+    def notify_warning(self, warning_message: str, context: str = ""):
+        """Notifica advertencias"""
+        message = f"""
+⚠️ <b>ADVERTENCIA</b>
+
+📢 <b>Mensaje:</b> {warning_message}
+🔧 <b>Contexto:</b> {context}
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        return self.send_message(message)
+
+    def notify_market_regime(self, regime: str, description: str = ""):
+        """Notifica cambio de régimen de mercado"""
+        emoji = "🐂" if regime == "BULL" else "🐻" if regime == "BEAR" else "➡️"
+        
+        message = f"""
+{emoji} <b>CAMBIO DE RÉGIMEN DE MERCADO</b>
+
+📊 <b>Régimen:</b> {regime}
+📝 <b>Descripción:</b> {description}
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        return self.send_message(message)
+
+    def notify_bot_started(self, leverage: int = 20):
+        """Notifica que el bot ha iniciado"""
+        testnet = os.getenv("BINANCE_TESTNET", "true").lower() == "true"
+        mode = "TESTNET" if testnet else "MAINNET REAL"
+        
+        message = f"""
+🤖 <b>BOT DE TRADING INICIADO</b>
+
+✅ <b>Sistema activado</b>
+🌐 <b>Modo:</b> {mode}
+⚡ <b>Apalancamiento:</b> {leverage}x
+🏦 <b>Trading:</b> {'SIMULACIÓN' if config.DRY_RUN else 'REAL'}
+📊 <b>Estrategia:</b> 20x Leverage - USDT Pairs
+
+⏰ <b>Hora de inicio:</b> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+<b>📈 Características activas:</b>
+• Gestión de capital real
+• IA para ajuste de parámetros
+• Notificaciones en tiempo real
+• Análisis de rendimiento
+• Sistema Telegram activo
+        """
+        return self.send_message(message)
+
+    def notify_bot_stopped(self, reason: str = ""):
+        """Notifica que el bot se ha detenido"""
+        message = f"""
+🛑 <b>BOT DE TRADING DETENIDO</b>
+
+❌ <b>Estado:</b> INACTIVO
+📝 <b>Razón:</b> {reason if reason else "Detenido manualmente"}
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        return self.send_message(message)
+
+    def notify_daily_report(self, report_data: Dict):
+        """Notifica reporte diario"""
+        message = f"""
+📊 <b>REPORTE DIARIO DE TRADING (20x)</b>
+
+🏦 <b>Balance Final:</b> ${report_data.get('final_balance', 0):.2f} USDT
+💰 <b>P&L Diario:</b> ${report_data.get('daily_pnl', 0):+.2f} USDT
+📈 <b>Trades Totales:</b> {report_data.get('total_trades', 0)}
+✅ <b>Trades Ganadores:</b> {report_data.get('winning_trades', 0)}
+❌ <b>Trades Perdedores:</b> {report_data.get('losing_trades', 0)}
+🎯 <b>Win Rate:</b> {report_data.get('win_rate', 0):.1f}%
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        return self.send_message(message)
+
+# -------------------- MANEJADOR DE COMANDOS DE TELEGRAM -------------------- #
+class TelegramCommandHandler:
+    """Maneja los comandos recibidos por Telegram"""
+    
+    def __init__(self, trading_bot):
+        self.bot = trading_bot
+        self.token = os.getenv("TELEGRAM_BOT_TOKEN")
+        self.last_update_id = 0
+        
+    def poll_commands(self):
+        """Sondea continuamente los comandos de Telegram"""
+        if not self.token:
+            return
+            
+        while True:
+            try:
+                updates = self.get_updates()
+                if updates:
+                    for update in updates:
+                        self.process_update(update)
+                time.sleep(2)  # Verificar cada 2 segundos
+            except Exception as e:
+                log.error(f"Error en poll_commands: {e}")
+                time.sleep(10)
+
+    def get_updates(self):
+        """Obtiene actualizaciones de Telegram"""
+        try:
+            url = f"https://api.telegram.org/bot{self.token}/getUpdates"
+            params = {
+                "offset": self.last_update_id + 1,
+                "timeout": 30
+            }
+            response = requests.get(url, params=params, timeout=35)
+            response.raise_for_status()
+            data = response.json()
+            
+            if data.get("ok") and data.get("result"):
+                return data["result"]
+            return []
+        except Exception as e:
+            log.error(f"Error obteniendo updates de Telegram: {e}")
+            return []
+
+    def process_update(self, update):
+        """Procesa una actualización de Telegram"""
+        update_id = update.get("update_id")
+        message = update.get("message", {})
+        text = message.get("text", "").strip()
+        chat_id = message.get("chat", {}).get("id")
+        
+        if update_id > self.last_update_id:
+            self.last_update_id = update_id
+
+        if not text or not chat_id:
+            return
+
+        # Verificar que el chat_id sea el autorizado
+        authorized_chat_id = os.getenv("TELEGRAM_CHAT_ID")
+        if str(chat_id) != str(authorized_chat_id):
+            self.send_message(chat_id, "❌ No autorizado para usar este bot.")
+            return
+
+        # Procesar comandos
+        command = text.lower()
+        
+        if command == "/start":
+            self.send_welcome(chat_id)
+        elif command == "/status":
+            self.send_status(chat_id)
+        elif command == "/balance":
+            self.send_balance(chat_id)
+        elif command == "/positions":
+            self.send_positions(chat_id)
+        elif command == "/stats":
+            self.send_stats(chat_id)
+        elif command == "/performance":
+            self.send_performance(chat_id)
+        elif command == "/stop":
+            self.stop_bot(chat_id)
+        elif command == "/start_bot":
+            self.start_bot(chat_id)
+        elif command == "/help":
+            self.send_help(chat_id)
+        else:
+            self.send_message(chat_id, "❌ Comando no reconocido. Usa /help para ver comandos disponibles.")
+
+    def send_message(self, chat_id: int, text: str, parse_mode: str = "HTML"):
+        """Enviar mensaje a Telegram"""
+        try:
+            url = f"https://api.telegram.org/bot{self.token}/sendMessage"
+            payload = {
+                "chat_id": chat_id,
+                "text": text,
+                "parse_mode": parse_mode,
+                "disable_web_page_preview": True
+            }
+            response = requests.post(url, json=payload, timeout=10)
+            return response.status_code == 200
+        except Exception as e:
+            log.error(f"Error enviando mensaje: {e}")
+            return False
+
+    def send_welcome(self, chat_id: int):
+        """Mensaje de bienvenida"""
+        with state_lock:
+            status = app_state
+            
+        testnet = os.getenv("BINANCE_TESTNET", "true").lower() == "true"
+        mode = "TESTNET" if testnet else "MAINNET REAL"
+        
+        message = f"""
+🤖 <b>BOT DE TRADING BINANCE FUTURES</b>
+
+✅ <b>Estado:</b> {'🟢 ACTIVO' if status['running'] else '🔴 INACTIVO'}
+🌐 <b>Modo:</b> {mode}
+⚡ <b>Apalancamiento:</b> 20x
+🏦 <b>Trading:</b> {'SIMULACIÓN' if config.DRY_RUN else 'REAL'}
+💰 <b>Balance:</b> ${status['balance']:.2f} USDT
+
+<b>📊 Comandos disponibles:</b>
+/start - Mensaje de bienvenida
+/status - Estado del trading  
+/balance - Balance y ganancias
+/positions - Posiciones abiertas
+/stats - Estadísticas
+/performance - Rendimiento
+/stop - Detener bot
+/start_bot - Iniciar bot
+/help - Ayuda
+
+⏰ <b>Hora:</b> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        self.send_message(chat_id, message)
+
+    def send_status(self, chat_id: int):
+        """Enviar estado actual"""
+        with state_lock:
+            status = app_state
+            
+        message = f"""
+📊 <b>ESTADO DEL TRADING</b>
+
+✅ <b>Bot:</b> {'🟢 ACTIVO' if status['running'] else '🔴 INACTIVO'}
+💰 <b>Balance:</b> ${status['balance']:.2f} USDT
+📈 <b>Posiciones abiertas:</b> {len(status['open_positions'])}
+🎯 <b>Trades hoy:</b> {status['performance_stats']['trades_count']}
+
+<b>📈 Rendimiento:</b>
+🏆 <b>Win Rate:</b> {status['performance_stats']['win_rate']:.1f}%
+📊 <b>Profit Factor:</b> {status['performance_stats']['profit_factor']:.2f}
+💰 <b>P&L Realizado:</b> ${status['performance_stats']['realized_pnl']:.2f}
+
+⚡ <b>Apalancamiento:</b> 20x
+🏛️ <b>Régimen mercado:</b> {status['market_regime']}
+        """
+        self.send_message(chat_id, message)
+
+    def send_balance(self, chat_id: int):
+        """Enviar información de balance"""
+        with state_lock:
+            capital_stats = app_state['capital_stats']
+            
+        message = f"""
+💰 <b>INFORMACIÓN DE CAPITAL</b>
+
+🏦 <b>Balance actual:</b> ${capital_stats['current_balance']:.2f} USDT
+📈 <b>Profit total:</b> ${capital_stats['total_profit']:+.2f} USDT
+📊 <b>Rentabilidad:</b> {capital_stats['profit_percentage']:+.2f}%
+🔄 <b>Reinvertido:</b> ${capital_stats['reinvested_profit']:.2f} USDT
+
+⚡ <b>Apalancamiento:</b> 20x
+🎯 <b>Objetivo diario:</b> {capital_stats['daily_target']:.1f}%
+
+⏰ <b>Actualizado:</b> {datetime.now().strftime('%H:%M:%S')}
+        """
+        self.send_message(chat_id, message)
+
+    def send_positions(self, chat_id: int):
+        """Enviar posiciones abiertas"""
+        with state_lock:
+            positions = app_state['open_positions']
+            
+        if not positions:
+            self.send_message(chat_id, "📭 <b>No hay posiciones abiertas</b>")
+            return
+            
+        message = "📊 <b>POSICIONES ABIERTAS</b>\n\n"
+        
+        for symbol, position in positions.items():
+            side = 'LONG' if float(position['positionAmt']) > 0 else 'SHORT'
+            entry_price = float(position['entryPrice'])
+            unrealized_pnl = float(position.get('unrealizedProfit', 0))
+            leverage = position.get('leverage', 20)
+            
+            message += f"""
+📈 <b>{symbol}</b>
+🎯 <b>Dirección:</b> {side}
+💰 <b>Precio entrada:</b> ${entry_price:.6f}
+📊 <b>P&L No realizado:</b> ${unrealized_pnl:+.2f}
+⚡ <b>Apalancamiento:</b> {leverage}x
+            """
+            
+        self.send_message(chat_id, message)
+
+    def send_stats(self, chat_id: int):
+        """Enviar estadísticas"""
+        with state_lock:
+            stats = app_state['performance_stats']
+            
+        message = f"""
+📈 <b>ESTADÍSTICAS DE TRADING</b>
+
+🎯 <b>Total trades:</b> {stats['trades_count']}
+🏆 <b>Win Rate:</b> {stats['win_rate']:.1f}%
+✅ <b>Ganadores:</b> {stats['wins']}
+❌ <b>Perdedores:</b> {stats['losses']}
+
+💰 <b>P&L Total:</b> ${stats['realized_pnl']:+.2f}
+📊 <b>Profit Factor:</b> {stats['profit_factor']:.2f}
+⏱️ <b>Duración promedio:</b> {stats['avg_trade_duration']:.1f}m
+
+📈 <b>Avg Win:</b> ${stats['avg_win']:.2f}
+📉 <b>Avg Loss:</b> ${stats['avg_loss']:.2f}
+        """
+        self.send_message(chat_id, message)
+
+    def send_performance(self, chat_id: int):
+        """Enviar rendimiento por símbolo"""
+        # Esta función puede expandirse para mostrar estadísticas por símbolo
+        message = """
+📊 <b>RENDIMIENTO POR SÍMBOLO</b>
+
+🔍 <i>Funcionalidad en desarrollo...</i>
+📈 Próximamente: Estadísticas detalladas por par de trading
+        """
+        self.send_message(chat_id, message)
+
+    def stop_bot(self, chat_id: int):
+        """Detener el bot"""
+        with state_lock:
+            app_state["running"] = False
+            app_state["status_message"] = "Detenido por Telegram"
+            
+        # Notificar por Telegram
+        if self.bot.telegram_notifier.enabled:
+            self.bot.telegram_notifier.notify_bot_stopped("Comando por Telegram")
+        
+        self.send_message(chat_id, "🛑 <b>Bot detenido exitosamente</b>")
+
+    def start_bot(self, chat_id: int):
+        """Iniciar el bot"""
+        global bot_thread
+        
+        with state_lock:
+            if app_state["running"]:
+                self.send_message(chat_id, "⚠️ <b>El bot ya está en ejecución</b>")
+                return
+                
+            app_state["running"] = True
+            app_state["status_message"] = "Iniciado por Telegram"
+        
+        def run_bot():
+            try:
+                bot = TradingBot()
+                bot.run()
+            except Exception as e:
+                log.error(f"Error en el bot: {e}")
+                with state_lock:
+                    app_state["running"] = False
+                    app_state["status_message"] = f"Error: {str(e)}"
+        
+        bot_thread = threading.Thread(target=run_bot, daemon=True)
+        bot_thread.start()
+        
+        self.send_message(chat_id, "🚀 <b>Bot iniciado exitosamente</b>")
+        if self.bot.telegram_notifier.enabled:
+            self.bot.telegram_notifier.notify_bot_started(config.LEVERAGE)
+
+    def send_help(self, chat_id: int):
+        """Enviar ayuda"""
+        testnet = os.getenv("BINANCE_TESTNET", "true").lower() == "true"
+        mode = "TESTNET" if testnet else "MAINNET REAL"
+        
+        message = f"""
+🤖 <b>AYUDA - COMANDOS DISPONIBLES</b>
+
+/start - Mensaje de bienvenida
+/status - Estado actual del trading
+/balance - Ver balance y ganancias
+/positions - Posiciones abiertas actuales
+/stats - Estadísticas de performance
+/performance - Rendimiento por símbolo
+/stop - Detener el bot
+/start_bot - Iniciar bot
+/help - Mostrar esta ayuda
+
+<b>📊 Información adicional:</b>
+• El bot opera con 20x leverage
+• Modo: {mode}
+• Trading: {'SIMULACIÓN' if config.DRY_RUN else 'REAL'}
+• Monitorea USDT pairs con alta liquidez
+• Notificaciones automáticas de trades
+
+⏰ <b>Soporte:</b> gregorbc@gmail.com
+        """
+        self.send_message(chat_id, message)
+
 # -------------------- MEJORAS DE IA -------------------- #
 @dataclass
 class AIModel:
@@ -443,322 +970,6 @@ class PerformanceAnalyzer:
             return 1.3
 
         return 1.0
-
-# -------------------- NOTIFICADOR DE TELEGRAM MEJORADO -------------------- #
-class TelegramNotifier:
-    """Sistema avanzado de notificaciones por Telegram"""
-    
-    def __init__(self):
-        self.token = os.getenv("TELEGRAM_BOT_TOKEN")
-        self.chat_id = os.getenv("TELEGRAM_CHAT_ID")
-        self.enabled = bool(self.token and self.chat_id)
-        
-        if self.enabled:
-            log.info(f"✅ Bot de Telegram configurado: Chat ID {self.chat_id}")
-        else:
-            log.warning("⚠️ Bot de Telegram no configurado. Agrega TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID en .env")
-
-    def send_message(self, message: str, parse_mode: str = "HTML"):
-        """Envía mensaje a Telegram con manejo de errores"""
-        if not self.enabled:
-            return False
-
-        try:
-            url = f"https://api.telegram.org/bot{self.token}/sendMessage"
-            payload = {
-                "chat_id": self.chat_id,
-                "text": message,
-                "parse_mode": parse_mode,
-                "disable_web_page_preview": True
-            }
-            
-            response = requests.post(url, json=payload, timeout=10)
-            response.raise_for_status()
-            return True
-            
-        except requests.exceptions.RequestException as e:
-            log.error(f"❌ Error enviando mensaje por Telegram: {e}")
-            return False
-        except Exception as e:
-            log.error(f"❌ Error inesperado en Telegram: {e}")
-            return False
-
-    def notify_trade_opened(self, symbol: str, side: str, quantity: float, 
-                          price: float, balance: float, leverage: int = 20):
-        """Notifica apertura de trade"""
-        emoji = "🟢" if side == "LONG" else "🔴"
-        message = f"""
-{emoji} <b>TRADE ABIERTO ({leverage}x)</b>
-
-📈 <b>Símbolo:</b> {symbol}
-🎯 <b>Dirección:</b> {side}
-📊 <b>Cantidad:</b> {quantity:.4f}
-💰 <b>Precio Entrada:</b> ${price:.6f}
-💵 <b>Valor:</b> ${quantity * price:.2f}
-⚡ <b>Apalancamiento:</b> {leverage}x
-🏦 <b>Capital:</b> ${balance:.2f} USDT
-
-⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """
-        return self.send_message(message)
-
-    def notify_trade_closed(self, symbol: str, pnl: float, reason: str, 
-                          balance: float, entry_price: float, exit_price: float,
-                          quantity: float, leverage: int = 20):
-        """Notifica cierre de trade con detalles completos"""
-        emoji = "🟢" if pnl >= 0 else "🔴"
-        roe = (pnl / (quantity * entry_price / leverage)) * 100 if entry_price > 0 else 0
-        
-        message = f"""
-{emoji} <b>TRADE CERRADO ({leverage}x)</b>
-
-📈 <b>Símbolo:</b> {symbol}
-🎯 <b>Resultado:</b> {'GANANCIA' if pnl >= 0 else 'PÉRDIDA'}
-💰 <b>P&L:</b> ${pnl:+.2f} USDT
-📊 <b>ROE:</b> {roe:+.2f}%
-🔍 <b>Razón:</b> {reason}
-
-📥 <b>Precio Entrada:</b> ${entry_price:.6f}
-📤 <b>Precio Salida:</b> ${exit_price:.6f}
-📦 <b>Cantidad:</b> {quantity:.4f}
-
-🏦 <b>Capital Actual:</b> ${balance:.2f} USDT
-⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """
-        return self.send_message(message)
-
-    def notify_balance_update(self, balance: float, profit: float, 
-                            profit_percentage: float, leverage: int = 20):
-        """Notifica actualización de balance"""
-        message = f"""
-💰 <b>ACTUALIZACIÓN DE CAPITAL ({leverage}x)</b>
-
-🏦 <b>Balance Actual:</b> ${balance:.2f} USDT
-📈 <b>Profit Total:</b> ${profit:+.2f} USDT
-📊 <b>Rentabilidad:</b> {profit_percentage:+.2f}%
-
-⚡ <b>Apalancamiento:</b> {leverage}x
-⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """
-        return self.send_message(message)
-
-    def notify_error(self, error_message: str, context: str = ""):
-        """Notifica errores críticos"""
-        message = f"""
-🚨 <b>ERROR CRÍTICO</b>
-
-❌ <b>Error:</b> {error_message}
-🔧 <b>Contexto:</b> {context}
-
-⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """
-        return self.send_message(message)
-
-    def notify_warning(self, warning_message: str, context: str = ""):
-        """Notifica advertencias"""
-        message = f"""
-⚠️ <b>ADVERTENCIA</b>
-
-📢 <b>Mensaje:</b> {warning_message}
-🔧 <b>Contexto:</b> {context}
-
-⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """
-        return self.send_message(message)
-
-    def notify_market_regime(self, regime: str, description: str = ""):
-        """Notifica cambio de régimen de mercado"""
-        emoji = "🐂" if regime == "BULL" else "🐻" if regime == "BEAR" else "➡️"
-        message = f"""
-{emoji} <b>CAMBIO DE RÉGIMEN DE MERCADO</b>
-
-📊 <b>Régimen:</b> {regime}
-📝 <b>Descripción:</b> {description}
-
-⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """
-        return self.send_message(message)
-
-    def notify_bot_started(self, leverage: int = 20):
-        """Notifica que el bot ha iniciado"""
-        message = f"""
-🤖 <b>BOT DE TRADING INICIADO</b>
-
-✅ <b>Sistema activado</b>
-⚡ <b>Apalancamiento:</b> {leverage}x
-🏦 <b>Modo:</b> {'SIMULACIÓN' if config.DRY_RUN else 'REAL'}
-⏰ <b>Hora:</b> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
-📊 <b>Estrategia configurada para 20x leverage</b>
-        """
-        return self.send_message(message)
-
-# -------------------- MANEJADOR DE COMANDOS DE TELEGRAM -------------------- #
-class TelegramCommandHandler:
-    """Maneja los comandos recibidos por Telegram"""
-    
-    def __init__(self, trading_bot):
-        self.bot = trading_bot
-        self.token = os.getenv("TELEGRAM_BOT_TOKEN")
-        
-    def send_message(self, chat_id: int, text: str, parse_mode: str = "HTML"):
-        """Enviar mensaje a Telegram"""
-        try:
-            url = f"https://api.telegram.org/bot{self.token}/sendMessage"
-            payload = {
-                "chat_id": chat_id,
-                "text": text,
-                "parse_mode": parse_mode,
-                "disable_web_page_preview": True
-            }
-            response = requests.post(url, json=payload, timeout=10)
-            return response.status_code == 200
-        except Exception as e:
-            log.error(f"Error enviando mensaje: {e}")
-            return False
-
-    def send_welcome(self, chat_id: int):
-        """Mensaje de bienvenida"""
-        with state_lock:
-            status = app_state
-            
-        message = f"""
-🤖 <b>BOT DE TRADING BINANCE FUTURES</b>
-
-✅ <b>Estado:</b> {'🟢 ACTIVO' if status['running'] else '🔴 INACTIVO'}
-⚡ <b>Apalancamiento:</b> 20x
-🏦 <b>Modo:</b> {'REAL' if not config.DRY_RUN else 'SIMULACIÓN'}
-💰 <b>Balance:</b> ${status['balance']:.2f} USDT
-
-<b>📊 Comandos disponibles:</b>
-/start - Iniciar bot
-/status - Estado del trading  
-/balance - Balance y ganancias
-/positions - Posiciones abiertas
-/stats - Estadísticas
-/performance - Rendimiento
-/stop - Detener bot
-/restart - Reiniciar bot
-/help - Ayuda
-
-⏰ <b>Hora:</b> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """
-        self.send_message(chat_id, message)
-
-    def send_status(self, chat_id: int):
-        """Enviar estado actual"""
-        with state_lock:
-            status = app_state
-            
-        message = f"""
-📊 <b>ESTADO DEL TRADING</b>
-
-✅ <b>Bot:</b> {'🟢 ACTIVO' if status['running'] else '🔴 INACTIVO'}
-💰 <b>Balance:</b> ${status['balance']:.2f} USDT
-📈 <b>Posiciones abiertas:</b> {len(status['open_positions'])}
-🎯 <b>Trades hoy:</b> {status['performance_stats']['trades_count']}
-
-<b>📈 Rendimiento:</b>
-🏆 <b>Win Rate:</b> {status['performance_stats']['win_rate']:.1f}%
-📊 <b>Profit Factor:</b> {status['performance_stats']['profit_factor']:.2f}
-💰 <b>P&L Realizado:</b> ${status['performance_stats']['realized_pnl']:.2f}
-
-⚡ <b>Apalancamiento:</b> 20x
-🏛️ <b>Régimen mercado:</b> {status['market_regime']}
-        """
-        self.send_message(chat_id, message)
-
-    def send_balance(self, chat_id: int):
-        """Enviar información de balance"""
-        with state_lock:
-            capital_stats = app_state['capital_stats']
-            
-        message = f"""
-💰 <b>INFORMACIÓN DE CAPITAL</b>
-
-🏦 <b>Balance actual:</b> ${capital_stats['current_balance']:.2f} USDT
-📈 <b>Profit total:</b> ${capital_stats['total_profit']:+.2f} USDT
-📊 <b>Rentabilidad:</b> {capital_stats['profit_percentage']:+.2f}%
-🔄 <b>Reinvertido:</b> ${capital_stats['reinvested_profit']:.2f} USDT
-
-⚡ <b>Apalancamiento:</b> 20x
-🎯 <b>Objetivo diario:</b> {capital_stats['daily_target']:.1f}%
-
-⏰ <b>Actualizado:</b> {datetime.now().strftime('%H:%M:%S')}
-        """
-        self.send_message(chat_id, message)
-
-    def send_positions(self, chat_id: int):
-        """Enviar posiciones abiertas"""
-        with state_lock:
-            positions = app_state['open_positions']
-            
-        if not positions:
-            self.send_message(chat_id, "📭 <b>No hay posiciones abiertas</b>")
-            return
-            
-        message = "📊 <b>POSICIONES ABIERTAS</b>\n\n"
-        
-        for symbol, position in positions.items():
-            side = 'LONG' if float(position['positionAmt']) > 0 else 'SHORT'
-            entry_price = float(position['entryPrice'])
-            unrealized_pnl = float(position.get('unrealizedProfit', 0))
-            
-            message += f"""
-📈 <b>{symbol}</b>
-🎯 <b>Dirección:</b> {side}
-💰 <b>Precio entrada:</b> ${entry_price:.6f}
-📊 <b>P&L No realizado:</b> ${unrealized_pnl:+.2f}
-⚡ <b>Apalancamiento:</b> {position.get('leverage', 20)}x
-            """
-            
-        self.send_message(chat_id, message)
-
-    def send_stats(self, chat_id: int):
-        """Enviar estadísticas"""
-        with state_lock:
-            stats = app_state['performance_stats']
-            
-        message = f"""
-📈 <b>ESTADÍSTICAS DE TRADING</b>
-
-🎯 <b>Total trades:</b> {stats['trades_count']}
-🏆 <b>Win Rate:</b> {stats['win_rate']:.1f}%
-✅ <b>Ganadores:</b> {stats['wins']}
-❌ <b>Perdedores:</b> {stats['losses']}
-
-💰 <b>P&L Total:</b> ${stats['realized_pnl']:+.2f}
-📊 <b>Profit Factor:</b> {stats['profit_factor']:.2f}
-⏱️ <b>Duración promedio:</b> {stats['avg_trade_duration']:.1f}m
-
-📈 <b>Avg Win:</b> ${stats['avg_win']:.2f}
-📉 <b>Avg Loss:</b> ${stats['avg_loss']:.2f}
-        """
-        self.send_message(chat_id, message)
-
-    def send_help(self, chat_id: int):
-        """Enviar ayuda"""
-        message = """
-🤖 <b>AYUDA - COMANDOS DISPONIBLES</b>
-
-/start - Iniciar el bot de trading
-/status - Estado actual del trading
-/balance - Ver balance y ganancias
-/positions - Posiciones abiertas actuales
-/stats - Estadísticas de performance
-/performance - Rendimiento por símbolo
-/stop - Detener el bot
-/restart - Reiniciar bot
-/help - Mostrar esta ayuda
-
-<b>📊 Información adicional:</b>
-• El bot opera con 20x leverage
-• Modo: {'REAL' if not config.DRY_RUN else 'SIMULACIÓN'}
-• Monitorea USDT pairs con alta liquidez
-
-⏰ <b>Soporte:</b> gregorbc@gmail.com
-        """
-        self.send_message(chat_id, message)
 
 # -------------------- CONFIGURACIÓN DE APLICACIÓN FLASK -------------------- #
 app = Flask(__name__, static_folder='static', template_folder='templates')
@@ -919,7 +1130,15 @@ class BinanceFutures:
             raise ValueError("API keys no configuradas. Establezca las variables de entorno BINANCE_API_KEY and BINANCE_API_SECRET")
 
         self.client = Client(api_key, api_secret, testnet=testnet)
-        log.info(f"🔧 CONECTADO A BINANCE FUTURES {'TESTNET' if testnet else 'MAINNET'} - 20x LEVERAGE")
+        
+        # Mostrar información de conexión
+        mode = "TESTNET" if testnet else "MAINNET REAL"
+        log.info(f"🔧 CONECTADO A BINANCE FUTURES {mode} - 20x LEVERAGE")
+        
+        if testnet:
+            log.info("⚠️ MODO TESTNET - No se realizarán operaciones reales")
+        else:
+            log.info("🚀 MODO REAL - Se realizarán operaciones con dinero real")
 
         try:
             self.exchange_info = self.client.futures_exchange_info()
@@ -1155,11 +1374,19 @@ class TradingBot:
         self.market_analyzer = MarketAnalyzer()
         self.signal_strength = {}
         self.market_regime = "NEUTRAL"
+        
+        # Sistema de Telegram
         self.telegram_notifier = TelegramNotifier()
         self.telegram_handler = TelegramCommandHandler(self)
-
+        
+        # Iniciar polling de comandos de Telegram en hilo separado
         if self.telegram_notifier.enabled:
-            self.telegram_notifier.notify_bot_started(config.LEVERAGE)
+            telegram_polling_thread = threading.Thread(
+                target=self.telegram_handler.poll_commands, 
+                daemon=True
+            )
+            telegram_polling_thread.start()
+            log.info("✅ Sistema de comandos de Telegram iniciado")
 
         try:
             self.performance_analyzer = PerformanceAnalyzer(SessionLocal() if DB_ENABLED else None)
@@ -2279,18 +2506,27 @@ class TradingBot:
             log.error(f"❌ Could not create market order for {symbol}. Response: {order}")
 
     def run(self):
-        log.info(f"🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - USDT PAIRS")
+        # Mostrar información de configuración
+        testnet = os.getenv("BINANCE_TESTNET", "true").lower() == "true"
+        mode = "TESTNET" if testnet else "MAINNET REAL"
+        
+        log.info(f"🚀 STARTING TRADING BOT v12.0 WITH 20x LEVERAGE - {mode}")
         log.info(f"⚡ Configuración 20x: SL={config.STOP_LOSS_PERCENT}%, TP={config.TAKE_PROFIT_PERCENT}%")
         log.info(f"⚡ Risk per trade: {config.RISK_PER_TRADE_PERCENT}%, Max positions: {config.MAX_CONCURRENT_POS}")
         
         log.info(f"🔑 API Key presente: {bool(os.getenv('BINANCE_API_KEY'))}")
         log.info(f"🔑 API Secret presente: {bool(os.getenv('BINANCE_API_SECRET'))}")
-        log.info(f"🌐 Modo Testnet: {os.getenv('BINANCE_TESTNET', 'true').lower() == 'true'}")
+        log.info(f"🌐 Modo: {mode}")
         log.info(f"🔧 Dry Run: {config.DRY_RUN}")
+        log.info(f"🤖 Telegram: {'✅ CONFIGURADO' if self.telegram_notifier.enabled else '❌ NO CONFIGURADO'}")
         
         if DB_ENABLED:
             db_healthy = check_db_connection()
             log.info(f"🗄️ Conexión a base de datos: {'✅ SALUDABLE' if db_healthy else '❌ PROBLEMAS'}")
+        
+        # Notificar inicio por Telegram
+        if self.telegram_notifier.enabled:
+            self.telegram_notifier.notify_bot_started(config.LEVERAGE)
         
         self.start_time = time.time()
 
@@ -2569,13 +2805,69 @@ def emit_periodic_updates():
             log.error(f"Error emitiendo actualizaciones: {e}")
             time.sleep(5)
 
-# Iniciar hilo de actualizaciones
-update_thread = threading.Thread(target=emit_periodic_updates, daemon=True)
-update_thread.start()
+# -------------------- INICIO AUTOMÁTICO DEL BOT -------------------- #
+def auto_start_bot():
+    """Iniciar el bot automáticamente al inicio de la aplicación"""
+    global bot_thread
+    
+    # Verificar si el bot debe iniciarse automáticamente
+    auto_start = os.getenv('AUTO_START_BOT', 'false').lower() == 'true'
+    
+    if auto_start:
+        log.info("🚀 INICIO AUTOMÁTICO CONFIGURADO - Iniciando bot...")
+        
+        # Pequeña pausa para asegurar que todo esté inicializado
+        time.sleep(2)
+        
+        with state_lock:
+            if not app_state["running"]:
+                app_state["running"] = True
+                app_state["status_message"] = "Ejecutándose (Inicio Automático)"
+        
+        def run_bot():
+            try:
+                log.info("🤖 CREANDO INSTANCIA DEL BOT DE TRADING...")
+                bot = TradingBot()
+                log.info("🎯 INICIANDO CICLO PRINCIPAL DEL BOT...")
+                bot.run()
+            except Exception as e:
+                log.error(f"❌ Error en el bot (inicio automático): {e}")
+                import traceback
+                log.error(f"Traceback: {traceback.format_exc()}")
+                with state_lock:
+                    app_state["running"] = False
+                    app_state["status_message"] = f"Error: {str(e)}"
+        
+        bot_thread = threading.Thread(target=run_bot, daemon=True)
+        bot_thread.start()
+        log.info("✅ Bot iniciado automáticamente")
+    else:
+        log.info("⏸️ Inicio automático desactivado - Use la interfaz web para iniciar el bot")
 
+# -------------------- EJECUCIÓN PRINCIPAL -------------------- #
 if __name__ == '__main__':
-    # Configurar logging en tiempo real después de inicializar socketio
+    # Configurar logging en tiempo real
     setup_realtime_logging()
     
-    log.info("🚀 Sistema de logs en tiempo real inicializado")
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+    # Iniciar hilo de actualizaciones
+    update_thread = threading.Thread(target=emit_periodic_updates, daemon=True)
+    update_thread.start()
+    
+    log.info("🚀 Iniciando aplicación Flask con Socket.IO...")
+    log.info("📊 Sistema de logs en tiempo real inicializado")
+    
+    # Iniciar bot automáticamente si está configurado
+    auto_start_bot()
+    
+    # Mostrar estado inicial
+    with state_lock:
+        status = "ACTIVO" if app_state["running"] else "INACTIVO"
+        log.info(f"🔧 Estado del bot: {status}")
+        log.info(f"💰 Balance inicial: {app_state['balance']:.2f} USDT")
+    
+    # Iniciar servidor Flask
+    try:
+        log.info("🌐 Servidor web iniciando en http://0.0.0.0:5000")
+        socketio.run(app, host='0.0.0.0', port=5000, debug=False, use_reloader=False)
+    except Exception as e:
+        log.error(f"❌ Error al iniciar el servidor: {e}")

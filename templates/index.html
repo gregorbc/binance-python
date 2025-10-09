@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-color: #1e3a8a;
@@ -237,6 +238,89 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #2563eb;
         }
+        
+        /* Nuevos estilos para gráficos y mejoras */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        .signal-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .signal-strong {
+            background-color: var(--success-color);
+            box-shadow: 0 0 6px var(--success-color);
+        }
+        
+        .signal-medium {
+            background-color: var(--warning-color);
+        }
+        
+        .signal-weak {
+            background-color: var(--danger-color);
+        }
+        
+        .health-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .health-good {
+            background-color: var(--success-color);
+        }
+        
+        .health-warning {
+            background-color: var(--warning-color);
+        }
+        
+        .health-critical {
+            background-color: var(--danger-color);
+        }
+        
+        .tab-content {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            padding: 15px;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #94a3b8;
+            border: none;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            border-bottom: 2px solid #3b82f6;
+        }
+        
+        .symbol-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 2px;
+        }
+        
+        .performance-badge {
+            font-size: 0.75rem;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -257,6 +341,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#positions"><i class="fas fa-chart-line me-1"></i> Posiciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analytics"><i class="fas fa-chart-bar me-1"></i> Análisis</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#config"><i class="fas fa-cog me-1"></i> Configuración</a>
@@ -312,7 +399,7 @@
                     <div class="card-body">
                         <div class="metric-label">Posiciones Abiertas</div>
                         <div class="metric-value" id="open-positions">0</div>
-                        <div class="metric-label">Límite: <span id="max-positions">3</span></div>
+                        <div class="metric-label">Límite: <span id="max-positions">5</span></div>
                     </div>
                 </div>
             </div>
@@ -343,6 +430,19 @@
                     </div>
                 </div>
 
+                <!-- Señales activas -->
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-bolt me-2"></i> Señales Activas</span>
+                        <span class="badge bg-warning" id="signals-count">0</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="signals-container">
+                            <p class="text-center text-muted my-4">No hay señales activas</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Configuración rápida -->
                 <div class="card" id="config">
                     <div class="card-header">
@@ -352,19 +452,19 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Stop Loss (%)</label>
-                                <input type="range" class="form-range config-slider" id="sl-slider" min="0.5" max="5" step="0.1" value="1.0">
+                                <input type="range" class="form-range config-slider" id="sl-slider" min="0.5" max="5" step="0.1" value="0.8">
                                 <div class="d-flex justify-content-between">
                                     <small>0.5%</small>
-                                    <span class="config-value" id="sl-value">1.0%</span>
+                                    <span class="config-value" id="sl-value">0.8%</span>
                                     <small>5%</small>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Take Profit (%)</label>
-                                <input type="range" class="form-range config-slider" id="tp-slider" min="1" max="10" step="0.1" value="2.5">
+                                <input type="range" class="form-range config-slider" id="tp-slider" min="1" max="10" step="0.1" value="1.8">
                                 <div class="d-flex justify-content-between">
                                     <small>1%</small>
-                                    <span class="config-value" id="tp-value">2.5%</span>
+                                    <span class="config-value" id="tp-value">1.8%</span>
                                     <small>10%</small>
                                 </div>
                             </div>
@@ -372,10 +472,10 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Riesgo por Trade (%)</label>
-                                <input type="range" class="form-range config-slider" id="risk-slider" min="0.5" max="5" step="0.1" value="1.5">
+                                <input type="range" class="form-range config-slider" id="risk-slider" min="0.5" max="5" step="0.1" value="2.0">
                                 <div class="d-flex justify-content-between">
                                     <small>0.5%</small>
-                                    <span class="config-value" id="risk-value">1.5%</span>
+                                    <span class="config-value" id="risk-value">2.0%</span>
                                     <small>5%</small>
                                 </div>
                             </div>
@@ -408,6 +508,9 @@
                             </button>
                             <button class="btn btn-sm btn-outline-secondary" id="pause-logs">
                                 <i class="fas fa-pause me-1"></i> Pausar
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" id="export-logs">
+                                <i class="fas fa-download me-1"></i> Exportar
                             </button>
                         </div>
                     </div>
@@ -479,12 +582,142 @@
             </div>
         </div>
 
+        <!-- Análisis y gráficos -->
+        <div class="row mt-4" id="analytics">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="analyticsTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="performance-tab" data-bs-toggle="tab" data-bs-target="#performance" type="button" role="tab">Rendimiento</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="symbols-tab" data-bs-toggle="tab" data-bs-target="#symbols" type="button" role="tab">Símbolos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="risk-tab" data-bs-toggle="tab" data-bs-target="#risk" type="button" role="tab">Riesgo</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="analyticsTabsContent">
+                        <div class="tab-pane fade show active" id="performance" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="chart-container">
+                                        <canvas id="performanceChart"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>Resumen de Rendimiento</h6>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Mejor Símbolo:</span>
+                                            <span id="best-symbol">-</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Peor Símbolo:</span>
+                                            <span id="worst-symbol">-</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Mejor Trade:</span>
+                                            <span id="best-trade">$0.00</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Peor Trade:</span>
+                                            <span id="worst-trade">$0.00</span>
+                                        </div>
+                                    </div>
+                                    <h6>Estadísticas Diarias</h6>
+                                    <div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>P&L Hoy:</span>
+                                            <span id="daily-pnl">$0.00</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Trades Hoy:</span>
+                                            <span id="daily-trades">0</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Win Rate Hoy:</span>
+                                            <span id="daily-win-rate">0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="symbols" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Top Símbolos por Rendimiento</h6>
+                                    <div id="top-symbols" class="mt-3">
+                                        <p class="text-muted">Cargando datos de símbolos...</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Símbolos Monitoreados</h6>
+                                    <div id="monitored-symbols" class="mt-3">
+                                        <span class="symbol-tag">BTCUSDT</span>
+                                        <span class="symbol-tag">ETHUSDT</span>
+                                        <span class="symbol-tag">BNBUSDT</span>
+                                        <span class="symbol-tag">ADAUSDT</span>
+                                        <span class="symbol-tag">XRPUSDT</span>
+                                        <span class="symbol-tag">SOLUSDT</span>
+                                    </div>
+                                    <h6 class="mt-4">Símbolos Problemáticos</h6>
+                                    <div id="problematic-symbols" class="mt-3">
+                                        <p class="text-muted">No hay símbolos problemáticos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="risk" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Métricas de Riesgo</h6>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Salud General:</span>
+                                            <span><span class="health-indicator health-good"></span> <span id="risk-health">Excelente</span></span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Nivel de Riesgo:</span>
+                                            <span id="risk-level">BAJO</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Límite Pérdida Diaria:</span>
+                                            <span id="daily-loss-limit">6.0%</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Drawdown Actual:</span>
+                                            <span id="current-drawdown">0.0%</span>
+                                        </div>
+                                    </div>
+                                    <h6>Recomendaciones</h6>
+                                    <div id="risk-recommendations">
+                                        <p class="text-muted">No hay recomendaciones activas</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="chart-container">
+                                        <canvas id="riskChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Historial de trades -->
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-history me-2"></i> Historial de Trades Recientes
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-history me-2"></i> Historial de Trades Recientes</span>
+                        <button class="btn btn-sm btn-outline-secondary" id="refresh-trades">
+                            <i class="fas fa-sync-alt me-1"></i> Actualizar
+                        </button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -500,11 +733,12 @@
                                         <th>P&L</th>
                                         <th>ROE</th>
                                         <th>Duración</th>
+                                        <th>Razón</th>
                                     </tr>
                                 </thead>
                                 <tbody id="trades-body">
                                     <tr>
-                                        <td colspan="9" class="text-center text-muted py-4">No hay trades registrados</td>
+                                        <td colspan="10" class="text-center text-muted py-4">No hay trades registrados</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -518,19 +752,20 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>
         // Variables globales
         let socket;
         let isLogPaused = false;
         let logBuffer = [];
+        let performanceChart, riskChart;
         
         // Inicialización cuando el DOM está listo
         document.addEventListener('DOMContentLoaded', function() {
             initializeSocket();
             setupEventListeners();
             loadInitialData();
+            initializeCharts();
         });
         
         // Inicializar conexión Socket.IO
@@ -564,6 +799,97 @@
             socket.on('config_updated', function() {
                 showAlert('Configuración actualizada', 'success');
             });
+            
+            socket.on('signals_update', function(data) {
+                updateSignals(data);
+            });
+        }
+        
+        // Inicializar gráficos
+        function initializeCharts() {
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            performanceChart = new Chart(performanceCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Balance',
+                        data: [],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'P&L Acumulado',
+                        data: [],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#94a3b8'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#94a3b8'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#e2e8f0'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            const riskCtx = document.getElementById('riskChart').getContext('2d');
+            riskChart = new Chart(riskCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Exposición Actual', 'Disponible'],
+                    datasets: [{
+                        data: [0, 100],
+                        backgroundColor: [
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(34, 197, 94, 0.8)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#e2e8f0',
+                                padding: 20
+                            }
+                        }
+                    }
+                }
+            });
         }
         
         // Configurar event listeners
@@ -591,6 +917,10 @@
             // Logs
             document.getElementById('clear-logs').addEventListener('click', clearLogs);
             document.getElementById('pause-logs').addEventListener('click', togglePauseLogs);
+            document.getElementById('export-logs').addEventListener('click', exportLogs);
+            
+            // Trades
+            document.getElementById('refresh-trades').addEventListener('click', refreshTrades);
         }
         
         // Cargar datos iniciales
@@ -603,6 +933,16 @@
                 .catch(error => {
                     console.error('Error cargando datos iniciales:', error);
                     showAlert('Error cargando datos iniciales', 'danger');
+                });
+                
+            // Cargar señales activas
+            fetch('/api/signals')
+                .then(response => response.json())
+                .then(data => {
+                    updateSignals(data);
+                })
+                .catch(error => {
+                    console.error('Error cargando señales:', error);
                 });
         }
         
@@ -657,6 +997,81 @@
             
             // Actualizar configuración en sliders
             updateConfigSliders(data.config);
+            
+            // Actualizar análisis y gráficos
+            updateAnalytics(data);
+        }
+        
+        // Actualizar análisis y gráficos
+        function updateAnalytics(data) {
+            // Actualizar gráfico de rendimiento
+            if (data.balance_history && data.balance_history.length > 0) {
+                const labels = data.balance_history.map((_, i) => `T${i+1}`);
+                const balanceData = data.balance_history;
+                const pnlData = data.balance_history.map(b => b - data.capital_stats.initial_balance);
+                
+                performanceChart.data.labels = labels;
+                performanceChart.data.datasets[0].data = balanceData;
+                performanceChart.data.datasets[1].data = pnlData;
+                performanceChart.update();
+            }
+            
+            // Actualizar gráfico de riesgo
+            const exposure = data.risk_metrics.exposure_ratio * 100;
+            riskChart.data.datasets[0].data = [exposure, 100 - exposure];
+            riskChart.update();
+            
+            // Actualizar métricas de riesgo
+            document.getElementById('current-drawdown').textContent = data.risk_metrics.max_drawdown.toFixed(2) + '%';
+            document.getElementById('daily-loss-limit').textContent = data.config.MAX_DAILY_LOSS_PERCENT + '%';
+            
+            // Calcular salud del riesgo
+            let riskHealth = 'Excelente';
+            let riskLevel = 'BAJO';
+            let healthClass = 'health-good';
+            
+            if (data.risk_metrics.max_drawdown > 5) {
+                riskHealth = 'Crítico';
+                riskLevel = 'ALTO';
+                healthClass = 'health-critical';
+            } else if (data.risk_metrics.max_drawdown > 2) {
+                riskHealth = 'Advertencia';
+                riskLevel = 'MEDIO';
+                healthClass = 'health-warning';
+            }
+            
+            document.getElementById('risk-health').textContent = riskHealth;
+            document.getElementById('risk-level').textContent = riskLevel;
+            
+            const healthIndicator = document.querySelector('#risk-health').previousElementSibling;
+            healthIndicator.className = 'health-indicator ' + healthClass;
+            
+            // Actualizar recomendaciones de riesgo
+            updateRiskRecommendations(data);
+        }
+        
+        // Actualizar recomendaciones de riesgo
+        function updateRiskRecommendations(data) {
+            const recommendations = document.getElementById('risk-recommendations');
+            let html = '';
+            
+            if (data.risk_metrics.consecutive_losses >= 2) {
+                html += '<div class="alert alert-warning py-2"><small>⚠️ Reducir tamaño de posición después de pérdidas consecutivas</small></div>';
+            }
+            
+            if (data.risk_metrics.exposure_ratio > 0.7) {
+                html += '<div class="alert alert-danger py-2"><small>🚨 Exposición demasiado alta - Considerar reducir posiciones</small></div>';
+            }
+            
+            if (data.risk_metrics.max_drawdown > 5) {
+                html += '<div class="alert alert-danger py-2"><small>🔴 Drawdown elevado - Revisar estrategia</small></div>';
+            }
+            
+            if (html === '') {
+                html = '<p class="text-muted">No hay recomendaciones activas</p>';
+            }
+            
+            recommendations.innerHTML = html;
         }
         
         // Actualizar estado del bot
@@ -692,6 +1107,7 @@
                 const entryPrice = parseFloat(position.entryPrice);
                 const unrealizedPnl = parseFloat(position.unrealizedProfit);
                 const leverage = position.leverage || 20;
+                const pnlPercentage = (unrealizedPnl / (Math.abs(parseFloat(position.positionAmt)) * entryPrice / leverage)) * 100;
                 
                 html += `
                 <div class="card mb-2 position-${side.toLowerCase()}">
@@ -703,9 +1119,49 @@
                             </div>
                             <div class="text-end">
                                 <div class="${unrealizedPnl >= 0 ? 'profit-positive' : 'profit-negative'}">
-                                    $${unrealizedPnl.toFixed(2)}
+                                    $${unrealizedPnl.toFixed(2)} (${pnlPercentage.toFixed(2)}%)
                                 </div>
                                 <small class="text-muted">No realizado</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        // Actualizar señales activas
+        function updateSignals(signals) {
+            const container = document.getElementById('signals-container');
+            const countElement = document.getElementById('signals-count');
+            
+            if (!signals || Object.keys(signals).length === 0) {
+                container.innerHTML = '<p class="text-center text-muted my-4">No hay señales activas</p>';
+                countElement.textContent = '0';
+                return;
+            }
+            
+            countElement.textContent = Object.keys(signals).length;
+            
+            let html = '';
+            for (const [symbol, signal] of Object.entries(signals)) {
+                const strength = signal.strength || 0.5;
+                let strengthClass = 'signal-medium';
+                if (strength > 0.7) strengthClass = 'signal-strong';
+                if (strength < 0.3) strengthClass = 'signal-weak';
+                
+                html += `
+                <div class="card mb-2">
+                    <div class="card-body py-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-0">${symbol}</h6>
+                                <small class="text-muted">${signal.direction} • Fuerza: ${(strength * 100).toFixed(0)}%</small>
+                            </div>
+                            <div>
+                                <span class="signal-indicator ${strengthClass}"></span>
                             </div>
                         </div>
                     </div>
@@ -727,7 +1183,7 @@
             const tbody = document.getElementById('trades-body');
             
             if (!trades || trades.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="9" class="text-center text-muted py-4">No hay trades registrados</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="10" class="text-center text-muted py-4">No hay trades registrados</td></tr>';
                 return;
             }
             
@@ -738,6 +1194,7 @@
             recentTrades.forEach(trade => {
                 const pnl = parseFloat(trade.pnl || 0);
                 const roe = parseFloat(trade.roe || 0);
+                const reason = trade.exit_reason || 'MANUAL';
                 
                 html += `
                 <tr>
@@ -750,6 +1207,7 @@
                     <td class="${pnl >= 0 ? 'profit-positive' : 'profit-negative'}">${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)}</td>
                     <td class="${roe >= 0 ? 'profit-positive' : 'profit-negative'}">${roe >= 0 ? '+' : ''}${roe.toFixed(2)}%</td>
                     <td>${trade.duration || 'N/A'}</td>
+                    <td><span class="badge bg-secondary">${reason}</span></td>
                 </tr>
                 `;
             });
@@ -821,6 +1279,36 @@
             }
         }
         
+        // Exportar logs
+        function exportLogs() {
+            const logContainer = document.getElementById('log-container');
+            const logs = Array.from(logContainer.children).map(log => log.textContent).join('\n');
+            
+            const blob = new Blob([logs], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `trading_bot_logs_${new Date().toISOString().slice(0, 10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Actualizar trades
+        function refreshTrades() {
+            fetch('/api/history')
+                .then(response => response.json())
+                .then(data => {
+                    updateTradesHistory(data.trades);
+                    showAlert('Historial de trades actualizado', 'success');
+                })
+                .catch(error => {
+                    console.error('Error actualizando trades:', error);
+                    showAlert('Error actualizando trades', 'danger');
+                });
+        }
+        
         // Iniciar bot
         function startBot() {
             fetch('/api/start', {
@@ -855,12 +1343,12 @@
             .then(data => {
                 if (data.status === 'stopped') {
                     showAlert('Bot detenido correctamente', 'info');
-                updateStatus('Detenido', 'stopped');
-                document.getElementById('global-status').classList.remove('pulse');
-                document.getElementById('global-status').classList.add('status-stopped');
-                document.getElementById('status-text').textContent = 'Detenido';
-                document.getElementById('global-status').classList.remove('status-running');
-            }
+                    updateStatus('Detenido', 'stopped');
+                    document.getElementById('global-status').classList.remove('pulse');
+                    document.getElementById('global-status').classList.add('status-stopped');
+                    document.getElementById('status-text').textContent = 'Detenido';
+                    document.getElementById('global-status').classList.remove('status-running');
+                }
             })
             .catch(error => {
                 console.error('Error deteniendo bot:', error);
