@@ -30,36 +30,130 @@ import time
 import math
 import logging
 import threading
-import requests
-import pandas as pd
-import numpy as np
-import psutil
 import csv
 from dataclasses import dataclass, asdict
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 import warnings
 
+try:
+    import requests
+except ImportError:  # pragma: no cover - network features are optional in tests
+    requests = None
+
+try:
+    import pandas as pd
+except ImportError:  # pragma: no cover - analytics fallback for tests
+    pd = None
+
+try:
+    import numpy as np
+except ImportError:  # pragma: no cover - numerical analytics optional
+    np = None
+
+try:
+    import psutil
+except ImportError:  # pragma: no cover - provide lightweight fallback for tests
+    class _PsutilFallback:
+        """Minimal psutil substitute used in the unit tests."""
+
+        class Process:
+            def memory_info(self):
+                return type("Memory", (), {"rss": 0})()
+
+        @staticmethod
+        def cpu_percent(*_args, **_kwargs):
+            return 0.0
+
+    psutil = _PsutilFallback()
+
 # Suprimir warnings
 warnings.filterwarnings("ignore")
 
-# Importaciones de terceros
-from dotenv import load_dotenv
-from binance.client import Client
-from binance.enums import SIDE_BUY, SIDE_SELL, FUTURE_ORDER_TYPE_MARKET
-from binance.exceptions import BinanceAPIException
-from flask import Flask, render_template, jsonify, request
-from flask_socketio import SocketIO
-from flask_cors import CORS
+# Importaciones de terceros (opcionales durante los tests)
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - configuration loading optional
+    def load_dotenv(*_args, **_kwargs):
+        return False
+
+try:
+    from binance.client import Client
+    from binance.enums import SIDE_BUY, SIDE_SELL, FUTURE_ORDER_TYPE_MARKET
+    from binance.exceptions import BinanceAPIException
+except ImportError:  # pragma: no cover - provide lightweight fallbacks for tests
+    Client = object
+    SIDE_BUY = "BUY"
+    SIDE_SELL = "SELL"
+    FUTURE_ORDER_TYPE_MARKET = "MARKET"
+
+    class BinanceAPIException(Exception):
+        def __init__(self, message="", code=None):
+            super().__init__(message)
+            self.code = code
+
+try:
+    from flask import Flask, render_template, jsonify, request
+    from flask_socketio import SocketIO
+    from flask_cors import CORS
+except ImportError:  # pragma: no cover - minimal web stubs for tests
+    Flask = None
+
+    def render_template(template_name, *args, **kwargs):
+        return template_name
+
+    def jsonify(*args, **kwargs):
+        if args and kwargs:
+            raise TypeError("jsonify fallback expects either args or kwargs")
+        return args[0] if args else kwargs
+
+    class _DummyRequest:
+        def __init__(self):
+            self.json = {}
+            self.args = {}
+            self.form = {}
+
+    request = _DummyRequest()
+
+    class SocketIO:
+        def __init__(self, app, *args, **kwargs):
+            self.app = app
+
+        def emit(self, *_args, **_kwargs):
+            pass
+
+        def on(self, *_args, **_kwargs):
+            def decorator(func):
+                return func
+
+            return decorator
+
+    def CORS(_app, *args, **kwargs):  # pylint: disable=unused-argument
+        return _app
 
 # ═══════════════════════════════════════════════════════════════════
 # CONFIGURACIÓN DE FLASK
 # ═══════════════════════════════════════════════════════════════════
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'bot-trading-2024')
-CORS(app)
-socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*")
+if Flask is not None:
+    app = Flask(__name__, static_folder='static', template_folder='templates')
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'bot-trading-2024')
+    CORS(app)
+    socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*")
+else:  # pragma: no cover - lightweight stand-in for unit tests
+    class _FallbackApp:
+        def __init__(self):
+            self.config = {}
+
+        def route(self, *_args, **_kwargs):
+            def decorator(func):
+                return func
+
+            return decorator
+
+    app = _FallbackApp()
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'bot-trading-2024')
+    socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*")
 
 # ═══════════════════════════════════════════════════════════════════
 # CONFIGURACIÓN PRINCIPAL MEJORADA
@@ -135,6 +229,88 @@ if os.getenv("RISK_PER_TRADE_PERCENT"):
     config.RISK_PER_TRADE_PERCENT = float(os.getenv("RISK_PER_TRADE_PERCENT"))
 if os.getenv("DRY_RUN"):
     config.DRY_RUN = os.getenv("DRY_RUN").lower() == "true"
+
+# ═══════════════════════════════════════════════════════════════════
+# PATRONES DE VELAS CLÁSICOS
+# ═══════════════════════════════════════════════════════════════════
+
+
+class CandlePatterns:
+    """Colección de patrones de velas utilizados en los tests."""
+
+    def _body(self, candle: Dict[str, float]) -> float:
+        return abs(candle['close'] - candle['open'])
+
+    def _upper_wick(self, candle: Dict[str, float]) -> float:
+        return candle['high'] - max(candle['open'], candle['close'])
+
+    def _lower_wick(self, candle: Dict[str, float]) -> float:
+        return min(candle['open'], candle['close']) - candle['low']
+
+    def is_bullish_engulfing(self, current: Dict[str, float], previous: Dict[str, float]) -> bool:
+        if previous['close'] >= previous['open']:
+            return False
+        if current['close'] <= current['open']:
+            return False
+        return current['open'] <= previous['close'] and current['close'] >= previous['open']
+
+    def is_bearish_engulfing(self, current: Dict[str, float], previous: Dict[str, float]) -> bool:
+        if previous['close'] <= previous['open']:
+            return False
+        if current['close'] >= current['open']:
+            return False
+        return current['open'] >= previous['close'] and current['close'] <= previous['open']
+
+    def is_hammer(self, candle: Dict[str, float]) -> bool:
+        body = self._body(candle)
+        if candle['close'] <= candle['open']:
+            return False
+        lower_wick = self._lower_wick(candle)
+        upper_wick = self._upper_wick(candle)
+        total_range = candle['high'] - candle['low']
+        if total_range == 0:
+            return False
+        return lower_wick >= body * 2 and upper_wick < body * 0.8 and body / total_range <= 0.4
+
+    def is_shooting_star(self, candle: Dict[str, float]) -> bool:
+        body = self._body(candle)
+        if candle['close'] >= candle['open']:
+            return False
+        upper_wick = self._upper_wick(candle)
+        lower_wick = self._lower_wick(candle)
+        total_range = candle['high'] - candle['low']
+        if total_range == 0:
+            return False
+        return upper_wick >= body * 2 and lower_wick < body * 0.8 and body / total_range <= 0.4
+
+    def is_pin_bar_bullish(self, candle: Dict[str, float]) -> bool:
+        body = self._body(candle)
+        lower_wick = self._lower_wick(candle)
+        upper_wick = self._upper_wick(candle)
+        total_range = candle['high'] - candle['low']
+        if total_range == 0:
+            return False
+        return (
+            candle['close'] >= candle['open']
+            and lower_wick >= body * 2.5
+            and upper_wick <= body
+            and max(candle['open'], candle['close']) >= candle['high'] - total_range * 0.2
+        )
+
+    def is_pin_bar_bearish(self, candle: Dict[str, float]) -> bool:
+        body = self._body(candle)
+        upper_wick = self._upper_wick(candle)
+        lower_wick = self._lower_wick(candle)
+        total_range = candle['high'] - candle['low']
+        if total_range == 0:
+            return False
+        return (
+            candle['close'] <= candle['open']
+            and upper_wick >= body * 2.5
+            and lower_wick <= body
+            and min(candle['open'], candle['close']) <= candle['low'] + total_range * 0.2
+        )
+
 
 # ═══════════════════════════════════════════════════════════════════
 # LOGGING MEJORADO
@@ -1100,7 +1276,8 @@ app_state = {
         "trades_count": 0,
         "wins": 0,
         "losses": 0,
-        "win_rate": 0.0
+        "win_rate": 0.0,
+        "max_drawdown": 0.0
     },
     "balance": 0.0,
     "trades_history": [],
@@ -1233,6 +1410,7 @@ class CapitalManager:
         self.api = api
         self.current_balance = 0.0
         self.initial_balance = 0.0
+        self.peak_balance = 0.0
         self.last_update = 0
         self.daily_pnl = 0.0
         self.last_reset = time.time()
@@ -1258,18 +1436,20 @@ class CapitalManager:
                 if self.current_balance == 0:
                     self.initial_balance = new_balance
                     log.info(f"💰 Capital inicial: {new_balance:.2f} USDT")
-                
+
                 # Reset diario de PnL
                 if time.time() - self.last_reset > 86400:  # 24 horas
                     self.daily_pnl = 0
                     self.last_reset = time.time()
                 
                 self.current_balance = new_balance
+                self.peak_balance = max(self.peak_balance, new_balance)
                 self.last_update = time.time()
-                
+
                 with state_lock:
                     app_state["balance"] = self.current_balance
-                
+                    self._update_drawdown_state()
+
                 return True
         return False
 
@@ -1278,6 +1458,16 @@ class CapitalManager:
         if self.initial_balance == 0:
             return 0.0
         return ((self.initial_balance - self.current_balance) / self.initial_balance) * 100
+
+    def _update_drawdown_state(self):
+        if self.peak_balance <= 0:
+            return
+
+        current_drawdown = ((self.peak_balance - self.current_balance) / self.peak_balance) * 100
+        stats = app_state.get("performance_stats", {})
+        max_drawdown = stats.get("max_drawdown", 0.0)
+        stats["max_drawdown"] = max(max_drawdown, current_drawdown)
+        app_state["performance_stats"] = stats
 
 # ═══════════════════════════════════════════════════════════════════
 # NOTIFICADOR TELEGRAM MEJORADO
@@ -1488,7 +1678,7 @@ class SignalDetector:
 
 class RiskManager:
     """Gestor de riesgo dinámico mejorado"""
-    
+
     @staticmethod
     def calculate_sl_tp(signal: Dict, price: float) -> Tuple[float, float]:
         """Calcular SL y TP dinámicos"""
@@ -1514,6 +1704,52 @@ class RiskManager:
             return price - sl_dist, price + tp_dist
         else:
             return price + sl_dist, price - tp_dist
+
+
+class ImprovedRiskManager:
+    """Versión simplificada del gestor de riesgo utilizada en los tests unitarios."""
+
+    def __init__(self):
+        self.config = config
+
+    def calculate_position_size_kelly(
+        self,
+        balance: float,
+        signal_strength: float,
+        win_rate: float,
+        avg_rr: float
+    ) -> float:
+        base_risk = balance * (self.config.RISK_PER_TRADE_PERCENT / 100)
+        if win_rate <= 0 or avg_rr <= 0:
+            return base_risk
+
+        kelly_fraction = win_rate - (1 - win_rate) / max(avg_rr, 1e-9)
+        kelly_fraction = max(0.0, kelly_fraction)
+        adjusted_fraction = min(kelly_fraction * max(signal_strength, 0), 1.0)
+        return max(base_risk, balance * adjusted_fraction)
+
+    def calculate_sl_tp_levels(self, signal: Dict[str, float], price: float) -> Dict[str, float]:
+        atr = signal.get('atr', price * 0.01)
+        strength = signal.get('strength', 0.5)
+
+        base_sl_mult = 2.0
+        reward_steps = [1.8, 2.6, 3.4]
+        reward_boost = strength * 0.5
+
+        if signal.get('type') == 'LONG':
+            sl = price - atr * base_sl_mult
+            tps = [price + atr * (step + reward_boost) for step in reward_steps]
+        else:
+            sl = price + atr * base_sl_mult
+            tps = [price - atr * (step + reward_boost) for step in reward_steps]
+
+        return {
+            'sl': sl,
+            'tp1': tps[0],
+            'tp2': tps[1],
+            'tp3': tps[2]
+        }
+
 
 # ═══════════════════════════════════════════════════════════════════
 # TRAILING STOP MEJORADO
