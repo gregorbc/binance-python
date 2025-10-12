@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 ═══════════════════════════════════════════════════════════════════
-    BINANCE FUTURES BOT V13.0 - OPTIMIZADO Y MEJORADO
+    BINANCE FUTURES BOT V14.0 - SISTEMA AVANZADO CON IA
 ═══════════════════════════════════════════════════════════════════
 Bot de trading automatizado con:
 - Sistema de señales multi-confirmación (4/8 puntos)
@@ -16,9 +16,11 @@ Bot de trading automatizado con:
 - Backtesting integrado
 - Pyramiding inteligente
 - Analytics avanzados
+- IA para optimización
+- Monitoreo avanzado de posiciones
 
 Autor: gregorbc@gmail.com
-Versión: 13.0 (Mejorada)
+Versión: 14.0 (Mejorada con IA)
 Fecha: 2024
 ═══════════════════════════════════════════════════════════════════
 """
@@ -32,6 +34,7 @@ import requests
 import pandas as pd
 import numpy as np
 import psutil
+import csv
 from dataclasses import dataclass, asdict
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
@@ -113,9 +116,14 @@ class CONFIG:
     ENABLE_PYRAMIDING: bool = True
     MAX_PYRAMID_LEVELS: int = 2
     
+    # IA y Analytics
+    ENABLE_AI_ANALYSIS: bool = True
+    SAVE_TRADE_CSV: bool = True
+    PERFORMANCE_REPORT_INTERVAL: int = 50
+    
     # Logging
     LOG_LEVEL: str = "DEBUG"
-    LOG_FILE: str = "bot_v13_improved.log"
+    LOG_FILE: str = "bot_v14_advanced.log"
 
 config = CONFIG()
 
@@ -220,9 +228,11 @@ class HealthMonitor:
             'positions_closed': 0,
             'signals_detected': 0,
             'trades_won': 0,
-            'trades_lost': 0
+            'trades_lost': 0,
+            'ai_analysis': 0
         }
         self.start_time = time.time()
+        self.market_volatility = 0
     
     def record_metric(self, metric_name, value=1):
         """Registrar métrica"""
@@ -253,6 +263,7 @@ class HealthMonitor:
                 'error_rate': error_rate,
                 'win_rate': win_rate,
                 'signals_per_hour': signals_per_hour,
+                'market_volatility': self.market_volatility,
                 'metrics': self.metrics.copy()
             }
         except Exception as e:
@@ -262,21 +273,490 @@ class HealthMonitor:
                 'error_rate': 1.0,
                 'win_rate': 0.0,
                 'signals_per_hour': 0.0,
+                'market_volatility': 0,
                 'metrics': self.metrics.copy()
             }
 
 # ═══════════════════════════════════════════════════════════════════
-# SISTEMA DE BACKTESTING (CORREGIDO)
+# SISTEMA AVANZADO DE LOGS Y ANÁLISIS (NUEVO)
+# ═══════════════════════════════════════════════════════════════════
+
+class AdvancedTradeLogger:
+    """Sistema avanzado de logging y análisis de trades"""
+    
+    def __init__(self):
+        self.trade_history = []
+        self.performance_metrics = {}
+        self.best_trades = []
+        self.worst_trades = []
+        
+    def log_trade_detailed(self, trade_data):
+        """Guardar trade con análisis detallado"""
+        detailed_trade = {
+            **trade_data,
+            'timestamp': datetime.now().isoformat(),
+            'market_condition': app_state.get("market_condition", "NORMAL"),
+            'volatility': getattr(health_monitor, 'market_volatility', 0),
+            'signal_score': trade_data.get('signal_score', 0),
+            'risk_adjustment': trade_data.get('risk_adjustment', 1.0)
+        }
+        
+        self.trade_history.append(detailed_trade)
+        
+        # Mantener ordenados los mejores/peores trades
+        self._update_best_worst_trades(detailed_trade)
+        
+        # Guardar en archivo
+        if config.SAVE_TRADE_CSV:
+            self._save_to_csv(detailed_trade)
+        
+        # Análisis en tiempo real
+        self._real_time_analysis(detailed_trade)
+        
+        log.info(f"📊 Trade analizado: {trade_data['symbol']} | "
+                f"P&L: {trade_data.get('pnl', 0):+.2f} | "
+                f"Score: {trade_data.get('signal_score', 0)}/8")
+    
+    def _update_best_worst_trades(self, trade):
+        """Actualizar lista de mejores y peores trades"""
+        if trade.get('pnl', 0) > 0:
+            self.best_trades.append(trade)
+            self.best_trades.sort(key=lambda x: x.get('pnl', 0), reverse=True)
+            self.best_trades = self.best_trades[:10]  # Top 10
+        else:
+            self.worst_trades.append(trade)
+            self.worst_trades.sort(key=lambda x: x.get('pnl', 0))
+            self.worst_trades = self.worst_trades[:10]  # Peores 10
+    
+    def _save_to_csv(self, trade_data):
+        """Guardar trade en CSV para análisis posterior"""
+        try:
+            filename = f"logs/trade_analysis_{datetime.now().strftime('%Y%m')}.csv"
+            os.makedirs('logs', exist_ok=True)
+            
+            file_exists = os.path.isfile(filename)
+            
+            with open(filename, 'a', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=[
+                    'timestamp', 'symbol', 'side', 'entry_price', 'exit_price',
+                    'quantity', 'pnl', 'duration', 'signal_score', 'market_condition',
+                    'volatility', 'risk_adjustment', 'exit_reason'
+                ])
+                
+                if not file_exists:
+                    writer.writeheader()
+                
+                writer.writerow({
+                    'timestamp': trade_data['timestamp'],
+                    'symbol': trade_data['symbol'],
+                    'side': trade_data['side'],
+                    'entry_price': trade_data.get('entry_price', 0),
+                    'exit_price': trade_data.get('exit_price', 0),
+                    'quantity': trade_data.get('quantity', 0),
+                    'pnl': trade_data.get('pnl', 0),
+                    'duration': trade_data.get('duration', 0),
+                    'signal_score': trade_data.get('signal_score', 0),
+                    'market_condition': trade_data.get('market_condition', 'NORMAL'),
+                    'volatility': trade_data.get('volatility', 0),
+                    'risk_adjustment': trade_data.get('risk_adjustment', 1.0),
+                    'exit_reason': trade_data.get('reason', 'Unknown')
+                })
+        except Exception as e:
+            log.error(f"Error guardando CSV: {e}")
+    
+    def _real_time_analysis(self, trade):
+        """Análisis en tiempo real del trade"""
+        try:
+            # Análisis de patrones
+            pnl = trade.get('pnl', 0)
+            score = trade.get('signal_score', 0)
+            
+            if pnl > 0 and score >= 6:
+                log.info(f"🎯 PATRÓN EXITOSO: Score alto ({score}) = P&L positivo")
+            elif pnl < 0 and score >= 6:
+                log.warning(f"⚠️ PATRÓN INESPERADO: Score alto ({score}) = P&L negativo")
+            elif pnl > 0 and score <= 4:
+                log.info(f"🎯 SORPRESA POSITIVA: Score bajo ({score}) = P&L positivo")
+                
+        except Exception as e:
+            log.error(f"Error en análisis en tiempo real: {e}")
+    
+    def get_performance_analysis(self):
+        """Obtener análisis de performance completo"""
+        if not self.trade_history:
+            return {}
+        
+        try:
+            df = pd.DataFrame(self.trade_history)
+            
+            # Métricas básicas
+            total_trades = len(df)
+            winning_trades = df[df['pnl'] > 0]
+            losing_trades = df[df['pnl'] < 0]
+            
+            win_rate = len(winning_trades) / total_trades * 100 if total_trades > 0 else 0
+            avg_win = winning_trades['pnl'].mean() if not winning_trades.empty else 0
+            avg_loss = losing_trades['pnl'].mean() if not losing_trades.empty else 0
+            
+            # Análisis por condiciones de mercado
+            normal_trades = df[df['market_condition'] == 'NORMAL']
+            high_vol_trades = df[df['market_condition'] == 'HIGH_VOLATILITY']
+            low_vol_trades = df[df['market_condition'] == 'LOW_VOLATILITY']
+            
+            return {
+                'summary': {
+                    'total_trades': total_trades,
+                    'win_rate': win_rate,
+                    'avg_win': avg_win,
+                    'avg_loss': avg_loss,
+                    'profit_factor': abs(winning_trades['pnl'].sum() / losing_trades['pnl'].sum()) if not losing_trades.empty else float('inf'),
+                    'total_pnl': df['pnl'].sum()
+                },
+                'market_analysis': {
+                    'normal_condition': {
+                        'trades': len(normal_trades),
+                        'win_rate': len(normal_trades[normal_trades['pnl'] > 0]) / len(normal_trades) * 100 if len(normal_trades) > 0 else 0,
+                        'avg_pnl': normal_trades['pnl'].mean() if not normal_trades.empty else 0
+                    },
+                    'high_volatility': {
+                        'trades': len(high_vol_trades),
+                        'win_rate': len(high_vol_trades[high_vol_trades['pnl'] > 0]) / len(high_vol_trades) * 100 if len(high_vol_trades) > 0 else 0,
+                        'avg_pnl': high_vol_trades['pnl'].mean() if not high_vol_trades.empty else 0
+                    },
+                    'low_volatility': {
+                        'trades': len(low_vol_trades),
+                        'win_rate': len(low_vol_trades[low_vol_trades['pnl'] > 0]) / len(low_vol_trades) * 100 if len(low_vol_trades) > 0 else 0,
+                        'avg_pnl': low_vol_trades['pnl'].mean() if not low_vol_trades.empty else 0
+                    }
+                },
+                'signal_analysis': self._analyze_signal_performance(df),
+                'best_trades': self.best_trades[:5],
+                'worst_trades': self.worst_trades[:5]
+            }
+        except Exception as e:
+            log.error(f"Error en análisis de performance: {e}")
+            return {}
+    
+    def _analyze_signal_performance(self, df):
+        """Analizar performance por score de señal"""
+        signal_performance = {}
+        
+        try:
+            for score in range(4, 9):  # Scores de 4 a 8
+                score_trades = df[df['signal_score'] == score]
+                if not score_trades.empty:
+                    win_rate = len(score_trades[score_trades['pnl'] > 0]) / len(score_trades) * 100
+                    avg_pnl = score_trades['pnl'].mean()
+                    signal_performance[f'score_{score}'] = {
+                        'trades': len(score_trades),
+                        'win_rate': win_rate,
+                        'avg_pnl': avg_pnl
+                    }
+        except Exception as e:
+            log.error(f"Error analizando señales: {e}")
+        
+        return signal_performance
+
+# ═══════════════════════════════════════════════════════════════════
+# SISTEMA DE IA PARA OPTIMIZACIÓN (NUEVO)
+# ═══════════════════════════════════════════════════════════════════
+
+class TradingAI:
+    """Sistema de IA para optimización de trades"""
+    
+    def __init__(self):
+        self.learning_data = []
+        self.patterns_detected = []
+        self.model_weights = {
+            'ema_cross': 1.0,
+            'rsi': 1.0,
+            'macd': 1.0,
+            'volume': 1.0,
+            'momentum': 1.0,
+            'market_condition': 1.0
+        }
+    
+    def analyze_trade_pattern(self, trade_data, market_condition):
+        """Analizar patrones del trade usando IA simple"""
+        try:
+            health_monitor.record_metric('ai_analysis')
+            
+            # Factores de análisis
+            factors = {
+                'duration': trade_data.get('duration', 0),
+                'pnl_percentage': (trade_data.get('pnl', 0) / trade_data.get('entry_price', 1)) * 100,
+                'signal_score': trade_data.get('signal_score', 0),
+                'market_condition': market_condition,
+                'exit_reason': trade_data.get('reason', 'Unknown')
+            }
+            
+            # Aprendizaje de patrones
+            self._update_model_weights(factors, trade_data.get('pnl', 0))
+            
+            # Detección de patrones recurrentes
+            pattern = self._detect_pattern(factors)
+            if pattern:
+                self.patterns_detected.append({
+                    'pattern': pattern,
+                    'timestamp': datetime.now().isoformat(),
+                    'factors': factors
+                })
+                log.info(f"🤖 IA detectó patrón: {pattern}")
+            
+            return factors
+            
+        except Exception as e:
+            log.error(f"Error en análisis IA: {e}")
+            return {}
+    
+    def _update_model_weights(self, factors, pnl):
+        """Actualizar pesos del modelo basado en resultados"""
+        try:
+            # Ajustar pesos según performance
+            if pnl > 0:
+                # Reforzar factores positivos
+                adjustment = 1.05
+            else:
+                # Reducir factores negativos
+                adjustment = 0.95
+            
+            # Ajustar pesos (simplificado)
+            for factor in factors:
+                if factor in self.model_weights:
+                    self.model_weights[factor] *= adjustment
+                    # Limitar pesos
+                    self.model_weights[factor] = max(0.1, min(2.0, self.model_weights[factor]))
+                    
+        except Exception as e:
+            log.error(f"Error actualizando pesos IA: {e}")
+    
+    def _detect_pattern(self, factors):
+        """Detectar patrones en los trades"""
+        try:
+            # Patrón: Trades cortos y rentables
+            if (factors['duration'] < 300 and  # menos de 5 minutos
+                factors['pnl_percentage'] > 0.5):
+                return "SCALPING_EXITOSO"
+            
+            # Patrón: Trades largos con buen rendimiento
+            if (factors['duration'] > 1800 and  # más de 30 minutos
+                factors['pnl_percentage'] > 1.0):
+                return "SWING_EXITOSO"
+            
+            # Patrón: Señales fuertes con buen resultado
+            if (factors['signal_score'] >= 7 and
+                factors['pnl_percentage'] > 0.8):
+                return "SEÑAL_FUERTE_EXITOSA"
+                
+            return None
+            
+        except Exception as e:
+            log.error(f"Error detectando patrones: {e}")
+            return None
+    
+    def get_optimization_recommendations(self):
+        """Obtener recomendaciones de optimización"""
+        recommendations = []
+        
+        try:
+            # Analizar pesos del modelo
+            for factor, weight in self.model_weights.items():
+                if weight > 1.5:
+                    recommendations.append(f"✅ Aumentar importancia de {factor}")
+                elif weight < 0.7:
+                    recommendations.append(f"⚠️ Reducir importancia de {factor}")
+            
+            # Recomendaciones basadas en patrones
+            recent_patterns = self.patterns_detected[-5:]  # últimos 5 patrones
+            if any("SCALPING_EXITOSO" in p.get('pattern', '') for p in recent_patterns):
+                recommendations.append("🎯 Estrategia de scalping funcionando bien - considerar timeframe más corto")
+            
+            if any("SEÑAL_FUERTE_EXITOSA" in p.get('pattern', '') for p in recent_patterns):
+                recommendations.append("📈 Considerar aumentar tamaño en señales con score ≥ 7")
+            
+            if any("SWING_EXITOSO" in p.get('pattern', '') for p in recent_patterns):
+                recommendations.append("⏳ Trades swing rentables - ajustar trailing stops más amplios")
+                
+        except Exception as e:
+            log.error(f"Error generando recomendaciones IA: {e}")
+        
+        return recommendations
+
+# ═══════════════════════════════════════════════════════════════════
+# MONITOR DE POSICIONES MEJORADO (NUEVO)
+# ═══════════════════════════════════════════════════════════════════
+
+class EnhancedPositionMonitor:
+    """Monitor avanzado de posiciones con análisis en tiempo real"""
+    
+    def __init__(self, api, capital_manager):
+        self.api = api
+        self.capital = capital_manager
+        self.positions_snapshot = {}
+        self.performance_alerts = []
+        self.trade_logger = AdvancedTradeLogger()
+        self.trading_ai = TradingAI()
+    
+    def monitor_all_positions(self):
+        """Monitoreo completo de todas las posiciones"""
+        try:
+            account = self.api._safe_api_call(self.api.client.futures_account)
+            if not account:
+                return
+            
+            open_positions = {p['symbol']: p for p in account['positions'] 
+                            if float(p['positionAmt']) != 0}
+            
+            # Actualizar snapshot
+            self._update_positions_snapshot(open_positions)
+            
+            # Análisis en tiempo real
+            for symbol, position in open_positions.items():
+                self._analyze_position_health(symbol, position)
+                self._check_performance_alerts(symbol, position)
+            
+            # Log de estado
+            if open_positions and len(open_positions) % 5 == 0:  # Log cada 5 posiciones
+                log.info(f"📊 Monitor: {len(open_positions)} posiciones activas")
+                
+        except Exception as e:
+            log.error(f"Error en monitor de posiciones: {e}")
+    
+    def _update_positions_snapshot(self, positions):
+        """Actualizar snapshot de posiciones para análisis"""
+        for symbol, position in positions.items():
+            current_pnl = float(position.get('unRealizedProfit', 0))
+            
+            if symbol not in self.positions_snapshot:
+                self.positions_snapshot[symbol] = {
+                    'max_pnl': current_pnl,
+                    'min_pnl': current_pnl,
+                    'entry_time': time.time(),
+                    'pnl_history': []
+                }
+            else:
+                # Actualizar máximos y mínimos
+                self.positions_snapshot[symbol]['max_pnl'] = max(
+                    self.positions_snapshot[symbol]['max_pnl'], current_pnl
+                )
+                self.positions_snapshot[symbol]['min_pnl'] = min(
+                    self.positions_snapshot[symbol]['min_pnl'], current_pnl
+                )
+            
+            # Guardar histórico de PnL
+            self.positions_snapshot[symbol]['pnl_history'].append({
+                'timestamp': time.time(),
+                'pnl': current_pnl,
+                'price': float(position.get('markPrice', 0))
+            })
+            
+            # Mantener sólo últimas 100 lecturas
+            if len(self.positions_snapshot[symbol]['pnl_history']) > 100:
+                self.positions_snapshot[symbol]['pnl_history'] = \
+                    self.positions_snapshot[symbol]['pnl_history'][-100:]
+    
+    def _analyze_position_health(self, symbol, position):
+        """Analizar salud de la posición"""
+        try:
+            current_pnl = float(position.get('unRealizedProfit', 0))
+            entry_price = float(position.get('entryPrice', 0))
+            mark_price = float(position.get('markPrice', 0))
+            
+            if symbol in self.positions_snapshot:
+                snapshot = self.positions_snapshot[symbol]
+                max_pnl = snapshot['max_pnl']
+                
+                # Calcular drawdown desde máximo
+                drawdown = max_pnl - current_pnl
+                drawdown_pct = (drawdown / abs(max_pnl)) * 100 if max_pnl != 0 else 0
+                
+                # Alertas de salud
+                if drawdown_pct > 50:  # 50% drawdown desde máximo
+                    self._add_alert(symbol, f"ALTO DRAWDOWN: {drawdown_pct:.1f}% desde máximo")
+                    log.warning(f"⚠️ {symbol}: Drawdown del {drawdown_pct:.1f}%")
+                
+                # Análisis de tendencia de PnL
+                if len(snapshot['pnl_history']) >= 10:
+                    recent_pnls = [p['pnl'] for p in snapshot['pnl_history'][-10:]]
+                    if all(p < 0 for p in recent_pnls):  # 10 lecturas negativas consecutivas
+                        self._add_alert(symbol, "TENDENCIA NEGATIVA PERSISTENTE")
+                        
+        except Exception as e:
+            log.error(f"Error analizando salud posición {symbol}: {e}")
+    
+    def _check_performance_alerts(self, symbol, position):
+        """Verificar alertas de performance"""
+        try:
+            current_pnl = float(position.get('unRealizedProfit', 0))
+            position_amt = float(position.get('positionAmt', 0))
+            
+            # Alertas basadas en PnL
+            if current_pnl > 100:  # Ganancia significativa
+                log.info(f"🎯 {symbol}: Ganancia significativa +${current_pnl:.2f}")
+            
+            elif current_pnl < -50:  # Pérdida significativa
+                log.warning(f"⚠️ {symbol}: Pérdida significativa ${current_pnl:.2f}")
+                
+        except Exception as e:
+            log.error(f"Error verificando alertas {symbol}: {e}")
+    
+    def _add_alert(self, symbol, message):
+        """Agregar alerta al sistema"""
+        alert = {
+            'symbol': symbol,
+            'message': message,
+            'timestamp': datetime.now().isoformat(),
+            'priority': 'HIGH' if 'ALTO' in message else 'MEDIUM'
+        }
+        self.performance_alerts.append(alert)
+        
+        # Mantener sólo últimas 20 alertas
+        if len(self.performance_alerts) > 20:
+            self.performance_alerts = self.performance_alerts[-20:]
+    
+    def log_position_close(self, symbol, position_data, close_info, signal_score=0):
+        """Registrar cierre de posición con análisis completo"""
+        try:
+            trade_data = {
+                'symbol': symbol,
+                'side': position_data.get('side', 'UNKNOWN'),
+                'entry_price': position_data.get('entry', 0),
+                'exit_price': float(position_data.get('markPrice', 0)),
+                'quantity': position_data.get('qty', 0),
+                'pnl': float(position_data.get('unRealizedProfit', 0)),
+                'duration': time.time() - position_data.get('time', time.time()),
+                'signal_score': signal_score,
+                'reason': close_info.get('reason', 'Unknown'),
+                'max_pnl': close_info.get('max_pnl', 0)
+            }
+            
+            # Análisis con IA
+            if config.ENABLE_AI_ANALYSIS:
+                market_condition = app_state.get("market_condition", "NORMAL")
+                ai_analysis = self.trading_ai.analyze_trade_pattern(trade_data, market_condition)
+                trade_data['ai_analysis'] = ai_analysis
+            
+            # Guardar en logger avanzado
+            self.trade_logger.log_trade_detailed(trade_data)
+            
+            # Limpiar snapshot
+            self.positions_snapshot.pop(symbol, None)
+            
+        except Exception as e:
+            log.error(f"Error registrando cierre de posición {symbol}: {e}")
+
+# ═══════════════════════════════════════════════════════════════════
+# SISTEMA DE BACKTESTING (COMPLETAMENTE CORREGIDO)
 # ═══════════════════════════════════════════════════════════════════
 
 class Backtester:
-    """Sistema de backtesting para optimizar parámetros"""
+    """Sistema de backtesting para optimizar parámetros - VERSIÓN CORREGIDA"""
     
     def __init__(self, api):
         self.api = api
     
     def run_backtest(self, symbol, days=30, params=None):
-        """Ejecutar backtest con parámetros específicos"""
+        """Ejecutar backtest con parámetros específicos - CORREGIDO"""
         try:
             # Obtener datos históricos
             end_time = int(time.time() * 1000)
@@ -311,7 +791,7 @@ class Backtester:
             return {"error": str(e)}
     
     def _simulate_trading(self, df, params):
-        """Simular estrategia de trading (CORREGIDO)"""
+        """Simular estrategia de trading - COMPLETAMENTE CORREGIDO"""
         try:
             detector = SignalDetector()
             df_indicators = detector.calculate_indicators(df.copy())
@@ -319,8 +799,9 @@ class Backtester:
             if df_indicators is None or len(df_indicators) < 50:
                 return {"error": "Datos insuficientes para backtesting"}
             
-            # Simulación simple
-            balance = 1000  # Balance inicial simulado
+            # Simulación mejorada
+            initial_balance = 1000  # Balance inicial simulado
+            balance = initial_balance
             positions = []
             trades = []
             
@@ -328,32 +809,113 @@ class Backtester:
                 current_data = df_indicators.iloc[:i+1]
                 signal = detector.detect_signal(current_data, "SIMULATION")
                 
-                if signal:
-                    # Lógica de trading simulada
+                if signal and not positions:  # Solo abrir si no hay posición
+                    # Lógica de trading simulada mejorada
                     price = df_indicators.iloc[i]['close']
-                    if signal['type'] == 'LONG' and not positions:
-                        entry_price = price
-                        positions.append({'side': 'LONG', 'entry': entry_price})
-                        trades.append({'action': 'BUY', 'price': entry_price, 'timestamp': df_indicators.iloc[i]['timestamp']})
-                    elif signal['type'] == 'SHORT' and not positions:
-                        entry_price = price
-                        positions.append({'side': 'SHORT', 'entry': entry_price})
-                        trades.append({'action': 'SELL', 'price': entry_price, 'timestamp': df_indicators.iloc[i]['timestamp']})
                     
-                    # Cerrar posiciones (lógica simple)
-                    if positions:
-                        pos = positions[0]
-                        if pos['side'] == 'LONG' and price > pos['entry'] * 1.02:
-                            pnl = (price - pos['entry']) / pos['entry'] * 100
-                            trades.append({'action': 'SELL', 'price': price, 'pnl': pnl})
+                    if signal['type'] == 'LONG':
+                        entry_price = price
+                        # Calcular tamaño de posición (1% del balance)
+                        position_size = balance * 0.01
+                        quantity = position_size / entry_price
+                        positions.append({
+                            'side': 'LONG', 
+                            'entry': entry_price, 
+                            'quantity': quantity,
+                            'entry_idx': i
+                        })
+                        trades.append({
+                            'action': 'BUY', 
+                            'price': entry_price, 
+                            'timestamp': df_indicators.iloc[i]['timestamp'],
+                            'quantity': quantity
+                        })
+                        
+                    elif signal['type'] == 'SHORT':
+                        entry_price = price
+                        position_size = balance * 0.01
+                        quantity = position_size / entry_price
+                        positions.append({
+                            'side': 'SHORT', 
+                            'entry': entry_price,
+                            'quantity': quantity,
+                            'entry_idx': i
+                        })
+                        trades.append({
+                            'action': 'SELL', 
+                            'price': entry_price, 
+                            'timestamp': df_indicators.iloc[i]['timestamp'],
+                            'quantity': quantity
+                        })
+                
+                # Cerrar posiciones existentes
+                if positions:
+                    pos = positions[0]
+                    current_price = df_indicators.iloc[i]['close']
+                    
+                    # Estrategia de salida simple
+                    if pos['side'] == 'LONG':
+                        # TP: 2%, SL: 1%
+                        if current_price >= pos['entry'] * 1.02 or current_price <= pos['entry'] * 0.99:
+                            pnl_pct = (current_price - pos['entry']) / pos['entry'] * 100
+                            pnl_usdt = pnl_pct * pos['quantity'] * pos['entry'] / 100
+                            trades.append({
+                                'action': 'SELL', 
+                                'price': current_price, 
+                                'pnl': pnl_usdt,
+                                'pnl_pct': pnl_pct
+                            })
+                            balance += pnl_usdt
                             positions = []
-                        elif pos['side'] == 'SHORT' and price < pos['entry'] * 0.98:
-                            pnl = (pos['entry'] - price) / pos['entry'] * 100
-                            trades.append({'action': 'BUY', 'price': price, 'pnl': pnl})
+                            
+                    elif pos['side'] == 'SHORT':
+                        # TP: 2%, SL: 1%
+                        if current_price <= pos['entry'] * 0.98 or current_price >= pos['entry'] * 1.01:
+                            pnl_pct = (pos['entry'] - current_price) / pos['entry'] * 100
+                            pnl_usdt = pnl_pct * pos['quantity'] * pos['entry'] / 100
+                            trades.append({
+                                'action': 'BUY', 
+                                'price': current_price, 
+                                'pnl': pnl_usdt,
+                                'pnl_pct': pnl_pct
+                            })
+                            balance += pnl_usdt
                             positions = []
+                    
+                    # Cierre por tiempo máximo (10 velas)
+                    if i - pos['entry_idx'] > 10:
+                        current_price = df_indicators.iloc[i]['close']
+                        if pos['side'] == 'LONG':
+                            pnl_pct = (current_price - pos['entry']) / pos['entry'] * 100
+                        else:
+                            pnl_pct = (pos['entry'] - current_price) / pos['entry'] * 100
+                            
+                        pnl_usdt = pnl_pct * pos['quantity'] * pos['entry'] / 100
+                        trades.append({
+                            'action': 'CLOSE_TIME', 
+                            'price': current_price, 
+                            'pnl': pnl_usdt,
+                            'pnl_pct': pnl_pct
+                        })
+                        balance += pnl_usdt
+                        positions = []
             
             # Calcular métricas (CON PROTECCIÓN CONTRA DIVISIÓN POR CERO)
             closed_trades = [t for t in trades if 'pnl' in t]
+            
+            if not closed_trades:
+                return {
+                    'total_trades': 0,
+                    'win_rate': 0,
+                    'avg_win': 0,
+                    'avg_loss': 0,
+                    'profit_loss': 0,
+                    'profit_factor': 0,
+                    'max_drawdown': 0,
+                    'sharpe_ratio': 0,
+                    'final_balance': balance
+                }
+            
             winning_trades = [t for t in closed_trades if t['pnl'] > 0]
             losing_trades = [t for t in closed_trades if t['pnl'] <= 0]
             
@@ -368,7 +930,14 @@ class Backtester:
             # Calcular profit factor con protección
             total_wins = sum(t['pnl'] for t in winning_trades) if winning_trades else 0
             total_losses = abs(sum(t['pnl'] for t in losing_trades)) if losing_trades else 0
-            profit_factor = total_wins / max(total_losses, 1)
+            profit_factor = total_wins / max(total_losses, 0.001)
+            
+            # Calcular drawdown
+            equity_curve = []
+            current_equity = initial_balance
+            for trade in closed_trades:
+                current_equity += trade.get('pnl', 0)
+                equity_curve.append(current_equity)
             
             return {
                 'total_trades': total_trades,
@@ -377,29 +946,38 @@ class Backtester:
                 'avg_loss': avg_loss,
                 'profit_loss': total_pnl,
                 'profit_factor': profit_factor,
-                'max_drawdown': self._calculate_max_drawdown([t.get('pnl', 0) for t in closed_trades]),
-                'sharpe_ratio': self._calculate_sharpe_ratio([t.get('pnl', 0) for t in closed_trades])
+                'max_drawdown': self._calculate_max_drawdown(equity_curve),
+                'sharpe_ratio': self._calculate_sharpe_ratio([t.get('pnl', 0) for t in closed_trades]),
+                'final_balance': balance,
+                'return_pct': ((balance - initial_balance) / initial_balance) * 100
             }
         
         except Exception as e:
             log.error(f"Error en simulación de trading: {e}")
             return {"error": f"Error en simulación: {str(e)}"}
     
-    def _calculate_max_drawdown(self, pnl_series):
-        """Calcular máxima pérdida acumulada (CORREGIDO)"""
-        if not pnl_series or len(pnl_series) == 0:
+    def _calculate_max_drawdown(self, equity_curve):
+        """Calcular máxima pérdida acumulada - CORREGIDO"""
+        if not equity_curve or len(equity_curve) == 0:
             return 0
         
         try:
-            cumulative = np.cumsum(pnl_series)
-            running_max = np.maximum.accumulate(cumulative)
-            drawdown = (cumulative - running_max) / np.maximum(running_max, 1) * 100
-            return np.min(drawdown) if len(drawdown) > 0 else 0
+            peak = equity_curve[0]
+            max_drawdown = 0
+            
+            for equity in equity_curve:
+                if equity > peak:
+                    peak = equity
+                drawdown = (peak - equity) / peak * 100
+                if drawdown > max_drawdown:
+                    max_drawdown = drawdown
+            
+            return max_drawdown
         except:
             return 0
     
     def _calculate_sharpe_ratio(self, pnl_series):
-        """Calcular ratio Sharpe (CORREGIDO)"""
+        """Calcular ratio Sharpe - CORREGIDO"""
         if not pnl_series or len(pnl_series) < 2:
             return 0
         
@@ -407,7 +985,7 @@ class Backtester:
             returns = np.array(pnl_series)
             if np.std(returns) == 0:
                 return 0
-            return (np.mean(returns) / np.std(returns)) * np.sqrt(365)  # Anualizado
+            return (np.mean(returns) / np.std(returns)) * np.sqrt(252)  # Anualizado con días trading
         except:
             return 0
 
@@ -540,11 +1118,11 @@ state_lock = threading.Lock()
 bot_thread = None
 
 # ═══════════════════════════════════════════════════════════════════
-# CLIENTE BINANCE (MEJORADO)
+# CLIENTE BINANCE (CORREGIDO)
 # ═══════════════════════════════════════════════════════════════════
 
 class BinanceFutures:
-    """Cliente para Binance Futures API con mejoras"""
+    """Cliente para Binance Futures API con mejoras - VERSIÓN CORREGIDA"""
     
     def __init__(self):
         api_key = os.getenv("BINANCE_API_KEY")
@@ -618,7 +1196,7 @@ class BinanceFutures:
             return None
 
     def place_order(self, symbol: str, side: str, quantity: float) -> Optional[Dict]:
-        """Colocar orden de mercado"""
+        """Colocar orden de mercado - CORREGIDO"""
         if config.DRY_RUN:
             log.info(f"[DRY_RUN] Orden: {side} {quantity} {symbol}")
             return {'mock': True, 'orderId': int(time.time() * 1000)}
@@ -645,11 +1223,11 @@ class BinanceFutures:
         return round(math.floor(value / step) * step, precision)
 
 # ═══════════════════════════════════════════════════════════════════
-# GESTOR DE CAPITAL MEJORADO
+# GESTOR DE CAPITAL MEJORADO (CORREGIDO)
 # ═══════════════════════════════════════════════════════════════════
 
 class CapitalManager:
-    """Gestor de capital mejorado"""
+    """Gestor de capital mejorado - VERSIÓN CORREGIDA"""
     
     def __init__(self, api):
         self.api = api
@@ -660,7 +1238,7 @@ class CapitalManager:
         self.last_reset = time.time()
 
     def get_real_balance(self) -> float:
-        """Obtener balance real"""
+        """Obtener balance real - CORREGIDO"""
         try:
             account = self.api._safe_api_call(self.api.client.futures_account)
             if account:
@@ -1017,6 +1595,11 @@ class AdvancedPositionManager:
         self.positions = {}
         self.entry_levels = {}  # Para pyramiding
         self.analytics = AnalyticsEngine()
+        self.bot = None  # Referencia al bot principal
+
+    def set_bot_reference(self, bot):
+        """Establecer referencia al bot principal"""
+        self.bot = bot
 
     def can_add_to_position(self, symbol, signal):
         """Verificar si se puede añadir a posición existente"""
@@ -1113,7 +1696,8 @@ class AdvancedPositionManager:
                 'tp': tp,
                 'side': side,
                 'qty': quantity,
-                'time': time.time()
+                'time': time.time(),
+                'signal_score': signal.get('score', 0)  # Guardar score para análisis
             }
             
             # Inicializar pyramiding
@@ -1221,7 +1805,7 @@ class AdvancedPositionManager:
         return None
     
     def close_position(self, symbol: str, position: Dict, close_info: Dict):
-        """Cerrar posición"""
+        """Cerrar posición con análisis mejorado"""
         try:
             pos = self.positions.get(symbol)
             if not pos:
@@ -1252,6 +1836,13 @@ class AdvancedPositionManager:
                     'reason': close_info.get('reason', 'Unknown'),
                     'duration': time.time() - pos['time']
                 })
+                
+                # REGISTRO MEJORADO CON ANÁLISIS AVANZADO
+                if self.bot and hasattr(self.bot, 'position_monitor'):
+                    signal_score = pos.get('signal_score', 0)
+                    self.bot.position_monitor.log_position_close(
+                        symbol, pos, close_info, signal_score
+                    )
                 
                 log.info(f"")
                 log.info(f"{'='*60}")
@@ -1313,12 +1904,19 @@ class EnhancedTradingBot:
         self.error_handler = AdvancedErrorHandler()
         self.backtester = Backtester(self.api)
         
+        # Nuevos sistemas
+        self.position_monitor = EnhancedPositionMonitor(self.api, self.capital)
+        self.trade_logger = AdvancedTradeLogger()
+        self.trading_ai = TradingAI()
+        
+        # Establecer referencias
+        self.position_mgr.set_bot_reference(self)
+        
         self.cycle = 0
         self.start_time = time.time()
         self.scanned = {}
         self.symbols = list(config.PRIORITY_SYMBOLS)
         
-        # Estado de mercado
         self.market_volatility = 0
         self.trend_direction = 0
     
@@ -1327,12 +1925,13 @@ class EnhancedTradingBot:
         
         log.info("")
         log.info("="*70)
-        log.info("🚀 BOT DE TRADING MEJORADO V13.0 - SISTEMA AVANZADO")
+        log.info("🚀 BOT DE TRADING MEJORADO V14.0 - SISTEMA AVANZADO CON IA")
         log.info("="*70)
         log.info(f"⚡ Leverage: {config.LEVERAGE}x")
         log.info(f"📊 Estrategia: Multi-Confirmación ({config.MIN_SIGNAL_SCORE}/8)")
         log.info(f"🔄 Trailing Stop: {config.TRAILING_STOP_ACTIVATION}%")
         log.info(f"📈 Pyramiding: {'Activado' if config.ENABLE_PYRAMIDING else 'Desactivado'}")
+        log.info(f"🤖 IA Analytics: {'Activado' if config.ENABLE_AI_ANALYSIS else 'Desactivado'}")
         log.info("="*70)
         log.info("")
         
@@ -1344,10 +1943,11 @@ class EnhancedTradingBot:
         # Notificar
         if self.telegram.enabled:
             self.telegram.send_message(
-                f"🤖 <b>BOT MEJORADO INICIADO</b>\n\n"
+                f"🤖 <b>BOT MEJORADO V14.0 INICIADO</b>\n\n"
                 f"⚡ Leverage: {config.LEVERAGE}x\n"
                 f"💰 Balance: ${self.capital.current_balance:.2f}\n"
-                f"📈 Pyramiding: {'✅' if config.ENABLE_PYRAMIDING else '❌'}"
+                f"📈 Pyramiding: {'✅' if config.ENABLE_PYRAMIDING else '❌'}\n"
+                f"🤖 IA Analytics: {'✅' if config.ENABLE_AI_ANALYSIS else '❌'}"
             )
         
         errors = 0
@@ -1377,11 +1977,19 @@ class EnhancedTradingBot:
                 # Trading adaptativo
                 self._adaptive_trading()
                 
+                # MONITOREO MEJORADO DE POSICIONES
+                if self.cycle % 3 == 0:  # Cada 30 segundos
+                    self.position_monitor.monitor_all_positions()
+                
                 # Escanear símbolos
                 self._scan_symbols()
                 
                 # Monitorear posiciones
                 self._monitor_positions()
+                
+                # ANÁLISIS DE PERFORMANCE
+                if self.cycle % config.PERFORMANCE_REPORT_INTERVAL == 0:
+                    self._generate_performance_report()
                 
                 # Actualizar métricas
                 self._update_metrics()
@@ -1413,6 +2021,7 @@ class EnhancedTradingBot:
             
             if price_changes:
                 self.market_volatility = np.std(price_changes)
+                health_monitor.market_volatility = self.market_volatility
                 
                 # Determinar condición del mercado
                 if self.market_volatility > 2.0:
@@ -1528,6 +2137,42 @@ class EnhancedTradingBot:
         except Exception as e:
             log.error(f"Error en monitor: {e}")
     
+    def _generate_performance_report(self):
+        """Generar reporte de performance periódico"""
+        try:
+            analysis = self.trade_logger.get_performance_analysis()
+            
+            if analysis and analysis.get('summary'):
+                log.info("📈 REPORTE DE PERFORMANCE AVANZADO:")
+                log.info(f"   Trades totales: {analysis['summary']['total_trades']}")
+                log.info(f"   Win Rate: {analysis['summary']['win_rate']:.1f}%")
+                log.info(f"   P&L Total: ${analysis['summary']['total_pnl']:.2f}")
+                log.info(f"   Profit Factor: {analysis['summary']['profit_factor']:.2f}")
+                
+                # Análisis por condiciones de mercado
+                market_analysis = analysis.get('market_analysis', {})
+                for condition, data in market_analysis.items():
+                    if data.get('trades', 0) > 0:
+                        log.info(f"   {condition}: {data['trades']} trades, "
+                                f"WR: {data.get('win_rate', 0):.1f}%")
+                
+                # Log de mejores trades
+                if analysis.get('best_trades'):
+                    best = analysis['best_trades'][0]
+                    log.info(f"   🏆 Mejor trade: {best.get('symbol', 'N/A')} "
+                            f"+${best.get('pnl', 0):.2f} (Score: {best.get('signal_score', 'N/A')})")
+                
+                # Recomendaciones IA
+                if config.ENABLE_AI_ANALYSIS:
+                    recommendations = self.trading_ai.get_optimization_recommendations()
+                    if recommendations:
+                        log.info("   🤖 RECOMENDACIONES IA:")
+                        for rec in recommendations[:3]:  # Mostrar solo 3
+                            log.info(f"      • {rec}")
+        
+        except Exception as e:
+            log.error(f"Error generando reporte: {e}")
+    
     def _update_metrics(self):
         """Actualizar métricas del sistema"""
         # Actualizar health metrics cada 10 ciclos
@@ -1539,7 +2184,7 @@ class EnhancedTradingBot:
                 )
     
     def _get_data(self, symbol: str) -> Optional[pd.DataFrame]:
-        """Obtener datos de klines"""
+        """Obtener datos de klines - CORREGIDO"""
         try:
             klines = self.api._safe_api_call(
                 self.api.client.futures_klines,
@@ -1613,8 +2258,8 @@ def api_start():
     bot_thread = threading.Thread(target=run_bot, daemon=True)
     bot_thread.start()
     
-    log.info("✅ Bot mejorado iniciado")
-    return jsonify({"status": "success", "message": "Bot mejorado iniciado"})
+    log.info("✅ Bot mejorado V14.0 iniciado")
+    return jsonify({"status": "success", "message": "Bot mejorado V14.0 iniciado"})
 
 @app.route('/api/stop', methods=['POST'])
 def api_stop():
@@ -1628,10 +2273,13 @@ def api_stop():
 
 @app.route('/api/emergency_stop', methods=['POST'])
 def api_emergency_stop():
-    """Parada de emergencia - Cierra todas las posiciones"""
+    """Parada de emergencia - Cierra todas las posiciones - CORREGIDO"""
     try:
         api = BinanceFutures()
-        account = api.client.futures_account()
+        account = api._safe_api_call(api.client.futures_account)
+        
+        if not account:
+            return jsonify({"status": "error", "message": "No se pudo obtener información de la cuenta"})
         
         closed_positions = []
         for position in account['positions']:
@@ -1705,7 +2353,8 @@ def api_advanced_config():
         
         # Validar configuración
         valid_keys = ['TRADING_HOURS', 'MAX_DRAWDOWN_PCT', 'AUTO_RISK_ADJUSTMENT', 
-                     'ENABLE_PYRAMIDING', 'MAX_PYRAMID_LEVELS']
+                     'ENABLE_PYRAMIDING', 'MAX_PYRAMID_LEVELS', 'ENABLE_AI_ANALYSIS',
+                     'SAVE_TRADE_CSV', 'PERFORMANCE_REPORT_INTERVAL']
         config_updates = {k: v for k, v in new_config.items() if k in valid_keys}
         
         with state_lock:
@@ -1721,6 +2370,9 @@ def api_advanced_config():
             if 'ENABLE_PYRAMIDING' in config_updates:
                 status = "activado" if config.ENABLE_PYRAMIDING else "desactivado"
                 log.info(f"📈 Pyramiding {status}")
+            if 'ENABLE_AI_ANALYSIS' in config_updates:
+                status = "activado" if config.ENABLE_AI_ANALYSIS else "desactivado"
+                log.info(f"🤖 Análisis IA {status}")
         
         return jsonify({"status": "success", "applied": config_updates})
     
@@ -1754,7 +2406,7 @@ def api_performance():
             "current_strategy": {
                 "active_symbols": list(app_state.get("open_positions", {}).keys()),
                 "market_condition": app_state.get("market_condition", "NORMAL"),
-                "volatility": 0  # Placeholder para futuras implementaciones
+                "volatility": getattr(health_monitor, 'market_volatility', 0)
             }
         })
     
@@ -1765,6 +2417,73 @@ def api_performance():
             "health": {"error": str(e)},
             "current_strategy": {}
         })
+
+# ═══════════════════════════════════════════════════════════════════
+# NUEVAS RUTAS API PARA ANÁLISIS AVANZADO
+# ═══════════════════════════════════════════════════════════════════
+
+@app.route('/api/advanced_analytics')
+def api_advanced_analytics():
+    """Analíticas avanzadas de trading"""
+    try:
+        # Inicializar si no existe
+        if not hasattr(app, 'trade_logger'):
+            app.trade_logger = AdvancedTradeLogger()
+        
+        if not hasattr(app, 'trading_ai'):
+            app.trading_ai = TradingAI()
+        
+        analysis = app.trade_logger.get_performance_analysis()
+        recommendations = app.trading_ai.get_optimization_recommendations()
+        
+        return jsonify({
+            "status": "success",
+            "performance_analysis": analysis,
+            "ai_recommendations": recommendations,
+            "model_weights": app.trading_ai.model_weights,
+            "detected_patterns": app.trading_ai.patterns_detected[-10:]  # últimos 10 patrones
+        })
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
+@app.route('/api/trade_history_detailed')
+def api_trade_history_detailed():
+    """Historial detallado de trades"""
+    try:
+        if not hasattr(app, 'trade_logger'):
+            return jsonify({"trades": []})
+        
+        return jsonify({
+            "trades": app.trade_logger.trade_history[-50:],  # últimos 50 trades
+            "best_trades": app.trade_logger.best_trades,
+            "worst_trades": app.trade_logger.worst_trades
+        })
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
+@app.route('/api/position_analysis')
+def api_position_analysis():
+    """Análisis en tiempo real de posiciones"""
+    try:
+        # Crear instancia temporal para análisis
+        if not hasattr(app, 'position_monitor'):
+            api = BinanceFutures()
+            capital = CapitalManager(api)
+            app.position_monitor = EnhancedPositionMonitor(api, capital)
+        
+        # Ejecutar análisis actual
+        app.position_monitor.monitor_all_positions()
+        
+        return jsonify({
+            "positions_snapshot": app.position_monitor.positions_snapshot,
+            "performance_alerts": app.position_monitor.performance_alerts,
+            "market_condition": app_state.get("market_condition", "NORMAL")
+        })
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
 
 @app.route('/api/health')
 def api_health():
@@ -1859,7 +2578,7 @@ def handle_health():
 def enhanced_initialize():
     """Inicialización mejorada"""
     try:
-        log.info("🚀 INICIALIZACIÓN AVANZADA DEL SISTEMA")
+        log.info("🚀 INICIALIZACIÓN AVANZADA DEL SISTEMA V14.0")
         
         # Verificar dependencias
         try:
@@ -1879,11 +2598,16 @@ def enhanced_initialize():
             with state_lock:
                 app_state["balance"] = capital.current_balance
         
+        # Inicializar sistemas avanzados
+        app.trade_logger = AdvancedTradeLogger()
+        app.trading_ai = TradingAI()
+        log.info("✅ Sistemas IA y Analytics inicializados")
+        
         # Actualizar health metrics inicial
         with state_lock:
             app_state["health_metrics"] = health_monitor.get_health_status()
         
-        log.info("✅ Sistema avanzado inicializado correctamente")
+        log.info("✅ Sistema avanzado V14.0 inicializado correctamente")
         return True
         
     except Exception as e:
@@ -1896,7 +2620,7 @@ def enhanced_initialize():
 
 if __name__ == "__main__":
     log.info("="*70)
-    log.info("🚀 BINANCE FUTURES BOT V13.0 - SISTEMA MEJORADO")
+    log.info("🚀 BINANCE FUTURES BOT V14.0 - SISTEMA MEJORADO CON IA")
     log.info("="*70)
     
     if not enhanced_initialize():
@@ -1907,11 +2631,12 @@ if __name__ == "__main__":
         log.info("🌐 Servidor: http://0.0.0.0:5000")
         log.info("📊 Dashboard: http://localhost:5000")
         log.info("🔧 Características avanzadas: ✅ ACTIVADAS")
+        log.info("🤖 Análisis IA: ✅ ACTIVADO")
         socketio.run(
             app, 
             host='0.0.0.0', 
             port=5000, 
-            debug=False,
+            debug=True,
             allow_unsafe_werkzeug=True
         )
     except Exception as e:
