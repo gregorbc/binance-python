@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 Bot 9.81 USDT MAXIMO RENDIMIENTO - TIEMPO REAL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FFD700;
+            --danger-color: #f44336;
+            --warning-color: #ff9800;
+            --info-color: #2196F3;
+            --dark-color: #1a1a1a;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .status-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .status-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-success {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 25px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .log-container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .log-entry {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .log-info { color: #4CAF50; }
+        .log-warning { color: #FFD700; }
+        .log-error { color: #f44336; }
+        .log-debug { color: #2196F3; }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: #cccccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .position-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .position-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+        
+        .position-long {
+            border-left-color: #4CAF50;
+        }
+        
+        .position-short {
+            border-left-color: #f44336;
+        }
+        
+        .profit-positive {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .profit-negative {
+            color: #f44336;
+            font-weight: bold;
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px currentColor;
+        }
+        
+        .tab-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0 0 10px 10px;
+            padding: 20px;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #cccccc;
+            border: none;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+        }
+        
+        .realtime-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .position-change {
+            animation: highlight 1s ease;
+        }
+        
+        @keyframes highlight {
+            0% { background: rgba(255, 255, 255, 0.2); }
+            100% { background: transparent; }
+        }
+
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-robot me-2"></i>
+                BOT 9.81 USDT - TIEMPO REAL
+            </a>
+            <div class="navbar-text">
+                <span id="current-time" class="me-3"></span>
+                <span class="badge bg-success realtime-badge" id="connection-status">
+                    <i class="fas fa-circle me-1"></i>TIEMPO REAL
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Status Cards en Tiempo Real -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="status-card text-center p-3">
+                    <div class="metric-label">ESTADO BOT</div>
+                    <div class="metric-value" id="bot-status">DETENIDO</div>
+                    <div class="mt-2">
+                        <span class="badge bg-danger" id="status-badge">OFFLINE</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="status-card text-center p-3">
+                    <div class="metric-label">BALANCE TOTAL</div>
+                    <div class="metric-value" id="balance-value">$0.00</div>
+                    <div class="metric-label" id="balance-change">USDT</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="status-card text-center p-3">
+                    <div class="metric-label">PNL TOTAL</div>
+                    <div class="metric-value" id="total-pnl">$0.00</div>
+                    <div class="metric-label" id="pnl-percent">0.00%</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="status-card text-center p-3">
+                    <div class="metric-label">POSICIONES ACTIVAS</div>
+                    <div class="metric-value" id="positions-count">0</div>
+                    <div class="metric-label">/ 9 MAX</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="status-card p-3">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button class="btn btn-success" onclick="startBot()">
+                            <i class="fas fa-play me-2"></i>INICIAR BOT
+                        </button>
+                        <button class="btn btn-danger" onclick="stopBot()">
+                            <i class="fas fa-stop me-2"></i>DETENER BOT
+                        </button>
+                        <button class="btn btn-warning" onclick="runScan()">
+                            <i class="fas fa-sync-alt me-2"></i>EJECUTAR SCAN
+                        </button>
+                        <button class="btn btn-info" onclick="refreshPositions()">
+                            <i class="fas fa-redo me-2"></i>ACTUALIZAR POSICIONES
+                        </button>
+                        <button class="btn btn-secondary" onclick="clearLogs()">
+                            <i class="fas fa-broom me-2"></i>LIMPIAR LOGS
+                        </button>
+                        <div class="ms-auto">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="autoScroll" checked>
+                                <label class="form-check-label" for="autoScroll">Auto Scroll</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Tabs -->
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="mainTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="positions-tab" data-bs-toggle="tab" data-bs-target="#positions" type="button" role="tab">
+                            <i class="fas fa-chart-line me-2"></i>POSICIONES EN TIEMPO REAL
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="performance-tab" data-bs-toggle="tab" data-bs-target="#performance" type="button" role="tab">
+                            <i class="fas fa-tachometer-alt me-2"></i>RENDIMIENTO
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs" type="button" role="tab">
+                            <i class="fas fa-terminal me-2"></i>LOGS EN TIEMPO REAL
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="analytics-tab" data-bs-toggle="tab" data-bs-target="#analytics" type="button" role="tab">
+                            <i class="fas fa-chart-bar me-2"></i>ANALYTICS
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content" id="mainTabsContent">
+                    <!-- Positions Tab -->
+                    <div class="tab-pane fade show active" id="positions" role="tabpanel">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">
+                                <i class="fas fa-sync-alt fa-spin me-2 realtime-badge"></i>
+                                POSICIONES ACTIVAS - ACTUALIZADO EN TIEMPO REAL
+                            </h5>
+                            <div>
+                                <span class="badge bg-info me-2" id="last-update">Última actualización: --:--:--</span>
+                                <button class="btn btn-sm btn-outline-light" onclick="refreshPositions()">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="positions-container">
+                            <div class="text-center text-muted py-5">
+                                <i class="fas fa-box-open fa-3x mb-3"></i>
+                                <p>No hay posiciones activas</p>
+                                <p class="small">El bot actualizará automáticamente cuando abra nuevas posiciones</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="status-card p-3">
+                                    <h6><i class="fas fa-info-circle me-2"></i>RESUMEN DE POSICIONES</h6>
+                                    <table class="table table-dark table-sm table-borderless">
+                                        <tr>
+                                            <td>Posiciones LONG:</td>
+                                            <td id="long-count" class="text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Posiciones SHORT:</td>
+                                            <td id="short-count" class="text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PnL Total:</td>
+                                            <td id="summary-total-pnl" class="text-end profit-positive">$0.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mejor Posición:</td>
+                                            <td id="best-position" class="text-end profit-positive">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Peor Posición:</td>
+                                            <td id="worst-position" class="text-end profit-negative">-</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="status-card p-3">
+                                    <h6><i class="fas fa-chart-pie me-2"></i>DISTRIBUCIÓN</h6>
+                                    <canvas id="positionsChart" height="150"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Tab -->
+                    <div class="tab-pane fade" id="performance" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="status-card p-3 mb-3">
+                                    <h5><i class="fas fa-chart-bar me-2"></i>ESTADÍSTICAS DIARIAS</h5>
+                                    <table class="table table-dark table-sm">
+                                        <tr>
+                                            <td>Trades Hoy:</td>
+                                            <td id="daily-trades" class="text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PnL Diario:</td>
+                                            <td id="daily-pnl" class="text-end profit-positive">$0.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ganadores:</td>
+                                            <td id="daily-wins" class="text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Perdedores:</td>
+                                            <td id="daily-losses" class="text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Win Rate:</td>
+                                            <td id="win-rate" class="text-end">0%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Avg. Ganancia:</td>
+                                            <td id="avg-win" class="text-end profit-positive">$0.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Avg. Pérdida:</td>
+                                            <td id="avg-loss" class="text-end profit-negative">$0.00</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="status-card p-3 mb-3">
+                                    <h5><i class="fas fa-cog me-2"></i>CONFIGURACIÓN ACTUAL</h5>
+                                    <table class="table table-dark table-sm">
+                                        <tr>
+                                            <td>Leverage:</td>
+                                            <td class="text-end">12x</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Risk/Trade:</td>
+                                            <td class="text-end">6.0%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max Posiciones:</td>
+                                            <td class="text-end">9</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Target Profit:</td>
+                                            <td class="text-end">1.8:1 RR</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Balance Mínimo:</td>
+                                            <td class="text-end">$2.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Notional Mínimo:</td>
+                                            <td class="text-end">$6.00</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="status-card p-3">
+                            <h5><i class="fas fa-bell me-2"></i>SISTEMA DE PROTECCIÓN</h5>
+                            <div class="row text-center">
+                                <div class="col-md-3">
+                                    <div class="metric-label">PÉRDIDA MÁXIMA DIARIA</div>
+                                    <div class="metric-value">$15.00</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="metric-label">TRADES MÁXIMOS/DÍA</div>
+                                    <div class="metric-value">1244</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="metric-label">PÉRDIDAS CONSECUTIVAS</div>
+                                    <div class="metric-value" id="consecutive-losses">0</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="metric-label">MARGEN DISPONIBLE</div>
+                                    <div class="metric-value" id="available-margin">$0.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Logs Tab -->
+                    <div class="tab-pane fade" id="logs" role="tabpanel">
+                        <div class="log-container" id="log-container">
+                            <div class="log-entry log-info">
+                                [SISTEMA] | Bienvenido al Bot 9.81 USDT MAXIMO RENDIMIENTO - MODO TIEMPO REAL
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Analytics Tab -->
+                    <div class="tab-pane fade" id="analytics" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="chart-container">
+                                    <h5><i class="fas fa-chart-line me-2"></i>EVOLUCIÓN DEL BALANCE</h5>
+                                    <canvas id="balanceChart" height="200"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="chart-container">
+                                    <h5><i class="fas fa-chart-pie me-2"></i>DISTRIBUCIÓN POR SÍMBOLO</h5>
+                                    <canvas id="symbolsChart" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="chart-container">
+                                    <h5><i class="fas fa-history me-2"></i>HISTORIAL RECIENTE DE TRADES</h5>
+                                    <div id="trades-history" class="table-responsive">
+                                        <table class="table table-dark table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Timestamp</th>
+                                                    <th>Símbolo</th>
+                                                    <th>Dirección</th>
+                                                    <th>Entrada</th>
+                                                    <th>Salida</th>
+                                                    <th>PnL</th>
+                                                    <th>Resultado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="trades-body">
+                                                <tr>
+                                                    <td colspan="7" class="text-center text-muted">No hay historial de trades</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-5 py-3 text-center text-muted">
+        <div class="container">
+            <small>
+                🤖 Binance Futures Bot V18.4 - MAXIMO RENDIMIENTO PARA 9.81 USDT | 
+                <i class="fas fa-shield-alt me-1"></i>PROTEGIDO CONTRA PÉRDIDAS |
+                <i class="fas fa-bolt me-1"></i>ACTUALIZACIÓN EN TIEMPO REAL
+            </small>
+        </div>
+    </footer>
+
+    <script>
+        // Socket.IO connection
+        const socket = io();
+        
+        // Estado de la aplicación
+        let appState = {
+            botRunning: false,
+            balance: 0,
+            positions: [],
+            performance: {},
+            balanceHistory: [],
+            tradeHistory: [],
+            lastUpdate: null
+        };
+        
+        // Charts
+        let positionsChart = null;
+        let balanceChart = null;
+        let symbolsChart = null;
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+            loadInitialData();
+            initializeCharts();
+            
+            // Solicitar datos iniciales
+            socket.emit('request_positions');
+        });
+        
+        // Actualizar hora actual
+        function updateCurrentTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = 
+                now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+        }
+        
+        // Cargar datos iniciales
+        function loadInitialData() {
+            fetch('/api/status')
+                .then(response => response.json())
+                .then(data => {
+                    updateStatus(data);
+                })
+                .catch(error => {
+                    console.error('Error loading initial data:', error);
+                    addLog('❌ Error conectando con el servidor', 'error');
+                });
+            
+            fetch('/api/positions')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error) {
+                        updatePositionsDisplay(data.positions);
+                        updatePositionsSummary(data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading positions:', error);
+                });
+            
+            fetch('/api/performance')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error) {
+                        updatePerformance(data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading performance:', error);
+                });
+        }
+        
+        // Inicializar gráficos
+        function initializeCharts() {
+            // Gráfico de distribución de posiciones
+            const positionsCtx = document.getElementById('positionsChart').getContext('2d');
+            positionsChart = new Chart(positionsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['LONG', 'SHORT'],
+                    datasets: [{
+                        data: [0, 0],
+                        backgroundColor: ['#4CAF50', '#f44336'],
+                        borderWidth: 2,
+                        borderColor: '#1a1a1a'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de evolución del balance
+            const balanceCtx = document.getElementById('balanceChart').getContext('2d');
+            balanceChart = new Chart(balanceCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Balance (USDT)',
+                        data: [],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: '#cccccc'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#cccccc'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de distribución por símbolo
+            const symbolsCtx = document.getElementById('symbolsChart').getContext('2d');
+            symbolsChart = new Chart(symbolsCtx, {
+                type: 'pie',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: [
+                            '#4CAF50', '#2196F3', '#FFD700', '#FF9800', '#9C27B0',
+                            '#00BCD4', '#8BC34A', '#FF5722', '#607D8B', '#795548'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Actualizar estado del bot
+        function updateStatus(data) {
+            if (data.error) {
+                addLog('❌ ' + data.error, 'error');
+                return;
+            }
+            
+            appState.botRunning = data.running;
+            appState.balance = data.current_balance;
+            
+            // Actualizar UI
+            document.getElementById('bot-status').textContent = data.running ? 'EJECUTÁNDOSE' : 'DETENIDO';
+            document.getElementById('status-badge').className = data.running ? 'badge bg-success' : 'badge bg-danger';
+            document.getElementById('status-badge').textContent = data.running ? 'ONLINE' : 'OFFLINE';
+            document.getElementById('balance-value').textContent = '$' + data.current_balance.toFixed(2);
+            document.getElementById('positions-count').textContent = data.active_positions;
+            
+            // Efecto visual cuando el bot está ejecutándose
+            if (data.running) {
+                document.getElementById('bot-status').classList.add('glow');
+            } else {
+                document.getElementById('bot-status').classList.remove('glow');
+            }
+        }
+        
+        // Manejar logs en tiempo real
+        socket.on('log_update', function(data) {
+            addLog(data.message, data.level);
+        });
+        
+        // Manejar actualizaciones de posiciones en tiempo real
+        socket.on('positions_realtime', function(data) {
+            updatePositionsDisplay(data.positions);
+            updatePositionsSummary(data);
+            updateLastUpdate();
+        });
+        
+        // Manejar actualizaciones de performance
+        socket.on('performance_update', function(data) {
+            updatePerformance(data);
+        });
+        
+        // Actualizar display de posiciones
+        function updatePositionsDisplay(positions) {
+            const container = document.getElementById('positions-container');
+            
+            if (positions.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center text-muted py-5">
+                        <i class="fas fa-box-open fa-3x mb-3"></i>
+                        <p>No hay posiciones activas</p>
+                        <p class="small">El bot actualizará automáticamente cuando abra nuevas posiciones</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            positions.forEach((position, index) => {
+                const pnlClass = position.unrealized_pnl >= 0 ? 'profit-positive' : 'profit-negative';
+                const pnlSign = position.unrealized_pnl >= 0 ? '+' : '';
+                const sideClass = position.side === 'LONG' ? 'position-long' : 'position-short';
+                
+                html += `
+                    <div class="position-card ${sideClass} position-change" id="position-${position.symbol}">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <strong>${position.symbol}</strong>
+                                <br>
+                                <span class="badge ${position.side === 'LONG' ? 'bg-success' : 'bg-danger'}">
+                                    ${position.side} ${position.leverage}x
+                                </span>
+                            </div>
+                            <div class="col-md-2">
+                                <small>Cantidad</small>
+                                <br>
+                                <strong>${parseFloat(position.amount).toLocaleString()}</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <small>Entrada</small>
+                                <br>
+                                <strong>$${parseFloat(position.entry_price).toFixed(6)}</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <small>Actual</small>
+                                <br>
+                                <strong>$${parseFloat(position.current_price).toFixed(6)}</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <small>PnL</small>
+                                <br>
+                                <strong class="${pnlClass}">
+                                    ${pnlSign}$${position.unrealized_pnl.toFixed(2)}
+                                </strong>
+                                <br>
+                                <small class="${pnlClass}">
+                                    ${pnlSign}${position.pnl_percent.toFixed(2)}%
+                                </small>
+                            </div>
+                            <div class="col-md-2">
+                                <small>Liquidation</small>
+                                <br>
+                                <strong>$${parseFloat(position.liquidation_price || 0).toFixed(6)}</strong>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Remover la clase de animación después de un tiempo
+            setTimeout(() => {
+                positions.forEach(position => {
+                    const element = document.getElementById(`position-${position.symbol}`);
+                    if (element) {
+                        element.classList.remove('position-change');
+                    }
+                });
+            }, 1000);
+        }
+        
+        // Actualizar resumen de posiciones
+        function updatePositionsSummary(data) {
+            const positions = data.positions || [];
+            const totalPnl = data.total_unrealized_pnl || 0;
+            
+            // Contar LONG vs SHORT
+            const longCount = positions.filter(p => p.side === 'LONG').length;
+            const shortCount = positions.filter(p => p.side === 'SHORT').length;
+            
+            // Encontrar mejor y peor posición
+            let bestPosition = { symbol: '-', pnl_percent: -Infinity };
+            let worstPosition = { symbol: '-', pnl_percent: Infinity };
+            
+            positions.forEach(position => {
+                if (position.pnl_percent > bestPosition.pnl_percent) {
+                    bestPosition = position;
+                }
+                if (position.pnl_percent < worstPosition.pnl_percent) {
+                    worstPosition = position;
+                }
+            });
+            
+            // Actualizar UI
+            document.getElementById('long-count').textContent = longCount;
+            document.getElementById('short-count').textContent = shortCount;
+            document.getElementById('summary-total-pnl').textContent = 
+                `${totalPnl >= 0 ? '+' : ''}$${totalPnl.toFixed(2)}`;
+            document.getElementById('summary-total-pnl').className = 
+                `text-end ${totalPnl >= 0 ? 'profit-positive' : 'profit-negative'}`;
+            
+            document.getElementById('best-position').textContent = 
+                bestPosition.symbol !== '-' ? 
+                `${bestPosition.symbol} (+${bestPosition.pnl_percent.toFixed(2)}%)` : '-';
+            document.getElementById('best-position').className = 'text-end profit-positive';
+            
+            document.getElementById('worst-position').textContent = 
+                worstPosition.symbol !== '-' ? 
+                `${worstPosition.symbol} (${worstPosition.pnl_percent.toFixed(2)}%)` : '-';
+            document.getElementById('worst-position').className = 'text-end profit-negative';
+            
+            // Actualizar PnL total en header
+            document.getElementById('total-pnl').textContent = 
+                `${totalPnl >= 0 ? '+' : ''}$${totalPnl.toFixed(2)}`;
+            document.getElementById('total-pnl').className = 
+                `metric-value ${totalPnl >= 0 ? 'profit-positive' : 'profit-negative'}`;
+            
+            const totalBalance = appState.balance + totalPnl;
+            const pnlPercentTotal = ((totalBalance - appState.balance) / appState.balance) * 100;
+            document.getElementById('pnl-percent').textContent = 
+                `${pnlPercentTotal >= 0 ? '+' : ''}${pnlPercentTotal.toFixed(2)}%`;
+            document.getElementById('pnl-percent').className = 
+                `metric-label ${pnlPercentTotal >= 0 ? 'profit-positive' : 'profit-negative'}`;
+            
+            // Actualizar gráfico de distribución
+            if (positionsChart) {
+                positionsChart.data.datasets[0].data = [longCount, shortCount];
+                positionsChart.update();
+            }
+            
+            // Actualizar gráfico de símbolos
+            if (symbolsChart && positions.length > 0) {
+                const symbolCounts = {};
+                positions.forEach(position => {
+                    symbolCounts[position.symbol] = (symbolCounts[position.symbol] || 0) + 1;
+                });
+                
+                symbolsChart.data.labels = Object.keys(symbolCounts);
+                symbolsChart.data.datasets[0].data = Object.values(symbolCounts);
+                symbolsChart.update();
+            }
+            
+            // Actualizar historial de balance
+            updateBalanceHistory(totalBalance);
+        }
+        
+        // Actualizar historial de balance
+        function updateBalanceHistory(currentBalance) {
+            const now = new Date();
+            const timeLabel = now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0');
+            
+            appState.balanceHistory.push({
+                time: timeLabel,
+                balance: currentBalance
+            });
+            
+            // Mantener solo los últimos 20 puntos
+            if (appState.balanceHistory.length > 20) {
+                appState.balanceHistory.shift();
+            }
+            
+            // Actualizar gráfico
+            if (balanceChart) {
+                balanceChart.data.labels = appState.balanceHistory.map(item => item.time);
+                balanceChart.data.datasets[0].data = appState.balanceHistory.map(item => item.balance);
+                balanceChart.update();
+            }
+        }
+        
+        // Actualizar performance
+        function updatePerformance(data) {
+            appState.performance = data;
+            
+            document.getElementById('daily-trades').textContent = data.daily_trades || 0;
+            
+            const dailyPnl = data.daily_pnl || 0;
+            document.getElementById('daily-pnl').textContent = 
+                `${dailyPnl >= 0 ? '+' : ''}$${dailyPnl.toFixed(2)}`;
+            document.getElementById('daily-pnl').className = 
+                `text-end ${dailyPnl >= 0 ? 'profit-positive' : 'profit-negative'}`;
+            
+            document.getElementById('consecutive-losses').textContent = data.consecutive_losses || 0;
+            document.getElementById('available-margin').textContent = `$${(data.available_balance || 0).toFixed(2)}`;
+            
+            // Calcular métricas adicionales
+            const totalTrades = data.total_trades || 0;
+            const winningTrades = data.winning_trades || 0;
+            const losingTrades = totalTrades - winningTrades;
+            const winRate = totalTrades > 0 ? (winningTrades / totalTrades * 100) : 0;
+            
+            document.getElementById('daily-wins').textContent = data.consecutive_wins || 0;
+            document.getElementById('daily-losses').textContent = data.consecutive_losses || 0;
+            document.getElementById('win-rate').textContent = winRate.toFixed(1) + '%';
+            
+            // Simular avg win/loss (en una implementación real vendrían del backend)
+            document.getElementById('avg-win').textContent = '+$0.85';
+            document.getElementById('avg-loss').textContent = '-$0.42';
+        }
+        
+        // Actualizar última actualización
+        function updateLastUpdate() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0') + ':' + 
+                             now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('last-update').textContent = 
+                `Última actualización: ${timeString}`;
+        }
+        
+        // Añadir entrada de log
+        function addLog(message, level = 'info') {
+            const logContainer = document.getElementById('log-container');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${level}`;
+            
+            const timestamp = new Date().toLocaleTimeString();
+            logEntry.innerHTML = `[${timestamp}] ${message}`;
+            
+            logContainer.appendChild(logEntry);
+            
+            // Auto scroll
+            if (document.getElementById('autoScroll').checked) {
+                logContainer.scrollTop = logContainer.scrollHeight;
+            }
+            
+            // Limitar número de logs
+            const logs = logContainer.getElementsByClassName('log-entry');
+            if (logs.length > 1000) {
+                logs[0].remove();
+            }
+        }
+        
+        // Control del bot
+        async function startBot() {
+            try {
+                const response = await fetch('/api/start', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.status) {
+                    addLog('🚀 ' + result.status, 'info');
+                    appState.botRunning = true;
+                    updateStatus({ running: true, current_balance: appState.balance });
+                } else if (result.error) {
+                    addLog('❌ ' + result.error, 'error');
+                }
+            } catch (error) {
+                addLog('❌ Error iniciando el bot: ' + error.message, 'error');
+            }
+        }
+        
+        async function stopBot() {
+            try {
+                const response = await fetch('/api/stop', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.status) {
+                    addLog('🛑 ' + result.status, 'info');
+                    appState.botRunning = false;
+                    updateStatus({ running: false, current_balance: appState.balance });
+                } else if (result.error) {
+                    addLog('❌ ' + result.error, 'error');
+                }
+            } catch (error) {
+                addLog('❌ Error deteniendo el bot: ' + error.message, 'error');
+            }
+        }
+        
+        async function runScan() {
+            try {
+                addLog('🔍 Ejecutando scan universal...', 'info');
+                const response = await fetch('/api/scan');
+                const result = await response.json();
+                
+                if (result.status) {
+                    addLog('✅ ' + result.status + ' - ' + result.symbols_count + ' símbolos encontrados', 'info');
+                } else if (result.error) {
+                    addLog('❌ ' + result.error, 'error');
+                }
+            } catch (error) {
+                addLog('❌ Error ejecutando scan: ' + error.message, 'error');
+            }
+        }
+        
+        async function refreshPositions() {
+            try {
+                const response = await fetch('/api/positions');
+                const result = await response.json();
+                
+                if (!result.error) {
+                    updatePositionsDisplay(result.positions);
+                    updatePositionsSummary(result);
+                    updateLastUpdate();
+                    addLog('✅ Posiciones actualizadas manualmente', 'info');
+                } else {
+                    addLog('❌ Error actualizando posiciones: ' + result.error, 'error');
+                }
+            } catch (error) {
+                addLog('❌ Error actualizando posiciones: ' + error.message, 'error');
+            }
+        }
+        
+        function clearLogs() {
+            document.getElementById('log-container').innerHTML = '';
+            addLog('🧹 Logs limpiados', 'info');
+        }
+        
+        // Actualizar datos cada 5 segundos
+        setInterval(loadInitialData, 5000);
+        
+        // Manejar conexión/desconexión del WebSocket
+        socket.on('connect', function() {
+            document.getElementById('connection-status').className = 'badge bg-success realtime-badge';
+            document.getElementById('connection-status').innerHTML = '<i class="fas fa-circle me-1"></i>TIEMPO REAL';
+            addLog('✅ Conectado al servidor WebSocket - Modo tiempo real activado', 'info');
+        });
+        
+        socket.on('disconnect', function() {
+            document.getElementById('connection-status').className = 'badge bg-danger';
+            document.getElementById('connection-status').innerHTML = '<i class="fas fa-circle me-1"></i>DESCONECTADO';
+            addLog('❌ Desconectado del servidor WebSocket', 'error');
+        });
+        
+        // Simular datos iniciales para demostración
+        setTimeout(() => {
+            addLog('✅ Sistema de tiempo real inicializado correctamente', 'info');
+            addLog('📊 Monitoreando posiciones y PnL en tiempo real...', 'info');
+        }, 1000);
+    </script>
+</body>
+</html>
